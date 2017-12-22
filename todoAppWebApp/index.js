@@ -1,13 +1,14 @@
 'use strict';
 
 const Hapi = require('hapi');
-
+const routes = require('./routes/routes');
 // Create a server with a host and port
 const server = Hapi.server({ 
     host: 'localhost', 
     port: 8000 
 });
-
+//Routes.server=server;
+routes.routes(server);
 // Add the route
 server.route({
     method: 'GET',
