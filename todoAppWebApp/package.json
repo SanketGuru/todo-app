@@ -13,6 +13,7 @@
   "author": "Sanket Gurav",
   "license": "ISC",
   "dependencies": {
-    "hapi": "^17.2.0"
+    "hapi": "^17.2.0",
+    "mongoose": "^4.13.7"
   }
 }

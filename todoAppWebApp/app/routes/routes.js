@@ -1,5 +1,5 @@
 'use strict';
-console.log('Importing routs module');
+console.log('Importing routes module');
 
 //export un named module
 // module.exports = function () {
