@@ -1,5 +1,7 @@
 'use strict';
-console.log('Importing Datarepo module');
+//How to spese fy momgous schema
+//http://mongoosejs.com/docs/schematypes.html
+
 var mongoose = require('mongoose');
 //var mongoConnection='mongodb://localhost/my_database';
 
@@ -18,7 +20,7 @@ exports.dataRepo = function () {
 
 
     mongo.create({
-        text:"Tesy",
+        text: "Tesy",
         done: false
     }, function (err, todo) {
         if (err)
@@ -29,3 +31,70 @@ exports.dataRepo = function () {
     });
 
 }
+
+//Schema for user table
+var userSchema = new Schema( {
+    userName: {
+        type: String,
+        default: ''
+    },
+    password: {
+        type: String,
+        default: ''
+    },
+    accessToken: {
+        type: Array,
+        default: []
+    },
+    userSince: {
+        type: Date,
+        default: Date.now
+    }
+});
+var User = mongoose.model('User',userSchema);
+
+//Schema for user table
+var notesSchema = new Schema({
+    ownerId: {
+        type: String,
+        default: ''
+    },
+    title: {
+        type: String,
+        default: ''
+    },
+    text: {
+        type: String,
+        default: ''
+    },
+    type: {
+        type: Number,
+        default: 0,
+        min: 0,
+        max: 3
+    },
+    status: {
+        type: Number,
+        default: 0,
+        min: 0,
+        max: 3
+    },
+    sharedWith: {
+        type: Array,
+        default: []
+    },
+    creationDate: {
+        type: Date,
+        default: Date.now
+    },
+    lastEdited: {
+        type: Date,
+        default: Date.now
+    },
+    doByDate: {
+        type: Date,
+        default: Date.now
+    }
+});
+var Notes = mongoose.model('Notes', notesSchema);
+
