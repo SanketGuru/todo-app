@@ -6,6 +6,10 @@
   "scripts": {
     "test": "testapp"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SanketGuru/todo-app.git"
+  },
   "keywords": [
     "Sample",
     "app"

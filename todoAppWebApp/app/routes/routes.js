@@ -1,5 +1,5 @@
 'use strict';
-console.log('Importing routes module');
+//console.log('Importing routes module');
 
 //export un named module
 // module.exports = function () {
@@ -8,7 +8,7 @@ console.log('Importing routes module');
 
 //export named module
 exports.routes = function (server) {
-    console.log('Setting Routes');
+  //  console.log('Setting Routes');
     server.route({
         method: 'GET',
         path:'/hello2', 
