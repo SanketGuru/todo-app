@@ -1,7 +1,9 @@
 'use strict';
 console.log('Importing Datarepo module');
+var config=require('../config/config')
 var mongoose = require('mongoose');
-//var mongoConnection='mongodb://localhost/my_database';
+
+var mongoConnection=config.remoteUrl;
 
 
 //export named module

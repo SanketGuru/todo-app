@@ -1,8 +1,8 @@
 'use strict';
 //https://darrenderidder.github.io/talks/ModulePatterns/#/
 const Hapi = require('hapi');
-const routes = require('.app/routes/routes');
-const repo = require('.app/data_repository/datarepo');
+const routes = require('./app/routes/routes');
+const repo = require('./app/data_repository/datarepo');
 // Create a server with a host and port
 const server = Hapi.server({ 
     host: 'localhost', 
