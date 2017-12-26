@@ -3,42 +3,42 @@
 //http://mongoosejs.com/docs/schematypes.html
 
 //region Imports
-console.log('Importing Datarepo module');
-var config=require('../config/config')
+
+var config=require('../config')
 var mongoose = require('mongoose');
 //endregion
-
+console.log('Importing Datarepo module');
 var mongoConnection=config.remoteUrl;
 
-
+console.log('Connecting on MongoServer :'+mongoConnection);
 //export named module
-exports.dataRepo = function () {
+//exports.dataRepo = function () {
     mongoose.connect(mongoConnection);
 
 
-    var mongo = mongoose.model('Todo', {
-        text: {
-            type: String,
-            default: ''
-        }
-    });
+//     var mongo = mongoose.model('Todo', {
+//         text: {
+//             type: String,
+//             default: ''
+//         }
+//     });
 
 
-    mongo.create({
-        text: "Tesy",
-        done: false
-    }, function (err, todo) {
-        if (err)
-            res.send(err);
+//     mongo.create({
+//         text: "Tesy",
+//         done: false
+//     }, function (err, todo) {
+//         if (err)
+//             res.send(err);
 
-        // get and return all the todos after you create another
-        getTodos(res);
-    });
+//         // get and return all the todos after you create another
+//         getTodos(res);
+//  });
 
-}
+// }
 
 //Schema for user table
-var userSchema = new Schema( {
+var userSchema = new mongoose.Schema( {
     userName: {
         type: String,
         default: ''
@@ -58,8 +58,11 @@ var userSchema = new Schema( {
 });
 var User = mongoose.model('User',userSchema);
 
+
+
+
 //Schema for user table
-var notesSchema = new Schema({
+var notesSchema = new mongoose.Schema({
     ownerId: {
         type: String,
         default: ''
@@ -103,3 +106,13 @@ var notesSchema = new Schema({
 });
 var Notes = mongoose.model('Notes', notesSchema);
 
+
+// exports.dataRepo.UserCollection=User;
+
+// exports.dataRepo.NotesCollection=Notes;
+
+exports.dataRepo={
+    dataRepo:"Datarepo is ok",
+    Usercollection: User,
+    NotesCollection : Notes
+}
