@@ -1,4 +1,4 @@
 module.exports = {
-    remoteUrl : 'mongodb://node:nodeuser@mongo.onmodulus.net:27017/uwO3mypu',
+    remoteUrl : 'mongodb://admin:myadmin@ds113938.mlab.com:13938/todoapp',
     localUrl: 'mongodb://localhost/meanstacktutorials'
 };

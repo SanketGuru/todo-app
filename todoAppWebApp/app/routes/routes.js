@@ -7,7 +7,10 @@ const repo = require('../data_repository/datarepo');
 // module.exports = function () {
 //     console.log('bar!');
 //   }
-
+function reply(data) {
+    data.re = 234;
+    return data;
+}
 //export named module
 exports.routes = function (server) {
     //  console.log('Setting Routes');
@@ -15,46 +18,25 @@ exports.routes = function (server) {
     server.route({
         method: 'POST',
         path: '/api/v1/login',
-        handler: function (request, hedder) {
+        handler: function (request, h) {
             var userName = request.payload.userName;
             var password = request.payload.password;
-            console.log("Finding " + request.payload);
             var userCon = repo.dataRepo.Usercollection;
 
             try {
-                var dataP = userCon.findOne({ 'userName': userName }, 'userName password', function (err, person) {
+                var ss = userCon.findOne({ 'userName': userName }, 'userName password', function (err, data) {
                     if (err) {
                         return 400;
                     }
-                    person.error="No";
-                    return person;
+                    return data;
 
                 });
 
-              var  reo = {};
-                reo.per = dataP;
-                return dataP;
             } catch (e) {
                 console.log("eception" + e);
                 return e;
             }
-            // return got.userName;
-            //   userCon.create({
-            //             userName: userName,
-            //             password: password,
-            //             done: false
-            //         }, function (err, todo) {
-            //             if (err)
-            //                 res.send(err);
-
-            //             // get and return all the todos after you create another
-            //             getTodos(res);
-            //      });
-            // return {
-            //     status: true,
-            //     data: null,
-            //     message: "Something went wrong"
-
+        
         }
     });
 }

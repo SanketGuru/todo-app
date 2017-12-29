@@ -19,7 +19,14 @@ server.route({
         return 'hello world';
     }
 });
+server.route({
+    method: 'POST',
+    path:'/helloW', 
+    handler: function (request, h) {
 
+        return 'hello world';
+    }
+});
 // Start the server
 async function start() {
 
