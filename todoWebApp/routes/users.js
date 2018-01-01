@@ -11,26 +11,11 @@ var response = {
   message: "",
   payload: {}
 }
-
+/**
+ * Create new Note
+*/
 router.put('/createnote', function (req, res, next) {
-  /*
-  {
-id:id,
-onerid:""
-title:"",
-type:"",
-text:"",
-status:<0,1,3>,
-sharedWith:[
-<Will keep ids of shared user>{
-userid:id,
-shareMode:<readOnly 0, write 1>
-}
-],
-creationDate: date of creation,
-dobyDate: date by which,
-lastEdited:date
-}*/
+
   try {
     var Note = JSON.parse(req.body.note);
 
@@ -51,7 +36,7 @@ lastEdited:date
       } else {
         response.status = true;
         response.message = 'New Note created';
-        response.payload = noteData;
+        response.payload = noteData._id;
 
       }
       res.json(response);
@@ -67,4 +52,39 @@ lastEdited:date
   }
 });
 
+
+/**
+ * get My Notes
+*/
+router.get('/notes/:owner', function (req, res, next) {
+
+  try {
+    //var body = JSON.parse(req.body);
+    var userId = req.headers.id;
+    console.log(req.params.owner);
+
+    //var notesCon = repo.dataRepo.NotesCollection;
+    var Notes = mongoose.model('Notes', repo.dataRepo.NotesSchema);
+    Notes.find({}, function (err, noteData) {
+      if (err) { 
+        response.status = false;
+        response.message = "Some thing went wrong";
+        response.payload = {};
+    
+      } else {
+        response.status = true;
+        response.message = "List Of Notes";
+        response.payload = noteData;
+      
+      }
+
+    });
+  } catch (e) {
+    console.log(e);
+    response.status = false;
+    response.message = "Some thing went wrong"+e;
+    response.payload = {};
+  }
+  res.json(response);
+});
 module.exports = router;

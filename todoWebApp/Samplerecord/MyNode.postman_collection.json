@@ -4,7 +4,8 @@
 	"description": "",
 	"order": [
 		"f28824ee-e1f2-a0d3-a73f-98aa7d700dc5",
-		"3c15785b-68d4-1c18-4cfd-c02daf2b9204"
+		"3c15785b-68d4-1c18-4cfd-c02daf2b9204",
+		"f31e7101-a3db-8651-5122-a25247bdfe48"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -102,6 +103,35 @@
 			"description": "",
 			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
 			"responses": []
+		},
+		{
+			"id": "f31e7101-a3db-8651-5122-a25247bdfe48",
+			"headers": "id: myid\n",
+			"headerData": [
+				{
+					"key": "id",
+					"value": "myid",
+					"description": ""
+				}
+			],
+			"url": "http://localhost:3000/api/v1/users/notes/my",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
+			"data": null,
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/v1/users/notes/my",
+			"description": "Gets all notes",
+			"descriptionFormat": "html",
+			"time": 1514807759519,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
 		}
 	]
 }
