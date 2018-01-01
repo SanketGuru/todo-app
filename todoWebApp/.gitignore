@@ -1,0 +1,7 @@
+
+# Dependency directories
+node_modules/*
+
+#lock file
+*-lock.json
+/app/config/*
