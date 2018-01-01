@@ -1,0 +1,21 @@
+{
+    "_id": {
+        "$oid": "5a4a0bc6c0fabb09745360e5"
+    },
+    "doByDate": {
+        "$date": "2018-01-01T10:21:58.703Z"
+    },
+    "lastEdited": {
+        "$date": "2018-01-01T10:21:58.703Z"
+    },
+    "creationDate": {
+        "$date": "2018-01-01T10:21:58.703Z"
+    },
+    "sharedWith": [],
+    "status": 0,
+    "type": 0,
+    "text": "My Notes",
+    "title": "Say hi",
+    "ownerId": "",
+    "__v": 0
+}

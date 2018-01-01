@@ -104,7 +104,7 @@ var notesSchema = new mongoose.Schema({
         default: Date.now
     }
 });
-var Notes = mongoose.model('Notes', notesSchema);
+//var Notes = mongoose.model('Notes', notesSchema);
 
 
 // exports.dataRepo.UserCollection=User;
@@ -114,5 +114,6 @@ var Notes = mongoose.model('Notes', notesSchema);
 exports.dataRepo={
     dataRepo:"Datarepo is ok",
     Usercollection: User,
-    NotesCollection : Notes
+    NotesSchema : notesSchema,
+    UserShcema : userSchema
 }

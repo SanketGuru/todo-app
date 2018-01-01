@@ -4,19 +4,18 @@ var router = express.Router();
 
 var response = {
   status: true,
-  message: "Login",
+  message: "",
   payload: {}
 }
 
-var apiHead = "/api/v1";
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+// router.get('/', function (req, res, next) {
+//   res.render('index', { title: 'Express' });
+// });
 
 /*login Api*/
-router.post(apiHead + '/login', function (req, res, next) {
+router.post( '/login', function (req, res, next) {
   var userCon = repo.dataRepo.Usercollection;
   try {
     var ss = userCon.findOne({ 'userName': req.body.userName }, 'userName password', function (err, data) {
