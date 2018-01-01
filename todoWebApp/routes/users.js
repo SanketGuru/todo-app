@@ -66,25 +66,69 @@ router.get('/notes/:owner', function (req, res, next) {
     //var notesCon = repo.dataRepo.NotesCollection;
     var Notes = mongoose.model('Notes', repo.dataRepo.NotesSchema);
     Notes.find({}, function (err, noteData) {
-      if (err) { 
+      if (err) {
         response.status = false;
         response.message = "Some thing went wrong";
         response.payload = {};
-    
+
       } else {
         response.status = true;
         response.message = "List Of Notes";
         response.payload = noteData;
-      
+
       }
 
     });
   } catch (e) {
     console.log(e);
     response.status = false;
-    response.message = "Some thing went wrong"+e;
+    response.message = "Some thing went wrong" + e;
     response.payload = {};
   }
   res.json(response);
+});
+
+
+/**
+ * edit Notes
+*/
+router.post('/editnote', function (req, res, next) {
+
+  try {
+    console.log(req.body._id);
+    // var body = JSON.parse(req.body);
+    //var userId = req.headers.id;
+
+    //,{text :"hsjhshs"}, { multi: true }
+    var Notes = mongoose.model('Notes', repo.dataRepo.NotesSchema);
+    var note =JSON.parse(req.body.note);
+    Notes.update(
+      {
+        "_id": req.body._id
+      }, note,
+       { multi: true }
+      , function (err, noteData) {
+        if (err) {
+          response.status = false;
+          response.message = "Some thing went wrong" + err;
+          response.payload = err;
+
+        } else {
+
+          response.status = true;
+          response.message = "List Of Notes";
+          response.payload = noteData;
+
+        }
+        res.json(response);
+      });
+  } catch (e) {
+    console.log(e);
+    response.status = false;
+    response.message = "Some thing went wrong" + e;
+    response.payload = {};
+    res.json(response);
+  }
+
 });
 module.exports = router;

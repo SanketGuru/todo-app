@@ -5,7 +5,8 @@
 	"order": [
 		"f28824ee-e1f2-a0d3-a73f-98aa7d700dc5",
 		"3c15785b-68d4-1c18-4cfd-c02daf2b9204",
-		"f31e7101-a3db-8651-5122-a25247bdfe48"
+		"f31e7101-a3db-8651-5122-a25247bdfe48",
+		"33a0745b-f5bb-3e74-0681-bfe4494810eb"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -13,6 +14,51 @@
 	"owner": "1858550",
 	"public": false,
 	"requests": [
+		{
+			"id": "33a0745b-f5bb-3e74-0681-bfe4494810eb",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/api/v1/users/editnote",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
+			"data": [
+				{
+					"key": "_id",
+					"value": "5a4a0bc6c0fabb09745360e5",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "note",
+					"value": "{\"text\" :\"say some other\" , \"title\" : \"Say title\"}",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/v1/users/editnote",
+			"description": "You can edit note",
+			"descriptionFormat": "html",
+			"time": 1514810247369,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
 		{
 			"id": "3c15785b-68d4-1c18-4cfd-c02daf2b9204",
 			"headers": "Content-Type: application/x-www-form-urlencoded\nid: myid\n",
