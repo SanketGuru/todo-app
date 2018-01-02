@@ -136,13 +136,10 @@ router.post('/editnote', function (req, res, next) {
  * edit Notes
 */
 router.delete('/note', function (req, res, next) {
-
+//TODO : this routs must delet multiple data records passed to it in array 
   try {
-    console.log(req.body._id);
-    // var body = JSON.parse(req.body);
-    //var userId = req.headers.id;
 
-    //,{text :"hsjhshs"}, { multi: true }
+  //,{text :"hsjhshs"}, { multi: true }
     var Notes = mongoose.model('Notes', repo.dataRepo.NotesSchema);
     var id_arr =JSON.parse(req.body.id);
     console.log(id_arr);
