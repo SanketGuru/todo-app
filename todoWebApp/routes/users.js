@@ -156,7 +156,7 @@ router.delete('/note', function (req, res, next) {
         } else {
 
           response.status = true;
-          response.message = "List Of Notes";
+          response.message = "Note Deleted";
           response.payload = noteData;
           
         }
