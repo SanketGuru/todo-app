@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 const repo = require('../data_repository/datarepo');
+//https://coursework.vschool.io/mongoose-crud/
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
@@ -24,7 +25,7 @@ router.put('/createnote', function (req, res, next) {
     //var notesCon = repo.dataRepo.NotesCollection;
     var Notes = mongoose.model('Notes', repo.dataRepo.NotesSchema);
     Note.ownerId = userId;
-    console.log(JSON.stringify(Note));
+  //  console.log(JSON.stringify(Note));
     var notesData = new Notes(Note);
     notesData.save(function (err, noteData) {
       if (err) {
@@ -136,17 +137,16 @@ router.post('/editnote', function (req, res, next) {
  * edit Notes
 */
 router.delete('/note', function (req, res, next) {
-//TODO : this routs must delet multiple data records passed to it in array 
-  try {
 
+  try {
   //,{text :"hsjhshs"}, { multi: true }
     var Notes = mongoose.model('Notes', repo.dataRepo.NotesSchema);
     var id_arr =JSON.parse(req.body.id);
     console.log(id_arr);
     if(id_arr){}else{id_arr=[];}
-    Notes.findByIdAndRemove(
-    { $in :id_arr}
-      ,{ multi: true }
+    Notes.remove(
+    {"_id": { $in :id_arr}}
+      
       , function (err, noteData) {
         if (err) {
           response.status = false;
