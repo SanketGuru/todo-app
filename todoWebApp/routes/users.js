@@ -131,4 +131,47 @@ router.post('/editnote', function (req, res, next) {
   }
 
 });
+
+/**
+ * edit Notes
+*/
+router.delete('/note', function (req, res, next) {
+
+  try {
+    console.log(req.body._id);
+    // var body = JSON.parse(req.body);
+    //var userId = req.headers.id;
+
+    //,{text :"hsjhshs"}, { multi: true }
+    var Notes = mongoose.model('Notes', repo.dataRepo.NotesSchema);
+    var id_arr =JSON.parse(req.body.id);
+    console.log(id_arr);
+    if(id_arr){}else{id_arr=[];}
+    Notes.findByIdAndRemove(
+    { $in :id_arr}
+      ,{ multi: true }
+      , function (err, noteData) {
+        if (err) {
+          response.status = false;
+          response.message = "Some thing went wrong" + err;
+          response.payload = err;
+
+        } else {
+
+          response.status = true;
+          response.message = "List Of Notes";
+          response.payload = noteData;
+          
+        }
+        res.json(response);
+      });
+  } catch (e) {
+    console.log(e);
+    response.status = false;
+    response.message = "Some thing went wrong" + e;
+    response.payload = {};
+    res.json(response);
+  }
+
+});
 module.exports = router;

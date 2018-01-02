@@ -25,17 +25,16 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:3000/api/v1/users/editnote",
+			"url": "http://localhost:3000/api/v1/users/note",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
+			"method": "DELETE",
 			"data": [
 				{
-					"key": "_id",
-					"value": "5a4a0bc6c0fabb09745360e5",
+					"key": "id",
+					"value": "[\"5a4a318f7d6b4c1320088088\",\"5a4b2de901cadf0234433f93\",\"5a4b2dee01cadf0234433f94\"]",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -49,15 +48,14 @@
 				}
 			],
 			"dataMode": "urlencoded",
-			"name": "http://localhost:3000/api/v1/users/editnote",
-			"description": "You can edit note",
-			"descriptionFormat": "html",
-			"time": 1514810247369,
-			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": {}
+			"helperAttributes": {},
+			"time": 1514876710877,
+			"name": "http://localhost:3000/api/v1/users/editnote",
+			"description": "You can edit note",
+			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
+			"responses": []
 		},
 		{
 			"id": "3c15785b-68d4-1c18-4cfd-c02daf2b9204",
