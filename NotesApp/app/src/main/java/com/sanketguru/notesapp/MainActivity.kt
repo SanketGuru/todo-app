@@ -2,13 +2,15 @@ package com.sanketguru.notesapp
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,4 +38,26 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    //region Fragment Interaction
+    override fun onFragmentInteraction(data: Any) {
+        //   TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun addFragmentToMain(fragment: Fragment, addToBackstack: Boolean) {
+        //   TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun setTitleHead(title: CharSequence) {
+        //   TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun hideToolbar(hide: Boolean) {
+        //   TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun lockDrawer(lock: Boolean) {
+        //   TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+    //endregion
 }
