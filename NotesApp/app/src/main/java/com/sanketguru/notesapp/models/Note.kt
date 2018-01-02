@@ -37,9 +37,11 @@ open class Note {
     @SerializedName("lastEdited")
     @Expose
     var lastEdited = Date()
+
 }
-class TextNote : Note(){
+class TextNote {
     @SerializedName("text")
     @Expose
     var text = ""
 }
+//data class OtherNote (val name: String, val age: Int)
