@@ -8,7 +8,7 @@ package com.sanketguru.notesapp.apiservice;
  * */
 public class ApiConfig {
 
-    public static final String API_URL="http://your.com/";
+    public static final String API_URL="http://localhost:3000/api/";
     public static final String API_VERSION="v1";
     public static final String BASE_URL=API_URL+API_VERSION+'/';
 }

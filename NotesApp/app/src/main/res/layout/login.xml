@@ -17,7 +17,7 @@
         app:passwordToggleEnabled="true">
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editText3"
+            android:id="@+id/etUserName"
             android:layout_width="wrap_content"
             android:layout_height="46dp"
             android:layout_marginEnd="8dp"
@@ -25,7 +25,7 @@
             android:layout_marginTop="78dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="UserName" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -39,7 +39,7 @@
         app:passwordToggleEnabled="true">
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editText4"
+            android:id="@+id/etPassword"
             android:layout_width="209dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -47,7 +47,7 @@
             android:layout_marginTop="16dp"
             android:ems="10"
             android:inputType="textPassword"
-            android:text="Name" />
+            android:hint="password" />
     </android.support.design.widget.TextInputLayout>
 
     <Button

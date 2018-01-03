@@ -10,5 +10,5 @@ import retrofit2.http.POST;
 
 public interface LoginService {
     @POST("login")
-    Observable<ApiResponse<Object>> login(@Body User user);
+    Observable<ApiResponse<User>> login(@Body User user);
 }
