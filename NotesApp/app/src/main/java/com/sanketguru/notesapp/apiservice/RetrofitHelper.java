@@ -49,7 +49,7 @@ public class RetrofitHelper {
 
     private Retrofit createRetrofit() {
         return new Retrofit.Builder().
-                baseUrl(ApiConfig.BASE_URL + ApiConfig.API_VERSION)
+                baseUrl(ApiConfig.BASE_URL )
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // <- add this
                 .client(createOkHttpClient())
