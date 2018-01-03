@@ -100,4 +100,54 @@ router.post('/register', function (req, res, next) {
     res.json(response);
   }
 });
+
+/*find UserApi*/
+router.get('/find/:user', function (req, res, next) {
+  var userCon = repo.dataRepo.Usercollection;
+  try {
+    var ss = userCon.find({ 'userName': new RegExp('^'+req.params.user+'*', "i")}, 'userName password', function (err, data) {
+      if (err) {
+        response.status = false;
+        response.message = "Some thing went wrong" + err;
+        response.payload = data;
+        res.json(response);
+        return 400;
+      }
+      else {
+        if (data) {
+
+          if (data.password == req.body.password) {
+            response.status = true;
+            response.message = "Go in app ";
+            response.payload = data;
+            console.log(response);
+            res.status(200).send(response);
+            return data;
+          } else {
+            response.status = false;
+            response.message = "Invalid ";
+            response.payload = {};
+            res.status(200).send(response);
+            return;
+          }
+
+        }
+        else {
+          response.status = false;
+          response.message = "No such user found";
+          response.payload = data;
+          res.json(response);
+          return data;
+        }
+      }
+    });
+  } catch (e) {
+    console.log(e);
+    response.status = false;
+    response.message = "Some thing went wrong" + e;
+    response.payload = data;
+    res.json(response);
+  }
+});
+
 module.exports = router;

@@ -9,7 +9,8 @@
 		"33a0745b-f5bb-3e74-0681-bfe4494810eb",
 		"0aae4f31-2d9b-b8e0-709e-41c0a45fd6eb",
 		"9949990d-c1b9-ceba-e846-db89bdcb92d5",
-		"45307a5d-2330-99c9-2e41-151d3de6c332"
+		"45307a5d-2330-99c9-2e41-151d3de6c332",
+		"dc4848dc-aa83-3323-1ca2-ef5ea7f9780a"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -150,11 +151,10 @@
 			],
 			"url": "http://localhost:3000/api/v1/users/editnote",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "PATCH",
-			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
 			"data": [
 				{
 					"key": "note",
@@ -165,15 +165,15 @@
 				}
 			],
 			"dataMode": "urlencoded",
-			"name": "http://localhost:3000/api/v1/users/editnote",
-			"description": "Edit Note",
-			"descriptionFormat": "html",
-			"time": 1514983080717,
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": {}
+			"helperAttributes": {},
+			"time": 1514984913602,
+			"name": "http://localhost:3000/api/v1/user/editNote",
+			"description": "Edit Note",
+			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
+			"responses": []
 		},
 		{
 			"id": "9949990d-c1b9-ceba-e846-db89bdcb92d5",
@@ -220,6 +220,50 @@
 			"description": "Registration",
 			"descriptionFormat": "html",
 			"time": 1514982541628,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "dc4848dc-aa83-3323-1ca2-ef5ea7f9780a",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nid: myid\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "id",
+					"value": "myid",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/api/v1/find/yo",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
+			"data": [
+				{
+					"key": "note",
+					"value": "{\"title\":\"Say hi\",\"text\": \"say dakfldak nbbbotes\"}",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/v1/findusers",
+			"description": "Find users",
+			"descriptionFormat": "html",
+			"time": 1514984867841,
 			"version": 2,
 			"responses": [],
 			"tests": null,
