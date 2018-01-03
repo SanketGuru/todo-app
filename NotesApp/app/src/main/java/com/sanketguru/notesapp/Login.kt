@@ -7,6 +7,7 @@ import android.util.Log
 import com.sanketguru.notesapp.apiservice.RetrofitHelper
 import com.sanketguru.notesapp.models.User
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.login.*
 
@@ -31,19 +32,21 @@ class Login : AppCompatActivity() {
 
             }
             var retHelper = RetrofitHelper()
-            retHelper.webService.login(user)
-                    .subscribeOn(Schedulers.io())
+         var loginData=   retHelper.webService.login(user)
+            loginData  .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(io.reactivex.functions.Consumer { t ->
+                    .subscribe({ response ->
                         {
-                            if (t.isSuccess) {
-                            //    Log.d("ID",t!!payload!!id)
-                                val intent = Intent(this@Login, MainActivity::class.java)
-                                startActivity(intent)
-                                finish()
+                            Log.v("Say",response.payload!!.id)
+                            if (response.isSuccess) {
+                               Log.v("Say",response.payload!!.id)
+                            // Log.v("Logsay",);
+//                                val intent = Intent(this@Login, MainActivity::class.java)
+//                                startActivity(intent)
+//                                finish()
                             }
                         }
-                    })
+                    }, { t -> {} })
 
 
         }

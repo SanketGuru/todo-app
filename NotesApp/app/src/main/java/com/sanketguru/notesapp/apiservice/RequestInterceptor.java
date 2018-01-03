@@ -1,4 +1,4 @@
-/*
+
 package com.sanketguru.notesapp.apiservice;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import okhttp3.ResponseBody;
 import okio.Buffer;
 import timber.log.Timber;
 
-*/
+
 /**
  * Created by Sanket Gurav on 1/2/2018.
  *//*
@@ -100,4 +100,4 @@ public class RequestInterceptor implements Interceptor {
         return response.newBuilder().body(respBody).build();
     }
 }
-*/
+
