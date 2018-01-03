@@ -6,6 +6,7 @@ package com.sanketguru.notesapp.apiservice;
 /**
  * medium document about retrofit https://blog.mindorks.com/understanding-android-networking-library-retrofit-2-510d07dc5b1f
  * */
+//https://stackoverflow.com/questions/18473011/retrofit-gson-serialize-date-from-json-string-into-java-util-date
 public class ApiConfig {
 
     public static final String API_URL="http://localhost:3000/api/";

@@ -1,0 +1,161 @@
+var mongoose = require('mongoose');
+const repo = require('../data_repository/datarepo');
+var response = {
+    status: true,
+    message: "",
+    payload: {}
+  }
+var notesController = {//start notesController
+    getNotesByPagieng: function (req, res, next) {
+        var pagesize = 2;
+        // var pagenumber = req.body.pagenumber;
+        console.log("Hijsnslnasnk");
+        res.json({})
+    },
+    //this is where you return
+    createNote: function (req, res, next) {
+
+        try {
+            var Note = JSON.parse(req.body.note);
+
+            var userId = req.headers.id;
+            console.log(userId);
+            //var notesCon = repo.dataRepo.NotesCollection;
+            var Notes = mongoose.model('Notes', repo.dataRepo.NotesSchema);
+            Note.ownerId = userId;
+            //  console.log(JSON.stringify(Note));
+            var notesData = new Notes(Note);
+            notesData.save(function (err, noteData) {
+                if (err) {
+                    //  console.log(err);
+                    response.status = false;
+                    response.message = "Some thing went wrong" + err;
+                    response.payload = {};
+
+                } else {
+                    response.status = true;
+                    response.message = 'New Note created';
+                    response.payload = noteData._id;
+
+                }
+                res.json(response);
+                //   res.send('respond with a resource');
+
+            });
+        } catch (e) {
+            console.log(e);
+            response.status = false;
+            response.message = "Some thing went wrong" + e;
+            response.payload = e;
+            res.json(response);
+        }
+    },
+    editNote : function (req, res, next) {
+
+        try {
+          console.log(req.body._id);
+          // var body = JSON.parse(req.body);
+          //var userId = req.headers.id;
+      
+          //,{text :"hsjhshs"}, { multi: true }
+          var Notes = mongoose.model('Notes', repo.dataRepo.NotesSchema);
+          var note =JSON.parse(req.body.note);
+          Notes.update(
+            {
+              "_id": req.body._id
+            }, note,
+             { multi: true }
+            , function (err, noteData) {
+              if (err) {
+                response.status = false;
+                response.message = "Some thing went wrong" + err;
+                response.payload = err;
+      
+              } else {
+      
+                response.status = true;
+                response.message = "List Of Notes";
+                response.payload = noteData;
+      
+              }
+              res.json(response);
+            });
+        } catch (e) {
+          console.log(e);
+          response.status = false;
+          response.message = "Some thing went wrong" + e;
+          response.payload = {};
+          res.json(response);
+        }
+      
+      }
+      ,
+      deleteNote :  function (req, res, next) {
+
+        try {
+          var Notes = mongoose.model('Notes', repo.dataRepo.NotesSchema);
+          var id_arr =JSON.parse(req.body.id);
+          console.log(id_arr);
+          if(id_arr){}else{id_arr=[];}
+          Notes.remove(
+          {"_id": { $in :id_arr}}
+            
+            , function (err, noteData) {
+              if (err) {
+                response.status = false;
+                response.message = "Some thing went wrong" + err;
+                response.payload = err;
+      
+              } else {
+      
+                response.status = true;
+                response.message = "Note Deleted";
+                response.payload = noteData;
+                
+              }
+              res.json(response);
+            });
+        } catch (e) {
+          console.log(e);
+          response.status = false;
+          response.message = "Some thing went wrong" + e;
+          response.payload = {};
+          res.json(response);
+        }
+      
+      }//end of deleteNote
+      ,
+      getNotes : function (req, res, next) {
+
+        try {
+          //var body = JSON.parse(req.body);
+          var userId = req.headers.id;
+          console.log(req.params.owner);
+      
+          //var notesCon = repo.dataRepo.NotesCollection;
+          var Notes = mongoose.model('Notes', repo.dataRepo.NotesSchema);
+          Notes.find({}, function (err, noteData) {
+            if (err) {
+              response.status = false;
+              response.message = "Some thing went wrong";
+              response.payload = {};
+      
+            } else {
+              response.status = true;
+              response.message = "List Of Notes";
+              response.payload = noteData;
+      
+            }
+      
+          });
+        } catch (e) {
+          console.log(e);
+          response.status = false;
+          response.message = "Some thing went wrong" + e;
+          response.payload = {};
+        }
+        res.json(response);
+      }//end of getNotes
+
+};//end notesController
+module.exports = notesController;
