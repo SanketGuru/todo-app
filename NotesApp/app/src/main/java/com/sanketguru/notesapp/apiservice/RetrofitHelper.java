@@ -1,5 +1,7 @@
 package com.sanketguru.notesapp.apiservice;
 
+import com.sanketguru.notesapp.BuildConfig;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -37,8 +39,7 @@ public class RetrofitHelper {
     private OkHttpClient createOkHttpClient() {
         final OkHttpClient.Builder httpClient =
                 new OkHttpClient.Builder();
-//        httpClient.addInterceptor(new RequestInterceptor(BuildConfig.DEBUG, true));
-//        httpClient.addNetworkInterceptor(new ResponseInterceptor(BuildConfig.DEBUG, true));
+        httpClient.addInterceptor(new RequestInterceptor(BuildConfig.DEBUG, true));
         return httpClient.build();
     }
 

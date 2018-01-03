@@ -3,12 +3,13 @@ package com.sanketguru.notesapp
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.sanketguru.notesapp.apiservice.RetrofitHelper
 import com.sanketguru.notesapp.models.User
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.login.*
+import timber.log.Timber
 
 /**
  * Created by Bhavesh on 02-01-2018.
@@ -34,14 +35,21 @@ class Login : AppCompatActivity() {
             retHelper.webService.login(user)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(io.reactivex.functions.Consumer { t ->
+                    .subscribe(Consumer { t ->
                         {
                             if (t.isSuccess) {
-                            //    Log.d("ID",t!!payload!!id)
+                                Timber.v("tag : %s", t.payload!!.id)
                                 val intent = Intent(this@Login, MainActivity::class.java)
                                 startActivity(intent)
                                 finish()
                             }
+                        }
+                    }, Consumer { t ->
+                        {
+
+                            Timber.v("tag : %s", t.toString())
+                            t.printStackTrace()
+
                         }
                     })
 
