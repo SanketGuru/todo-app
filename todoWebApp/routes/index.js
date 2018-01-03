@@ -32,6 +32,7 @@ router.post( '/login', function (req, res, next) {
           if(data.password==req.body.password){
             response.message = "Go in app ";
             response.payload = data;
+            console.log(response);
             res.json(response);
             return data;
           }else{
