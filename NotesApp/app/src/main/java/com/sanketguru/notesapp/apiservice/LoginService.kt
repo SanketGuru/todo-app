@@ -1,5 +1,6 @@
 package com.sanketguru.notesapp.apiservice
 
+import com.sanketguru.notesapp.models.CreateNote
 import com.sanketguru.notesapp.models.User
 
 import io.reactivex.Observable
@@ -13,4 +14,7 @@ import retrofit2.http.POST
 interface LoginService {
     @POST("login")
     fun login(@Body user: User): Observable<ApiResponse<User>>
+
+    @POST("createnote")
+    fun createNote(@Body createNote: CreateNote): Observable<ApiResponse<CreateNote>>
 }
