@@ -39,7 +39,7 @@ open class Note {
     var lastEdited = Date()
 
 }
-class TextNote {
+class TextNote : Note()  {
     @SerializedName("text")
     @Expose
     var text = ""

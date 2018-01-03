@@ -6,7 +6,11 @@
 		"f28824ee-e1f2-a0d3-a73f-98aa7d700dc5",
 		"3c15785b-68d4-1c18-4cfd-c02daf2b9204",
 		"f31e7101-a3db-8651-5122-a25247bdfe48",
-		"33a0745b-f5bb-3e74-0681-bfe4494810eb"
+		"33a0745b-f5bb-3e74-0681-bfe4494810eb",
+		"0aae4f31-2d9b-b8e0-709e-41c0a45fd6eb",
+		"9949990d-c1b9-ceba-e846-db89bdcb92d5",
+		"45307a5d-2330-99c9-2e41-151d3de6c332",
+		"dc4848dc-aa83-3323-1ca2-ef5ea7f9780a"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -14,6 +18,35 @@
 	"owner": "1858550",
 	"public": false,
 	"requests": [
+		{
+			"id": "0aae4f31-2d9b-b8e0-709e-41c0a45fd6eb",
+			"headers": "id: myid\n",
+			"headerData": [
+				{
+					"key": "id",
+					"value": "myid",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/api/v1/users/notes/page/2",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1514982879402,
+			"name": "http://localhost:3000/api/v1/users/notes/page/my",
+			"description": "Gets all notes with paging",
+			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
+			"responses": []
+		},
 		{
 			"id": "33a0745b-f5bb-3e74-0681-bfe4494810eb",
 			"headers": "Content-Type: application/x-www-form-urlencoded\n",
@@ -51,8 +84,8 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1514876710877,
-			"name": "http://localhost:3000/api/v1/users/editnote",
+			"time": 1514982931337,
+			"name": "delete Note",
 			"description": "You can edit note",
 			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
 			"responses": []
@@ -94,10 +127,148 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"time": 1514804350597,
-			"name": "http://localhost:3000/api/v1/users/createnote",
+			"name": "http://localhost:3000/api/v1/users/editnote",
 			"description": "",
 			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
 			"responses": []
+		},
+		{
+			"id": "45307a5d-2330-99c9-2e41-151d3de6c332",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nid: myid\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "id",
+					"value": "myid",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/api/v1/users/editnote",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PATCH",
+			"data": [
+				{
+					"key": "note",
+					"value": "{\"title\":\"Say hi\",\"text\": \"say dakfldak nbbbotes\"}",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1514984913602,
+			"name": "http://localhost:3000/api/v1/user/editNote",
+			"description": "Edit Note",
+			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
+			"responses": []
+		},
+		{
+			"id": "9949990d-c1b9-ceba-e846-db89bdcb92d5",
+			"headers": "//name: Yohead\nContent-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "name",
+					"value": "Yohead",
+					"description": "",
+					"enabled": false
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/api/v1/register",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
+			"data": [
+				{
+					"key": "userName",
+					"value": "yo1s",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "yogd",
+					"description": "goldy",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:8001/register",
+			"description": "Registration",
+			"descriptionFormat": "html",
+			"time": 1514982541628,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "dc4848dc-aa83-3323-1ca2-ef5ea7f9780a",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nid: myid\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "id",
+					"value": "myid",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/api/v1/find/yo",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
+			"data": [
+				{
+					"key": "note",
+					"value": "{\"title\":\"Say hi\",\"text\": \"say dakfldak nbbbotes\"}",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/v1/findusers",
+			"description": "Find users",
+			"descriptionFormat": "html",
+			"time": 1514984867841,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
 		},
 		{
 			"id": "f28824ee-e1f2-a0d3-a73f-98aa7d700dc5",
@@ -142,7 +313,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1514804425034,
+			"time": 1514982817677,
 			"name": "http://localhost:8001/login",
 			"description": "",
 			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
