@@ -115,5 +115,7 @@ exports.dataRepo={
     dataRepo:"Datarepo is ok",
     Usercollection: User,
     NotesSchema : notesSchema,
-    UserShcema : userSchema
+    UserShcema : userSchema,
+    User: User,
+  Notes:   'Notes'
 }
