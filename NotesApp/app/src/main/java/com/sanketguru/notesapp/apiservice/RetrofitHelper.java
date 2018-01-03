@@ -39,7 +39,14 @@ public class RetrofitHelper {
     private OkHttpClient createOkHttpClient() {
         final OkHttpClient.Builder httpClient =
                 new OkHttpClient.Builder();
-        httpClient.addInterceptor(new RequestInterceptor(BuildConfig.DEBUG, true));
+       httpClient.addInterceptor(new RequestInterceptor(BuildConfig.DEBUG, true));
+        return httpClient.build();
+    }
+    private OkHttpClient createOkHttpClientHeader() {
+        final OkHttpClient.Builder httpClient =
+                new OkHttpClient.Builder();
+       httpClient.addInterceptor(new RequestInterceptor(BuildConfig.DEBUG, true));
+       httpClient.addInterceptor(new HeaderInterceptor());
         return httpClient.build();
     }
 
@@ -53,6 +60,13 @@ public class RetrofitHelper {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // <- add this
                 .client(createOkHttpClient())
+                .build();
+    } private Retrofit createRetrofitHeader() {
+        return new Retrofit.Builder().
+                baseUrl(ApiConfig.BASE_URL )
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // <- add this
+                .client(createOkHttpClientHeader())
                 .build();
     }
 }

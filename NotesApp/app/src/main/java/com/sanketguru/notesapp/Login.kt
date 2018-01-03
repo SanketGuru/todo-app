@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.sanketguru.notesapp.apiservice.AccountDetails
 import com.sanketguru.notesapp.apiservice.RetrofitHelper
 import com.sanketguru.notesapp.models.User
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -35,7 +36,21 @@ class Login : AppCompatActivity() {
          var loginData=   retHelper.webService.login(user)
             loginData  .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(Consumer { t -> Log.v("Say",t.isSuccess.toString())  }, Consumer { err -> err.printStackTrace()} )
+                    .subscribe(Consumer {
+                        response ->
+                        Log.v("Say",response.isSuccess.toString())
+                        if (response.isSuccess) {
+                            Log.v("Say",response.payload!!.id)
+                            with(AccountDetails){
+                                id=response.payload!!.id
+                                userName=response.payload!!.userName
+                            }
+
+                            val intent = Intent(this@Login, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                        }
+                    }, Consumer { err -> err.printStackTrace()} )
 
             /*
 

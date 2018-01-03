@@ -1,7 +1,6 @@
 package com.sanketguru.notesapp
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -11,15 +10,19 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
 
-
+    private var listaFragment: CreateFragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            val fragmentTransaction = fragmentManager
+                    .beginTransaction()
+            val postLoginFragment = CreateFragment()
+            fragmentTransaction.replace(R.id.fragment, postLoginFragment)
+            fragmentManager.popBackStack()
+            fragmentTransaction.commit()
         }
     }
 
