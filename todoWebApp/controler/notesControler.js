@@ -7,17 +7,37 @@ var response = {
   }
 var notesController = {//start notesController
     getNotesByPagieng: function (req, res, next) {
+      var userId = req.headers.id;
+      console.log(req.params.pageNumber);
+      var pagenumber = parseInt( req.params.pageNumber);
         var pagesize = 2;
-        // var pagenumber = req.body.pagenumber;
-        console.log("Hijsnslnasnk");
-        res.json({})
+        //TODO : handel error
+       //  var pagenumber = req.body.pagenumber;
+       // console.log("Hijsnslnasnk");
+       var Notes = mongoose.model('Notes', repo.dataRepo.NotesSchema);
+      var query={};
+      Notes.count(query,(err,cnt)=>{
+        if(err){}
+      //var totalCount=cnt;
+        var queryObj=Notes.find(query).limit(pagesize).skip(pagesize*(pagenumber - 1));
+       // console.log(cnt);
+       queryObj.exec((err1,noteList)=>{
+         if(err1){}
+        var data={pageSize : pagesize,pageNumber :pagenumber+1,totalCount : cnt, list : noteList};
+        response.status=true;
+        response.payload=data;
+        response.message=" Got page";
+        res.json(response)
+       })
+     
+      });
+        
     },
     //this is where you return
     createNote: function (req, res, next) {
 
         try {
             var Note = JSON.parse(req.body.note);
-
             var userId = req.headers.id;
             console.log(userId);
             //var notesCon = repo.dataRepo.NotesCollection;
@@ -55,7 +75,7 @@ var notesController = {//start notesController
         try {
           console.log(req.body._id);
           // var body = JSON.parse(req.body);
-          //var userId = req.headers.id;
+          var userId = req.headers.id;
       
           //,{text :"hsjhshs"}, { multi: true }
           var Notes = mongoose.model('Notes', repo.dataRepo.NotesSchema);

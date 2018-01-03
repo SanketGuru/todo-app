@@ -27,7 +27,7 @@ router.route('/notes/:owner').get(noteControler.getNotes);
 /**
  * get My Notes
 */
-router.route('/notes/page/:owner').get(noteControler.getNotesByPagieng);
+router.route('/notes/page/:pageNumber').get(noteControler.getNotesByPagieng);
 
 
 /**
