@@ -6,7 +6,8 @@
 		"f28824ee-e1f2-a0d3-a73f-98aa7d700dc5",
 		"3c15785b-68d4-1c18-4cfd-c02daf2b9204",
 		"f31e7101-a3db-8651-5122-a25247bdfe48",
-		"33a0745b-f5bb-3e74-0681-bfe4494810eb"
+		"33a0745b-f5bb-3e74-0681-bfe4494810eb",
+		"0aae4f31-2d9b-b8e0-709e-41c0a45fd6eb"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -14,6 +15,36 @@
 	"owner": "1858550",
 	"public": false,
 	"requests": [
+		{
+			"id": "0aae4f31-2d9b-b8e0-709e-41c0a45fd6eb",
+			"headers": "id: myid\n",
+			"headerData": [
+				{
+					"key": "id",
+					"value": "myid",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3000/api/v1/users/notes/page/2",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "6c9638b9-e76b-28fa-f195-9e2971f7a1df",
+			"data": null,
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/v1/users/notes/my",
+			"description": "Gets all notes with paging",
+			"descriptionFormat": "html",
+			"time": 1514978647001,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
 		{
 			"id": "33a0745b-f5bb-3e74-0681-bfe4494810eb",
 			"headers": "Content-Type: application/x-www-form-urlencoded\n",
