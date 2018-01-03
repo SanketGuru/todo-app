@@ -35,7 +35,11 @@ class Login : AppCompatActivity() {
          var loginData=   retHelper.webService.login(user)
             loginData  .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ response ->
+                    .subscribe(Consumer { t -> Log.v("Say",t.isSuccess.toString())  }, Consumer { err -> err.printStackTrace()} )
+
+            /*
+
+            { response ->
                         {
                             Log.v("Say",response.payload!!.id)
                             if (response.isSuccess) {
@@ -46,7 +50,9 @@ class Login : AppCompatActivity() {
 //                                finish()
                             }
                         }
-                    }, { t -> {} })
+                    }, { t -> {} }
+
+             */
 
 
         }

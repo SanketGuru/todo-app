@@ -30,16 +30,17 @@ router.post( '/login', function (req, res, next) {
         if (data) {
         
           if(data.password==req.body.password){
+            response.status = true;
             response.message = "Go in app ";
             response.payload = data;
             console.log(response);
-            res.json(response);
+            res.status(200).send(response);
             return data;
           }else{
             response.status = false;
             response.message = "Invalid ";
             response.payload = {};
-            res.json(response);
+            res.status(200).send(response);
             return ;
           }
        
