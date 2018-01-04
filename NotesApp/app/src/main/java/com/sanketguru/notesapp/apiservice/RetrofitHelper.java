@@ -32,6 +32,10 @@ public class RetrofitHelper {
         final Retrofit retrofit = createRetrofit();
         return retrofit.create(LoginService.class);
     }
+    public LoginService getWebServiceHeader() {
+        final Retrofit retrofit = createRetrofitHeader();
+        return retrofit.create(LoginService.class);
+    }
 
     /**
      * This custom client will append the "username=demo" query after every request.

@@ -2,12 +2,20 @@ package com.sanketguru.notesapp
 
 import android.os.Bundle
 import android.app.Fragment
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import com.sanketguru.notesapp.apiservice.AccountDetails
+import com.sanketguru.notesapp.apiservice.RetrofitHelper
+import com.sanketguru.notesapp.models.CreateNote
+import com.sanketguru.notesapp.models.TextNote
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_create.*
 
 
@@ -15,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_create.*
  * Created by Bhavesh on 03-01-2018.
  */
 class CreateFragment : Fragment() {
-    var status=0
+    var statu=0
     fun newInstance(): CreateFragment {
         return CreateFragment()
     }
@@ -48,19 +56,50 @@ class CreateFragment : Fragment() {
         radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { radioGroup, id ->
             when (id) {
                 rbPending.id -> {
-                    status=0
+                    statu=0
                   //  Log.v("Say", "0")
 
                 }
                 rbInProgress.id -> {
-                    status=1
+                    statu=1
                    // Log.v("Say","1")
                 }
                 rbDone.id -> {
-                    status=2
+                    statu=2
                  //   Log.v("Say","2")
                 }
             }
+          button.setOnClickListener({view ->
+              var notes= TextNote()
+              with(notes){
+                  title=editText.text.toString()
+                  text=editText2.text.toString()
+                  status=statu
+              }
+              var createNote= CreateNote()
+              createNote.note=notes
+              var retHelper = RetrofitHelper()
+              var loginData=   retHelper.webServiceHeader.createNote(createNote)
+              loginData  .subscribeOn(Schedulers.io())
+                      .observeOn(AndroidSchedulers.mainThread())
+                      .subscribe(Consumer {
+                          response ->
+                          Log.v("Say",response.isSuccess.toString())
+                          if (response.isSuccess) {
+//                              Log.v("Say",response.payload!!.id)
+//                              with(AccountDetails){
+//                                  AccountDetails.id =response.payload!!.id
+//                                  userName =response.payload!!.userName
+//                              }
+//
+//                              val intent = Intent(this@Login, MainActivity::class.java)
+//                              startActivity(intent)
+//                              finish()
+                          }
+                      }, Consumer { err -> err.printStackTrace()} )
+
+
+          })
 
 
 

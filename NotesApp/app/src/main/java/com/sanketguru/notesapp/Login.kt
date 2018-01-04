@@ -33,7 +33,7 @@ class Login : AppCompatActivity() {
 
             }
             var retHelper = RetrofitHelper()
-         var loginData=   retHelper.webService.login(user)
+         var loginData=   retHelper.webServiceHeader.login(user)
             loginData  .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(Consumer {
