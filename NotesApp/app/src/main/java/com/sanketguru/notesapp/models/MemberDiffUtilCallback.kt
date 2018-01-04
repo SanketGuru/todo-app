@@ -21,6 +21,6 @@ class MemberDiffUtilCallback(private val mOldEmployeeList: List<Any>, private va
         val oldEmployee = mOldEmployeeList[oldItemPosition]
         val newEmployee = mNewEmployeeList[newItemPosition]
 
-        return oldEmployee.toString() == newEmployee.toString()
+        return mOldEmployeeList[oldItemPosition] == mNewEmployeeList[newItemPosition]
     }
 }

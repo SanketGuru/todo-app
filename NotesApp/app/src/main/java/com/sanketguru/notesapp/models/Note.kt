@@ -37,9 +37,7 @@ open class Note {
     @Expose
     var lastEdited = Date()
 
-    override fun toString(): String {
-        return id
-    }
+
 }
 
 class TextNote : Note() {

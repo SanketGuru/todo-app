@@ -2,6 +2,7 @@ package com.sanketguru.notesapp.apiservice
 
 import com.sanketguru.notesapp.models.CreateNote
 import com.sanketguru.notesapp.models.ListNotesResponse
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.PUT
@@ -18,5 +19,5 @@ interface NoteServices {
     fun createNote(@Body createNote: CreateNote): Observable<ApiResponse<String>>
 
     @GET("users/notes/page/{pageNumber}")
-    fun listRepos(@Path("pageNumber") pageNumber: Int): Observable<ApiResponse<ListNotesResponse>>
+    fun listRepos(@Path("pageNumber") pageNumber: Int): Flowable<ApiResponse<ListNotesResponse>>
 }
