@@ -86,15 +86,13 @@ class CreateFragment : Fragment() {
                           response ->
                           Log.v("Say",response.isSuccess.toString())
                           if (response.isSuccess) {
-//                              Log.v("Say",response.payload!!.id)
-//                              with(AccountDetails){
-//                                  AccountDetails.id =response.payload!!.id
-//                                  userName =response.payload!!.userName
-//                              }
-//
-//                              val intent = Intent(this@Login, MainActivity::class.java)
-//                              startActivity(intent)
-//                              finish()
+                              val fragmentTransaction = fragmentManager
+                                      .beginTransaction()
+                              val postLoginFragment = ListFragment()
+                              fragmentTransaction.replace(R.id.fragment, postLoginFragment)
+                              fragmentManager.popBackStack()
+                              fragmentTransaction.commit()
+
                           }
                       }, Consumer { err -> err.printStackTrace()} )
 
