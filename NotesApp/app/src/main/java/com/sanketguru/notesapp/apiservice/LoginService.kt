@@ -16,6 +16,5 @@ interface LoginService {
     @POST("login")
     fun login(@Body user: User): Observable<ApiResponse<User>>
 
-    @PUT("users/createnote")
-    fun createNote(@Body createNote: CreateNote): Observable<ApiResponse<String>>
+
 }

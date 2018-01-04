@@ -2,8 +2,7 @@ package com.sanketguru.notesapp.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import java.util.ArrayList
-import java.util.Date
+import java.util.*
 
 /**
  * Created by Sanket Gurav on 1/2/2018.
@@ -38,8 +37,12 @@ open class Note {
     @Expose
     var lastEdited = Date()
 
+    override fun toString(): String {
+        return id
+    }
 }
-class TextNote : Note()  {
+
+class TextNote : Note() {
     @SerializedName("text")
     @Expose
     var text = ""

@@ -23,7 +23,8 @@
     <FrameLayout
         android:id="@+id/fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent"
+        android:layout_marginTop="?android:actionBarSize"></FrameLayout>
 
     <!--<include layout="@layout/content_main" />-->
 

@@ -32,9 +32,9 @@ public class RetrofitHelper {
         final Retrofit retrofit = createRetrofit();
         return retrofit.create(LoginService.class);
     }
-    public LoginService getWebServiceHeader() {
+    public NoteServices getWebServiceHeader() {
         final Retrofit retrofit = createRetrofitHeader();
-        return retrofit.create(LoginService.class);
+        return retrofit.create(NoteServices.class);
     }
 
     /**
