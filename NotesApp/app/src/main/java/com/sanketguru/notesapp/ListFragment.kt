@@ -9,7 +9,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.sanketguru.notesapp.adapter.NotesAdapter
+import com.sanketguru.notesapp.adapter.NewNotesAdapter
+//import com.sanketguru.notesapp.presentation.adapter.NotesAdapter
 import com.sanketguru.notesapp.apiservice.RetrofitHelper
 import com.sanketguru.notesapp.models.TextNote
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -27,7 +28,7 @@ class ListFragment : Fragment() {
     var pageSize = 0
     var pagenumber = 0
     var totalcount = 0
-    var calendarAdapter = NotesAdapter(mutableListOf<TextNote>())
+    var notesAdapter = NewNotesAdapter(mutableListOf<TextNote>())
     val mLayoutManager = LinearLayoutManager(activity)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -58,12 +59,13 @@ class ListFragment : Fragment() {
                         notesList = response.payload!!.listTextNote
                         //
                         if (pageNo === 1) {
-                            calendarAdapter = NotesAdapter(notesList)
-                            recyclerView.setAdapter(calendarAdapter)
+                            notesAdapter = NewNotesAdapter(notesList)
+                            recyclerView.setAdapter(notesAdapter)
                         } else {
-                            isLastPage = response.payload!!.totalCount == calendarAdapter.itemCount//isLastPage
+                            isLastPage = response.payload!!.totalCount == notesAdapter.itemCount//isLastPage
                             //add
-                            calendarAdapter.updateScrollList(notesList, if (pageNo === 0) false else true)
+                           // notesAdapter.updateScrollList(notesList, if (pageNo === 0) false else true)
+                            notesAdapter.update(notesList, if (pageNo === 0) false else true)
                             mLayoutManager.scrollToPosition(lastPosition)
                         }
 
