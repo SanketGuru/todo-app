@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.list_main.*
  * A placeholder fragment containing a simple view.
  */
 class ListFragment : Fragment() {
-
+    private var isLoading = false
     private var isLastPage = false
     var pageSize = 0
     var pagenumber = 0
@@ -45,6 +45,7 @@ class ListFragment : Fragment() {
     }
 
     fun werService(pageNo: Int, lastPosition: Int) {
+        isLoading=true
         var retHelper = RetrofitHelper()
         var loginData = retHelper.webServiceHeader.listRepos(pageNo)
         loginData.subscribeOn(Schedulers.io())
@@ -57,7 +58,8 @@ class ListFragment : Fragment() {
                         pagenumber = response.payload!!.pageNumber
                         var notesList = mutableListOf<TextNote>()
                         notesList = response.payload!!.listTextNote
-                        //
+                        //isLoading
+                        isLoading=false
                         if (pageNo === 1) {
                             notesAdapter = NewNotesAdapter(notesList)
                             recyclerView.setAdapter(notesAdapter)
@@ -71,7 +73,8 @@ class ListFragment : Fragment() {
 
 
                     }
-                }, Consumer { err -> err.printStackTrace() })
+                }, Consumer { err -> {err.printStackTrace()
+                    isLoading=false} })
     }
 
     //region Pagenation
@@ -82,6 +85,10 @@ class ListFragment : Fragment() {
 
         override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
+
+            // later on  something
+
+            if(isLoading) return
             val visibleItemCount = mLayoutManager.getChildCount()
             val totalItemCount = mLayoutManager.getItemCount()
             val firstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition()
