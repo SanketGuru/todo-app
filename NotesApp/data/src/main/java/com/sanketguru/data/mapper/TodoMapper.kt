@@ -1,6 +1,7 @@
-package com.sanketguru.data.todos
+package com.sanketguru.data.mapper
 
-import com.sanketguru.domain.todos.TodoModel
+import com.sanketguru.data.repo.Todo
+import com.sanketguru.domain.module.TodoModel
 
 /**
  * Created by Sanket Gurav on 1/5/2018.

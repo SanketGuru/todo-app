@@ -1,17 +1,12 @@
-package com.sanketguru.notesapp.apiservice;
+package com.sanketguru.apiservice;
 
 import java.io.IOException;
 
-import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
-import okhttp3.MediaType;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
-import okio.Buffer;
-import timber.log.Timber;
+
 
 /**
  * Created by Sanket Gurav on 12/12/2017.
@@ -27,6 +22,7 @@ public class RequestInterceptor implements Interceptor {
         this.debug = debug;
         this.decrypt = decrypt;
     }
+
     @Override
     public Response intercept(Chain chain) throws IOException {
 
@@ -44,13 +40,13 @@ public class RequestInterceptor implements Interceptor {
         Request request = requestBuilder.build();
         Response response = chain.proceed(request);
         if (debug) {
-            Timber.v("Request url  : [ %s ] -> [ %s ]", request.method(), request.url().toString());
-            Timber.v("Request body : %s", request.body());
-            Timber.v("Request head : %s", request.headers());
+            //   Timber.v("Request url  : [ %s ] -> [ %s ]", request.method(), request.url().toString());
+//            Timber.v("Request body : %s", request.body());
+//            Timber.v("Request head : %s", request.headers());
 
-               Timber.v("Response url  : [ %s ] -> [ %s ]", request.method(), request.url().toString());
-           // Timber.v("Response body : [ %d ] -> %s",   response.code(),response.body());
-            Timber.v("Response head : %s", response.headers());
+            //   Timber.v("Response url  : [ %s ] -> [ %s ]", request.method(), request.url().toString());
+            // Timber.v("Response body : [ %d ] -> %s",   response.code(),response.body());
+            //  Timber.v("Response head : %s", response.headers());
         }
         if (decrypt) {
             //TODO encrypt request data here

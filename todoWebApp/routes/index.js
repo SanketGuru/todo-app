@@ -74,7 +74,7 @@ router.post('/register', function (req, res, next) {
     };
     console.log("My obj " + JSON.stringify(myObj));
     var Userdata = new User(myObj);
-    console.log(JSON.stringify(Userdata));
+   // console.log(JSON.stringify(Userdata));
     Userdata.save((err, data) => {
       if (err) {
         response.status = false;

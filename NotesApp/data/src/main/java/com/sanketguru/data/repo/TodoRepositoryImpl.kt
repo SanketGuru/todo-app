@@ -1,8 +1,9 @@
-package com.sanketguru.data.todos
+package com.sanketguru.data.repo
 
-import com.sanketguru.data.todos.store.TodoDataStore
-import com.sanketguru.data.todos.store.TodoLocalDataStore
-import com.sanketguru.domain.todos.TodoModel
+import com.sanketguru.data.mapper.TodoMapper
+import com.sanketguru.store.TodoDataStore
+import com.sanketguru.store.TodoLocalDataStore
+import com.sanketguru.domain.module.TodoModel
 import com.sanketguru.domain.todos.TodoRepository
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

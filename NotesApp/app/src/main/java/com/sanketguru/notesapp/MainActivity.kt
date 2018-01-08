@@ -1,3 +1,4 @@
+/*
 package com.sanketguru.notesapp
 
 import android.os.Bundle
@@ -65,3 +66,4 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
     }
     //endregion
 }
+*/

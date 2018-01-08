@@ -1,4 +1,4 @@
-package com.sanketguru.notesapp.apiservice;
+package com.sanketguru.apiservice;
 
 /**
  * Created by Sanket Gurav on 1/2/2018.

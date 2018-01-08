@@ -1,5 +1,6 @@
-package com.sanketguru.notesapp.apiservice
+package com.sanketguru.apiservice
 
+import com.sanketguru.notesapp.apiservice.ApiResponse
 import com.sanketguru.notesapp.models.CreateNote
 import com.sanketguru.notesapp.models.ListNotesResponse
 import io.reactivex.Flowable

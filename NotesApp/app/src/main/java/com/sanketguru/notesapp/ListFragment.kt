@@ -1,3 +1,4 @@
+/*
 package com.sanketguru.notesapp
 
 
@@ -9,7 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.sanketguru.notesapp.adapter.NewNotesAdapter
+import com.sanketguru.notesapp.presentation.adapter.NewNotesAdapter
 //import com.sanketguru.notesapp.presentation.adapter.NotesAdapter
 import com.sanketguru.notesapp.apiservice.RetrofitHelper
 import com.sanketguru.notesapp.models.TextNote
@@ -19,9 +20,11 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.list_main.*
 
 
+*/
 /**
  * A placeholder fragment containing a simple view.
- */
+ *//*
+
 class ListFragment : Fragment() {
 
     private var isLastPage = false
@@ -106,3 +109,4 @@ class ListFragment : Fragment() {
 
 
 
+*/

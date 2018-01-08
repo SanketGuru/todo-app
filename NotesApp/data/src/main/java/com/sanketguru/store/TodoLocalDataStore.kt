@@ -1,6 +1,6 @@
-package com.sanketguru.data.todos.store
+package com.sanketguru.store
 
-import com.sanketguru.data.todos.Todo
+import com.sanketguru.data.repo.Todo
 import io.reactivex.Observable
 
 /**

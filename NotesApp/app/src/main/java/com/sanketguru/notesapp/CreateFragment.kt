@@ -1,3 +1,4 @@
+/*
 package com.sanketguru.notesapp
 
 import android.app.Fragment
@@ -16,16 +17,19 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_create.*
 
 
+*/
 /**
  * Created by Bhavesh on 03-01-2018.
- */
+ *//*
+
 class CreateFragment : Fragment() {
     var statu = 0
     fun newInstance(): CreateFragment {
         return CreateFragment()
     }
 
-    /*  companion object{
+    */
+/*  companion object{
           private val ARG_CAUGHT = "myFragment_caught"
 
           fun newInstance(caught: MainActivity):CreateFragment{
@@ -36,7 +40,8 @@ class CreateFragment : Fragment() {
               return fragment
           }
 
-      }*/
+      }*//*
+
 
 
     //3
@@ -98,4 +103,4 @@ class CreateFragment : Fragment() {
 
         })
     }
-}
+}*/

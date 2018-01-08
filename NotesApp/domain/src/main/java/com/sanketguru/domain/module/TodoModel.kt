@@ -1,4 +1,4 @@
-package com.sanketguru.domain.todos
+package com.sanketguru.domain.module
 
 /**
  * Created by Sanket Gurav on 1/5/2018.

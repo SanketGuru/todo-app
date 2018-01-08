@@ -1,4 +1,4 @@
-package com.sanketguru.data.todos
+package com.sanketguru.data.repo
 
 /**
  * Created by Sanket Gurav on 1/5/2018.

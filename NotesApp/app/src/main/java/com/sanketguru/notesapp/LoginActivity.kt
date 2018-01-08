@@ -1,12 +1,13 @@
 package com.sanketguru.notesapp
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.sanketguru.domain.module.UserModel
 import com.sanketguru.notesapp.apiservice.AccountDetails
-import com.sanketguru.notesapp.apiservice.RetrofitHelper
-import com.sanketguru.notesapp.models.User
+
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
@@ -15,17 +16,18 @@ import kotlinx.android.synthetic.main.login.*
 /**
  * Created by Bhavesh on 02-01-2018.
  */
-class Login : AppCompatActivity() {
-
+class LoginActivity : AppCompatActivity() {
+ private lateinit var viewModel: LoginActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
+        viewModel = ViewModelProviders.of(this).get(LoginActivityViewModel::class.java!!)
 
 
-        buttonLogin.setOnClickListener { view ->
+        buttonLogin.setOnClickListener { view -> viewModel.login(UserModel("","raju", "12345",""))}
             //var usreName=   etUserName.text
-            var user = User()
+/*            var user = User()
             with(user) {
                 userName = etUserName.text.toString()
                 password = etPassword.text.toString()
@@ -46,31 +48,15 @@ class Login : AppCompatActivity() {
                                 userName=response.payload!!.userName
                             }
 
-                            val intent = Intent(this@Login, MainActivity::class.java)
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 startActivity(intent)
                                 finish()
                         }
-                    }, Consumer { err -> err.printStackTrace()} )
-
-            /*
-
-            { response ->
-                        {
-                            Log.v("Say",response.payload!!.id)
-                            if (response.isSuccess) {
-                               Log.v("Say",response.payload!!.id)
-                            // Log.v("Logsay",);
-//                                val intent = Intent(this@Login, MainActivity::class.java)
-//                                startActivity(intent)
-//                                finish()
-                            }
-                        }
-                    }, { t -> {} }
-
-             */
+                    }, Consumer { err -> err.printStackTrace()} )*/
 
 
-        }
+
+       // }
     }
 
 }
