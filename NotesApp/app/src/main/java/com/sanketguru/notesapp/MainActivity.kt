@@ -25,6 +25,14 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
             fragmentManager.popBackStack()
             fragmentTransaction.commit()
         }
+
+        val fragmentTransaction = fragmentManager
+                .beginTransaction()
+        val postLoginFragment = ListFragment()
+        fragmentTransaction.replace(R.id.fragment, postLoginFragment)
+        fragmentManager.popBackStack()
+        fragmentTransaction.commit()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
