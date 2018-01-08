@@ -1,5 +1,6 @@
 package com.sanketguru.data.repo
 
+import android.util.Log
 import com.sanketguru.apiservice.RetrofitHelper
 import com.sanketguru.data.mapper.UserMapper
 import com.sanketguru.domain.module.UserModel
@@ -19,6 +20,8 @@ class UserRepositoryImpl (val id :String){
         userStore = UserDataStoreImpl(retHelper.userWebService)
     }
 
-    public fun login(user: UserModel) = userStore.login(userMapper.transform(user)).map { userMapper.transform(it.payload!!) }
+    public fun login(user: UserModel) = userStore.login(userMapper.transform(user)).map {
+Log.v("Log",user.id)
+        userMapper.transform(it.payload!!) }
 
 }
