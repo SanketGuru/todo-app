@@ -11,5 +11,5 @@ import io.reactivex.Observable
 interface UserDataStore {
 
 
-    fun login(user : User): Observable<ApiResponse<User?>>
+    fun login(user : User): Observable<ApiResponse<User>>
 }

@@ -20,8 +20,9 @@ class UserRepositoryImpl (val id :String){
         userStore = UserDataStoreImpl(retHelper.userWebService)
     }
 
-    public fun login(user: UserModel) = userStore.login(userMapper.transform(user)).map {
-Log.v("Log",user.id)
-        userMapper.transform(it.payload!!) }
+    public fun login(user: UserModel) = userStore.login(userMapper.transform(user)).map<UserModel> {
+
+        userMapper.transform(it!!.payload!!)
+    }
 
 }

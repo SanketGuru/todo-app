@@ -14,7 +14,7 @@ import retrofit2.http.PUT
 
 interface LoginService {
     @POST("login")
-    fun login(@Body user: User): Observable<ApiResponse<User?>>
+    fun login(@Body user: User): Observable<ApiResponse<User>>
     @POST("register")
     fun register(@Body user: User): Observable<ApiResponse<User?>>
 }

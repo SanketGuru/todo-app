@@ -16,5 +16,5 @@ class ApiResponse<E> {
     var errorMessage = ""
     @SerializedName("payload")
     @Expose
-    var payload: E? = null
+    var payload : E?=null
 }
