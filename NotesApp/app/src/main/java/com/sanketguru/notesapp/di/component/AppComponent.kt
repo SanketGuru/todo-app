@@ -2,6 +2,7 @@ package com.sanketguru.notesapp.di.component
 
 import com.sanketguru.notesapp.NotesApp
 import com.sanketguru.notesapp.di.module.AppModule
+import com.sanketguru.notesapp.di.module.RepositoryModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -13,3 +14,5 @@ import javax.inject.Singleton
 interface AppComponent {
     fun inject(app: NotesApp)
 }
+
+

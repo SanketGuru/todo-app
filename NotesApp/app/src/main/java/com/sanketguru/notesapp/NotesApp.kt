@@ -18,6 +18,7 @@ class NotesApp : Application() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
+        component.inject(this)
 
     }
 
