@@ -2,7 +2,7 @@ package com.sanketguru.data.repo
 
 import com.sanketguru.apiservice.RetrofitHelper
 import com.sanketguru.data.mapper.UserMapper
-import com.sanketguru.domain.module.User
+import com.sanketguru.domain.module.UserUIModel
 import com.sanketguru.store.UserDataStore
 import com.sanketguru.store.impl.UserDataStoreImpl
 
@@ -19,7 +19,7 @@ class UserRepositoryImpl (val id :String){
         userStore = UserDataStoreImpl(retHelper.userWebService)
     }
 
-    public fun login(user: User) = userStore.login(userMapper.transform(user)).map<User> {
+    public fun login(userUIModel: UserUIModel) = userStore.login(userMapper.transform(userUIModel)).map<UserUIModel> {
 
         userMapper.transform(it!!.payload!!)
     }

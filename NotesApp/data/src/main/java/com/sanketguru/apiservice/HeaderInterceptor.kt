@@ -17,8 +17,8 @@ class HeaderInterceptor(val id :String) : Interceptor {
         request = request.newBuilder()
                 .addHeader("appid", "notesapp")
                 .addHeader("id", id)
-                .removeHeader("User-Agent")
-                .addHeader("User-Agent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0")
+                .removeHeader("UserUIModel-Agent")
+                .addHeader("UserUIModel-Agent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0")
                 .build()
         return chain.proceed(request)
     }
