@@ -3,15 +3,18 @@ package com.sanketguru.notesapp
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.sanketguru.domain.module.User
-
+import android.util.Log
+import com.sanketguru.domain.module.UserUIErrorModel
+import com.sanketguru.domain.module.UserUIModel
 import kotlinx.android.synthetic.main.login.*
 
 /**
  * Created by Bhavesh on 02-01-2018.
  */
-class LoginActivity : AppCompatActivity() {
- private lateinit var viewModel: LoginActivityViewModel
+class LoginActivity : AppCompatActivity(), LoginActivityViewModel.LoginListener {
+
+
+    private lateinit var viewModel: LoginActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,9 +22,9 @@ class LoginActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(LoginActivityViewModel::class.java!!)
 
 
-        buttonLogin.setOnClickListener { view -> viewModel.login(User("","raju", "12345",""))}
-            //var usreName=   etUserName.text
-/*            var user = User()
+        buttonLogin.setOnClickListener { view -> viewModel.login(UserUIModel("", etUserName.text.toString(), etPassword.text.toString(), "")) }
+        //var usreName=   etUserName.text
+/*            var user = UserUIModel()
             with(user) {
                 userName = etUserName.text.toString()
                 password = etPassword.text.toString()
@@ -49,8 +52,12 @@ class LoginActivity : AppCompatActivity() {
                     }, Consumer { err -> err.printStackTrace()} )*/
 
 
-
-       // }
+        // }
     }
 
+    override fun validationCheck(userUIModel: UserUIErrorModel) {
+        Log.v("userNameBlank", userUIModel.userName)
+        Log.v("userNamePassword", userUIModel.password)
+
+    }
 }

@@ -2,15 +2,14 @@ package com.sanketguru.data.repo
 
 import com.sanketguru.apiservice.RetrofitHelper
 import com.sanketguru.data.mapper.UserMapper
-import com.sanketguru.domain.module.User
+import com.sanketguru.domain.module.UserUIModel
 import com.sanketguru.store.UserDataStore
 import com.sanketguru.store.impl.UserDataStoreImpl
-import io.reactivex.Observable
 
 /**
  * Created by Sanket Gurav on 1/8/2018.
  */
-class UserRepositoryImpl : UserRepository{
+class UserRepositoryImpl (val id :String){
      lateinit var userStore :UserDataStore
     var userMapper = UserMapper()
 
@@ -20,9 +19,9 @@ class UserRepositoryImpl : UserRepository{
         userStore = UserDataStoreImpl(retHelper.userWebService)
     }
 
-    public override fun login(user: User) = userStore.login(userMapper.transform(user)).map { userMapper.transform(it!!.payload!!) }
+    public fun login(userUIModel: UserUIModel) = userStore.login(userMapper.transform(userUIModel)).map<UserUIModel> {
 
-}
-interface UserRepository{
-    fun login(user: User): Observable<User>
+        userMapper.transform(it!!.payload!!)
+    }
+
 }
