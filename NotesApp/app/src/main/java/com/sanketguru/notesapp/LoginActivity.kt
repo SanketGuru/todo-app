@@ -1,16 +1,10 @@
 package com.sanketguru.notesapp
 
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import com.sanketguru.domain.module.UserModel
-import com.sanketguru.notesapp.apiservice.AccountDetails
+import com.sanketguru.domain.module.User
 
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.login.*
 
 /**
@@ -25,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(LoginActivityViewModel::class.java!!)
 
 
-        buttonLogin.setOnClickListener { view -> viewModel.login(UserModel("","raju", "12345",""))}
+        buttonLogin.setOnClickListener { view -> viewModel.login(User("","raju", "12345",""))}
             //var usreName=   etUserName.text
 /*            var user = User()
             with(user) {

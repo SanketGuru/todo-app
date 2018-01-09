@@ -3,15 +3,14 @@ package com.sanketguru.data.mapper
 /**
  * Created by Sanket Gurav on 1/8/2018.
  */
-import com.sanketguru.domain.module.TextNoteModle
-import com.sanketguru.notesapp.models.TextNote
-
+import com.sanketguru.notesapp.models.TextNote as TextNote
+import com.sanketguru.domain.module.TextNote as TextNoteModel
 class NoteMapper {
     /**
      * Converts Text note to TextNote module
      * */
-    fun transform(note: TextNote): TextNoteModle {
-        var noteModel = TextNoteModle(note.text)
+    fun transform(note: TextNote): TextNoteModel {
+        var noteModel = com.sanketguru.domain.module.TextNote(note.text)
         with(noteModel) {
             id = note.id
             onerid = note.onerid
@@ -23,7 +22,7 @@ class NoteMapper {
     /**
      * Converts TextNote module to  Text note
      * */
-    fun transform(textNoteModel: TextNoteModle): TextNote {
+    fun transform(textNoteModel: com.sanketguru.domain.module.TextNote): TextNote {
         var textNote = TextNote(textNoteModel.text)
         with(textNote) {
             id = textNoteModel.id
@@ -37,7 +36,7 @@ class NoteMapper {
      * Converts  list of TextNote module to  list of  Text note
      * */
 
-    fun transformTextNote(todos: List<TextNote>): List<TextNoteModle> {
+    fun transformTextNote(todos: List<TextNote>): List<com.sanketguru.domain.module.TextNote> {
         return todos.map { transform(it) }
     }
 
@@ -45,7 +44,7 @@ class NoteMapper {
      * Converts  list of TextNote module to  list of  Text note
      * */
 
-    fun transformTextNoteModle(todos: List<TextNoteModle>): List<TextNote> {
+    fun transformTextNoteModle(todos: List<com.sanketguru.domain.module.TextNote>): List<TextNote> {
         return todos.map { transform(it) }
     }
 }
