@@ -9,7 +9,7 @@ import com.sanketguru.store.impl.UserDataStoreImpl
 /**
  * Created by Sanket Gurav on 1/8/2018.
  */
-class UserRepositoryImpl (val id :String){
+class UserRepositoryImpl (){
      lateinit var userStore :UserDataStore
     var userMapper = UserMapper()
 

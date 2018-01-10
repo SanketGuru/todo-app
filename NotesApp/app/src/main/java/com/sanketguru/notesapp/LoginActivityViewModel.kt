@@ -5,23 +5,33 @@ import android.util.Log
 import com.sanketguru.data.repo.UserRepositoryImpl
 import com.sanketguru.domain.module.UserUIErrorModel
 import com.sanketguru.domain.module.UserUIModel
+import com.sanketguru.notesapp.di.component.DaggerRepoComPonent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
+import javax.inject.Named
 
 
 /**
  * Created by Sanket Gurav on 1/8/2018.
  */
 class LoginActivityViewModel : ViewModel() {
-    var userRepo = UserRepositoryImpl("")
+    @Inject
+    lateinit var userRepo : UserRepositoryImpl
     lateinit var listener: LoginListener
 
+
+     var myName : String =""
+
     init {
+        DaggerRepoComPonent.builder().build().inject(this)
         listener = LoginActivity()
+
     }
 
     public fun login(userUIModel: UserUIModel) {
+        Log.v("Say Some", "From Dagger "+myName);
         if (userUIModel.userName.equals("")) {
             var ds = UserUIErrorModel()
             ds.userName = "raju"
