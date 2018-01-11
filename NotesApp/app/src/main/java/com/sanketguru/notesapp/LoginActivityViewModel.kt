@@ -2,6 +2,7 @@ package com.sanketguru.notesapp
 
 import android.arch.lifecycle.ViewModel
 import android.util.Log
+import com.jakewharton.rxbinding2.view.RxView
 import com.sanketguru.data.repo.UserRepositoryImpl
 import com.sanketguru.domain.module.UserUIErrorModel
 import com.sanketguru.domain.module.UserUIModel
@@ -22,6 +23,8 @@ class LoginActivityViewModel : ViewModel() {
     lateinit var listener: LoginListener
 
 
+
+
      var myName : String =""
 
     init {
@@ -31,6 +34,7 @@ class LoginActivityViewModel : ViewModel() {
     }
 
     public fun login(userUIModel: UserUIModel) {
+
         Log.v("Say Some", "From Dagger "+myName);
         if (userUIModel.userName.equals("")) {
             var ds = UserUIErrorModel()

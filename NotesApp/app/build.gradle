@@ -71,9 +71,7 @@ dependencies {
     api "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
 
     compile 'io.reactivex.rxjava2:rxkotlin:2+'
-
-    //endregion
-
+    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     //region Dagger Android
     kapt "com.google.dagger:dagger-compiler:$project.daggerVersion"
     compile "com.google.dagger:dagger:$project.daggerVersion"
