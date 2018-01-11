@@ -37,28 +37,19 @@ var notesController = {//start notesController
   createNote: function (req, res, next) {
 
     try {
-      //   console.log('head '+ req.headers.id);
-      //   console.log('Notes '+JSON.stringify(req.body));
-      //  var Note = JSON.parse(req.body.note);
+
       var Note = req.body.note;
 
       //removeing _id
       delete Note._id;
-
-
       var userId = req.headers.id;
-      // console.log(userId);
+    
       //var notesCon = repo.dataRepo.NotesCollection;
       var Notes = mongoose.model('Notes', repo.dataRepo.NotesSchema);
       Note.ownerId = userId;
-
-
-
-      //  console.log(JSON.stringify(Note));
       var notesData = new Notes(Note);
       notesData.save(function (err, noteData) {
         if (err) {
-          //  console.log(err);
           response.status = false;
           response.message = "Some thing went wrong" + err;
           response.payload = {};
