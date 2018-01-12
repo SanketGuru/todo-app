@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.jakewharton.rxbinding2.view.RxView
 import com.sanketguru.domain.module.UserUIErrorModel
+import com.sanketguru.domain.module.UserUIModel
 import kotlinx.android.synthetic.main.login.*
 
 /**
@@ -21,8 +22,8 @@ class LoginActivity : AppCompatActivity(), LoginActivityViewModel.LoginListener 
         setContentView(R.layout.login)
         viewModel = ViewModelProviders.of(this).get(LoginActivityViewModel::class.java!!)
 
-      RxView.clicks(buttonLogin).subscribe(ss.lis)
-     //   buttonLogin.setOnClickListener { view -> viewModel.login(UserUIModel("", etUserName.text.toString(), etPassword.text.toString(), "")) }
+      //RxView.clicks(buttonLogin).subscribe(ss.lis)
+        buttonLogin.setOnClickListener { view -> viewModel.login(UserUIModel("", etUserName.text.toString(), etPassword.text.toString(), "")) }
         //var usreName=   etUserName.text
 /*            var user = UserUIModel()
             with(user) {
