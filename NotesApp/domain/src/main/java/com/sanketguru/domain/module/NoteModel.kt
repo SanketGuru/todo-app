@@ -26,6 +26,10 @@ open class NoteModel {
 
     var lastEdited = Date()
 
+    /**
+     * @return id of note it uniquely identifies each Note
+     * */
+    override fun toString() = this.id
 
 }
 
