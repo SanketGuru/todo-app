@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.sanketguru.notesapp.apiservice.AccountDetails
 import com.sanketguru.notesapp.apiservice.RetrofitHelper
 import com.sanketguru.notesapp.models.User
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,22 +12,17 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.login.*
 
 /**
- * Created by Bhavesh on 02-01-2018.
+ * Created by Bhavesh on 08-01-2018.
  */
-class Login : AppCompatActivity() {
+class Register : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login)
+        setContentView(R.layout.register)
+
+
         buttonRegister.setOnClickListener { view ->
-            val intent = Intent(this@Login, Register::class.java)
-            startActivity(intent)
-            finish()
-
-        }
-
-        buttonLogin.setOnClickListener { view ->
             //var usreName=   etUserName.text
             var user = User()
             with(user) {
@@ -38,20 +32,15 @@ class Login : AppCompatActivity() {
 
             }
             var retHelper = RetrofitHelper()
-            var loginData = retHelper.webService.login(user)
+            var loginData = retHelper.webService.register(user)
             loginData.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(Consumer { response ->
                         Log.v("Say", response.isSuccess.toString())
                         if (response.isSuccess) {
                             Log.v("Say", response.payload!!.id)
-                            with(AccountDetails) {
-                                id = response.payload!!.id
-                                userName = response.payload!!.userName
-                            }
-
-                            val intent = Intent(this@Login, MainActivity::class.java)
-                            startActivity(intent)
+                            var mainActivity = Intent(this@Register, MainActivity::class.java)
+                            startActivity(mainActivity)
                             finish()
                         }
                     }, Consumer { err -> err.printStackTrace() })
@@ -71,9 +60,8 @@ class Login : AppCompatActivity() {
                         }
                     }, { t -> {} }
 
-    override fun validationCheck(userUIModel: UserUIErrorModel) {
-        Log.v("userNameBlank", userUIModel.userName)
-        Log.v("userNamePassword", userUIModel.password)
+             */
+
 
         }
     }

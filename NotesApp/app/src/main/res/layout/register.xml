@@ -24,8 +24,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="78dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="UserName" />
+            android:hint="UserName"
+            android:inputType="textPersonName" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -46,21 +46,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:ems="10"
-            android:inputType="textPassword"
-            android:hint="password" />
+            android:hint="password"
+            android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
-
-    <Button
-        android:id="@+id/buttonLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ilPassword" />
 
     <Button
         android:id="@+id/buttonRegister"
@@ -72,5 +60,7 @@
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/ilPassword" />
+
+
 </android.support.constraint.ConstraintLayout>
