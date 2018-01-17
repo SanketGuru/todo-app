@@ -1,7 +1,7 @@
 package com.sanketguru.notesapp.presentation.adapter
 
 import android.view.View
-import com.sanketguru.domain.module.TextNote
+import com.sanketguru.notesapp.module.TextNote
 import com.sanketguru.notesapp.R
 import kotlinx.android.synthetic.main.list_child.view.*
 

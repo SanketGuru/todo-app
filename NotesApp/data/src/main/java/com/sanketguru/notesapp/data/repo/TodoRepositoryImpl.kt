@@ -1,10 +1,10 @@
-package com.sanketguru.data.repo
+package com.sanketguru.notesapp.data.repo
 
-import com.sanketguru.data.mapper.TodoMapper
+import com.sanketguru.notesapp.data.mapper.TodoMapper
 import com.sanketguru.store.TodoDataStore
 import com.sanketguru.store.TodoLocalDataStore
-import com.sanketguru.domain.module.TodoModel
-import com.sanketguru.domain.todos.TodoRepository
+import com.sanketguru.notesapp.module.TodoModel
+import com.sanketguru.notesapp.todos.TodoRepository
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

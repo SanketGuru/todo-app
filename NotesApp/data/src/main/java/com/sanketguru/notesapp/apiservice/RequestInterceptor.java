@@ -1,4 +1,4 @@
-package com.sanketguru.apiservice;
+package com.sanketguru.notesapp.apiservice;
 
 import java.io.IOException;
 

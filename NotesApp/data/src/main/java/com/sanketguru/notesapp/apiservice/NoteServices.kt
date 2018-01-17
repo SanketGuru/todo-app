@@ -1,4 +1,4 @@
-package com.sanketguru.apiservice
+package com.sanketguru.notesapp.apiservice
 
 import com.sanketguru.notesapp.apiservice.ApiResponse
 import com.sanketguru.notesapp.models.CreateNote

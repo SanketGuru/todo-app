@@ -1,6 +1,6 @@
-package com.sanketguru.data.mapper
+package com.sanketguru.notesapp.data.mapper
 
-import com.sanketguru.domain.module.UserUIModel as UserModel
+import com.sanketguru.notesapp.module.UserUIModel as UserModel
 import com.sanketguru.notesapp.models.User as  User
 
 /**

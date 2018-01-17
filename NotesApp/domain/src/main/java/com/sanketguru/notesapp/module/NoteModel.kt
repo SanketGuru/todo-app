@@ -1,4 +1,4 @@
-package com.sanketguru.domain.module
+package com.sanketguru.notesapp.module
 
 import java.util.*
 

@@ -1,7 +1,5 @@
 package com.sanketguru.notesapp.di.component
 
-import com.sanketguru.notesapp.LoginActivityViewModel
-import com.sanketguru.notesapp.di.module.AppModule
 import com.sanketguru.notesapp.di.module.RepositoryModule
 import dagger.Component
 
@@ -10,5 +8,5 @@ import dagger.Component
  */
 @Component(modules = [(RepositoryModule::class)])
 interface RepoComPonent {
-    fun inject( ss : LoginActivityViewModel )
+
 }

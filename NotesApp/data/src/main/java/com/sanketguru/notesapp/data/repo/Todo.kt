@@ -1,4 +1,4 @@
-package com.sanketguru.data.repo
+package com.sanketguru.notesapp.data.repo
 
 /**
  * Created by Sanket Gurav on 1/5/2018.

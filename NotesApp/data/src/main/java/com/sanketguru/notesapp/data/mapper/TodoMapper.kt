@@ -1,7 +1,7 @@
-package com.sanketguru.data.mapper
+package com.sanketguru.notesapp.data.mapper
 
-import com.sanketguru.data.repo.Todo
-import com.sanketguru.domain.module.TodoModel
+import com.sanketguru.notesapp.data.repo.Todo
+import com.sanketguru.notesapp.module.TodoModel
 
 /**
  * Created by Sanket Gurav on 1/5/2018.

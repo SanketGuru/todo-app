@@ -1,14 +1,10 @@
 package com.sanketguru.notesapp.di.module
 
-import android.util.Log
-import com.sanketguru.data.repo.UserRepositoryImpl
+import com.sanketguru.notesapp.data.repo.UserRepositoryImpl
 
 
 import dagger.Module
 import dagger.Provides
-
-
-import javax.inject.Singleton
 
 /**
  * Created by Sanket Gurav on 1/9/2018.

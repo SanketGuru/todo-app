@@ -1,9 +1,8 @@
-package com.sanketguru.apiservice
+package com.sanketguru.notesapp.apiservice
 
 //import com.sanketguru.notesapp.BuildConfig;
 
 
-import com.sanketguru.notesapp.apiservice.HeaderInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

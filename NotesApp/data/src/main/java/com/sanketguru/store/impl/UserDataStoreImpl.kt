@@ -1,11 +1,10 @@
 package com.sanketguru.store.impl
 
-import com.sanketguru.apiservice.LoginService
 import com.sanketguru.notesapp.apiservice.ApiResponse
 import com.sanketguru.notesapp.models.User
 import com.sanketguru.store.UserDataStore
 import io.reactivex.Observable
-
+import com.sanketguru.notesapp.apiservice.LoginService
 /**
  * Created by Sanket Gurav on 1/8/2018.
  */
