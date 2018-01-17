@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         buttonLogin.onClick {
             presenter.doLogin(UserUIModel(userName = etUserName.text.toString(), password = etPassword.text.toString()))
         }
-
+val dd=Listner(presenter.getError())
         presenter.getError().subscribe({
             print("HGfjhfhjvx "+it.message)
         }
