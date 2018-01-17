@@ -8,8 +8,14 @@ import com.sanketguru.notesapp.domain.presentation.LoginContract
 import com.sanketguru.notesapp.domain.presentation.LoginPresenter
 import com.sanketguru.notesapp.module.UserUIModel
 import com.sanketguru.notesapp.presentation.utils.extensions.onClick
+import io.reactivex.Observer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.functions.Consumer
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.login.*
 import timber.log.Timber
+
 
 /**
  * Created by Bhavesh on 02-01-2018.
@@ -26,6 +32,13 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         buttonLogin.onClick {
             presenter.doLogin(UserUIModel(userName = etUserName.text.toString(), password = etPassword.text.toString()))
         }
+
+        presenter.getError().subscribe({
+            print("HGfjhfhjvx "+it.message)
+        }
+
+        )
+               // .subscribe( )
 
     }
 
