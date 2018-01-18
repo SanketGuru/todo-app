@@ -1,6 +1,7 @@
 package com.sanketguru.notesapp.apiservice
 
 import com.sanketguru.notesapp.apiservice.ApiResponse
+import com.sanketguru.notesapp.models.Register
 import com.sanketguru.notesapp.models.User
 import io.reactivex.Observable
 import retrofit2.http.Body
@@ -15,7 +16,7 @@ interface LoginService {
     fun login(@Body user: User): Observable<ApiResponse<User>>
 
     @POST("register")
-    fun register(@Body register: User): Observable<ApiResponse<User>>
+    fun register(@Body register: Register): Observable<ApiResponse<Register>>
 
 
    }

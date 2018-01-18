@@ -8,6 +8,7 @@ import com.sanketguru.notesapp.data.repo.UserRepositoryImpl
 import com.sanketguru.notesapp.domain.module.Error
 import com.sanketguru.notesapp.domain.module.UserUIModel
 import com.sanketguru.notesapp.presentation.screens.main.MainActivity
+import com.sanketguru.notesapp.presentation.screens.register.RegisterActivity
 import com.sanketguru.notesapp.presentation.utils.extensions.onClick
 import com.sanketguru.notesapp.presentation.utils.extensions.start
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -31,7 +32,9 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
             buttonLogin.isEnabled = false
             presenter.doLogin(UserUIModel(userName = etUserName.text.toString(), password = etPassword.text.toString()))
         }
-
+        buttonRegister.onClick {
+            goToRegistration()
+        }
 
     }
 
@@ -39,7 +42,8 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
 
     override fun goToRegistration() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        start<RegisterActivity>()
+
     }
 
     override fun goToMainPage(user: UserUIModel) {
