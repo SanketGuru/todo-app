@@ -3,9 +3,10 @@ package com.sanketguru.notesapp.data.repo
 import com.sanketguru.notesapp.apiservice.RetrofitHelper
 import com.sanketguru.notesapp.data.mapper.UserMapper
 import com.sanketguru.notesapp.domain.module.UserUIModel
-import com.sanketguru.notesapp.domain.todos.UserRepository
-import com.sanketguru.notesapp.store.UserDataStore
-import com.sanketguru.notesapp.store.impl.UserDataStoreImpl
+import com.sanketguru.notesapp.domain.repo.UserRepository
+import com.sanketguru.store.UserDataStore
+import com.sanketguru.store.impl.UserDataStoreImpl
+
 
 /**
  * Created by Sanket Gurav on 1/8/2018.

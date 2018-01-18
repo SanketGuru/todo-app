@@ -1,4 +1,4 @@
-package com.sanketguru.notesapp.domain.todos
+package com.sanketguru.notesapp.domain.repo
 
 import com.sanketguru.notesapp.domain.module.TodoModel
 import io.reactivex.Observable
