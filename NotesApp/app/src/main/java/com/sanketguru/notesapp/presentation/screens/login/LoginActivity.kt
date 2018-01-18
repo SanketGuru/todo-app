@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         setContentView(R.layout.login)
 
         buttonLogin.onClick {
+            buttonLogin.isEnabled=false
             presenter.doLogin(UserUIModel(userName = etUserName.text.toString(), password = etPassword.text.toString()))
         }
 
@@ -49,7 +50,8 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun showError(error: Error) {
-        Timber.e("We have errror ${error.message}")
+        buttonLogin.isEnabled=true
+        Timber.e("We have errror %s",error.message)
         when(error.type){
             Error.TOAST -> Toast.makeText(this, error.message, Toast.LENGTH_LONG).show()
         }
