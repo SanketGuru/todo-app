@@ -8,9 +8,7 @@ import android.view.MenuItem
 import com.sanketguru.notesapp.OnFragmentInteractionListener
 import com.sanketguru.notesapp.R
 import com.sanketguru.notesapp.domain.module.TextNote
-import com.sanketguru.notesapp.presentation.screens.BasePresenter
 import com.sanketguru.notesapp.presentation.screens.main.note.CreateFragment
-
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainContract.View, OnFragmentInteractionListener {
@@ -80,12 +78,3 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnFragmentInteracti
     //endregion
 }
 
-interface MainContract {
-    interface View {
-        fun openNote(notesApp: TextNote)
-    }
-
-    interface Presenter : BasePresenter {
-        fun createNote()
-    }
-}
