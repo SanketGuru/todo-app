@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_create.*
  * Created by Raju on 03-01-2018.
  */
 
-class CreateFragment : Fragment() {
+class CreateFragment : Fragment() ,CreateAndEditContract.View {
     var statu = 0
 
 
