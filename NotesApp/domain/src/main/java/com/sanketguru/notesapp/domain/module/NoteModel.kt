@@ -34,4 +34,4 @@ open class NoteModel {
 
 }
 
-data class TextNote(val text: String) : NoteModel()
+data class TextNote(val text: String = "") : NoteModel()

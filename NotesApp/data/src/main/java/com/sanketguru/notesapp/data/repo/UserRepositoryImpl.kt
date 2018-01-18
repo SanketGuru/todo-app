@@ -17,13 +17,10 @@ class UserRepositoryImpl : UserRepository {
 
     init {
         var retHelper = RetrofitHelper()
-
         userStore = UserDataStoreImpl(retHelper.userWebService)
     }
 
-    override fun login(userUIModel: UserUIModel) = userStore.login(userMapper.transform(userUIModel)).map<UserUIModel> {
-
-        userMapper.transform(it.payload!!)
+    override fun login(userUIModel: UserUIModel) = userStore.login(userMapper.transform(userUIModel)).map<UserUIModel> { userMapper.transform(it.payload!!)
     }
 
 }
