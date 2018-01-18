@@ -1,18 +1,17 @@
-package com.sanketguru.notesapp.presentation.screens.login
+package com.sanketguru.notesapp.presentation.screens.register
 
 import com.sanketguru.notesapp.domain.module.Error
-import com.sanketguru.notesapp.domain.module.UserUIModel
-import com.sanketguru.notesapp.domain.repo.UserRepository
+import com.sanketguru.notesapp.domain.module.RegisterUIModel
+import com.sanketguru.notesapp.domain.repo.RegisterRepository
 import com.sanketguru.notesapp.presentation.screens.BasePresenter
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 /**
- * Created by Sanket Gurav on 1/17/2018.
+ * Created by sanket on 1/18/2018.
  */
-class LoginPresenter(val view: LoginContract.View, val userRepo: UserRepository, val sheduler: Scheduler) : LoginContract.Presenter {
-    //region  LoginContract.Presenter methods
+class RegistrationPresenter(val view: RegisterContract.View, val userRepo: RegisterRepository, val sheduler: Scheduler) : RegisterContract.Presenter {
 
 
     var disposible = CompositeDisposable()
@@ -26,14 +25,11 @@ class LoginPresenter(val view: LoginContract.View, val userRepo: UserRepository,
         disposible.clear()
     }
 
-
-    override fun doLogin(user: UserUIModel) {
-        //   pubError.onNext(Error(9,"my message"))
-
-        val loginDisposible = userRepo.login(user).subscribeOn(Schedulers.io())
+    override fun doRegister(user: RegisterUIModel) {
+        val loginDisposible = userRepo.register(user).subscribeOn(Schedulers.io())
                 .observeOn(sheduler).subscribe(
                 { userData ->
-                    view.goToMainPage(user)
+                    view.finishPage()
                     //  pubError.onNext(Error(9, userData.userName))
 
                 },
@@ -43,16 +39,12 @@ class LoginPresenter(val view: LoginContract.View, val userRepo: UserRepository,
                 })
         disposible.add(loginDisposible)
     }
-    //endregion
 }
 
-interface LoginContract {
+interface RegisterContract {
     interface View {
 
-        fun goToRegistration()
-        /**on Login go to main page*/
-        fun goToMainPage(user: UserUIModel)
-
+        fun finishPage()
         fun showError(error: Error)
 
     }
@@ -61,7 +53,7 @@ interface LoginContract {
         /**
          * Login button Clicked Command
          * */
-        fun doLogin(user: UserUIModel)
+        fun doRegister(user: RegisterUIModel)
 
 
     }
