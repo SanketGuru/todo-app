@@ -28,10 +28,9 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         setContentView(R.layout.login)
 
         buttonLogin.onClick {
-            buttonLogin.isEnabled=false
+            buttonLogin.isEnabled = false
             presenter.doLogin(UserUIModel(userName = etUserName.text.toString(), password = etPassword.text.toString()))
         }
-
 
 
     }
@@ -44,16 +43,20 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun goToMainPage(user: UserUIModel) {
-        Timber.v("Vgot data : %s", user.userName)
+        Timber.v("we got data : %s", user.userName)
         Toast.makeText(this, "Hi ${user.userName}", Toast.LENGTH_LONG).show()
-           this.start<MainActivity>()
+        this.start<MainActivity>()
     }
 
     override fun showError(error: Error) {
-        buttonLogin.isEnabled=true
-        Timber.e("We have errror %s",error.message)
-        when(error.type){
+        buttonLogin.isEnabled = true
+        Timber.e("We have errror %s", error.message)
+        when (error.type) {
             Error.TOAST -> Toast.makeText(this, error.message, Toast.LENGTH_LONG).show()
+            Error.ALERT -> {
+            }
+            Error.IN_LINE -> {
+            }
         }
 
 

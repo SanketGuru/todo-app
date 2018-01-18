@@ -2,17 +2,20 @@ package com.sanketguru.notesapp.presentation.screens.login
 
 import com.sanketguru.notesapp.domain.module.Error
 import com.sanketguru.notesapp.domain.module.UserUIModel
-import com.sanketguru.notesapp.presentation.screens.BasePresenter
 import com.sanketguru.notesapp.domain.repo.UserRepository
+import com.sanketguru.notesapp.presentation.screens.BasePresenter
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by Sanket Gurav on 1/17/2018.
  */
-class LoginPresenter(val view: LoginContract.View, val userRepo: UserRepository, val sheduler: Scheduler) : LoginContract.Presenter {
+class LoginPresenter(
+        private val view: LoginContract.View,
+        private val userRepo: UserRepository,
+        private val sheduler: Scheduler
+) : LoginContract.Presenter {
     //region  LoginContract.Presenter methods
 
 
@@ -29,18 +32,14 @@ class LoginPresenter(val view: LoginContract.View, val userRepo: UserRepository,
 
 
     override fun doLogin(user: UserUIModel) {
-        //   pubError.onNext(Error(9,"my message"))
-
         val loginDisposible = userRepo.login(user).subscribeOn(Schedulers.io())
                 .observeOn(sheduler).subscribe(
                 { userData ->
-                    view.goToMainPage(user)
-                    //  pubError.onNext(Error(9, userData.userName))
-
+                    view goToMainPage user
                 },
                 { err ->
                     err.printStackTrace()
-                    view.showError(Error(0, "Something went wrong"))
+                    view showError Error(0, "Something went wrong")
                 })
         disposible.add(loginDisposible)
     }
@@ -52,9 +51,9 @@ interface LoginContract {
 
         fun goToRegistration()
         /**on Login go to main page*/
-        fun goToMainPage(user: UserUIModel)
+        infix fun goToMainPage(user: UserUIModel)
 
-        fun showError(error: Error)
+        infix fun showError(error: Error)
 
     }
 
@@ -62,7 +61,7 @@ interface LoginContract {
         /**
          * Login button Clicked Command
          * */
-        fun doLogin(user: UserUIModel)
+        infix fun doLogin(user: UserUIModel)
 
 
     }
