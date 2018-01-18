@@ -2,8 +2,8 @@ package com.sanketguru.notesapp.presentation.screens.login
 
 import com.sanketguru.notesapp.domain.module.Error
 import com.sanketguru.notesapp.domain.module.UserUIModel
-import com.sanketguru.notesapp.domain.repo.UserRepository
 import com.sanketguru.notesapp.presentation.screens.BasePresenter
+import com.sanketguru.notesapp.domain.repo.UserRepository
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer

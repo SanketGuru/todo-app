@@ -8,7 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.sanketguru.notesapp.OnFragmentInteractionListener
 import com.sanketguru.notesapp.R
-import com.sanketguru.notesapp.domain.presentation.BasePresenter
+import com.sanketguru.notesapp.presentation.screens.BasePresenter
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -80,5 +80,5 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnFragmentInteracti
 }
 interface MainContract{
     interface View{}
-    interface Presenter : BasePresenter{}
+    interface Presenter : BasePresenter {}
 }

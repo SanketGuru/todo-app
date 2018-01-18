@@ -1,4 +1,4 @@
-package com.sanketguru.notesapp.domain.presentation
+package com.sanketguru.notesapp.presentation.screens
 
 /**
  * Created by Sanket Gurav on 1/17/2018.
