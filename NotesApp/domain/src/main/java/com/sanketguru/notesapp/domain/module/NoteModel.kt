@@ -2,6 +2,9 @@ package com.sanketguru.notesapp.domain.module
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.sanketguru.notesapp.domain.util.dateRepresentation
+import com.sanketguru.notesapp.domain.util.stringRepresentation
+import java.text.ParseException
 import java.util.Date
 import kotlin.collections.ArrayList
 
@@ -47,21 +50,36 @@ data class TextNote(var text: String = "") : NoteModel(), Parcelable {
         parcel.writeInt(status)
         parcel.writeStringList(sharedWith)
         parcel.writeString(text)
+
+        try {
+            //            creationDate
+            parcel.writeString(creationDate stringRepresentation DATE_FORMAT)
+            //            lastEdited
+            parcel.writeString(lastEdited stringRepresentation DATE_FORMAT)
+            //            doByDate
+            parcel.writeString(doByDate stringRepresentation DATE_FORMAT)
+        }catch (pe :ParseException){
+            pe.printStackTrace()
+        }
     }
 
     override fun describeContents(): Int {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<TextNote> {
-        override fun createFromParcel(parcel: Parcel) = TextNote(parcel)
+    companion object {
+        val DATE_FORMAT = "yyyy-MM-dd"
+        val CREATOR = object : Parcelable.Creator<TextNote> {
+            override fun createFromParcel(parcel: Parcel) = TextNote(parcel)
 
 
-        override fun newArray(size: Int): Array<TextNote?> {
-            return arrayOfNulls(size)
+            override fun newArray(size: Int): Array<TextNote?> {
+                return arrayOfNulls(size)
+            }
         }
     }
-//TODO parcelise date
+
+    //TODO parcelise date
     constructor(parcel: Parcel) : this() {
         id = parcel.readString()
         onerid = parcel.readString()
@@ -70,5 +88,23 @@ data class TextNote(var text: String = "") : NoteModel(), Parcelable {
         status = parcel.readInt()
         sharedWith = parcel.createStringArrayList()
         text = parcel.readString()
+        val data = parcel.readString()
+
+        try {
+
+            creationDate = data dateRepresentation DATE_FORMAT
+
+            val dataModified = parcel.readString()
+            lastEdited = dataModified dateRepresentation DATE_FORMAT
+
+            val dataOnDate = parcel.readString()
+            doByDate = dataOnDate dateRepresentation DATE_FORMAT
+//TODO - Call specifc exception and init date tocurrent date
+        } catch (pe: ParseException) {
+            pe.printStackTrace()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
     }
 }

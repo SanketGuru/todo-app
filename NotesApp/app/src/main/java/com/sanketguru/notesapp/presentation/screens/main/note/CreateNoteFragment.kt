@@ -27,7 +27,7 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
             var args = Bundle()
             with(args) {
                 args.putString(ARG_STRING, arg1)
-                //  args.putString(ARG_STRING,arg1)
+                  args.putString(ARG_STRING,arg1)
             }
             frag.arguments = args
             return frag
