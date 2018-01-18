@@ -33,12 +33,13 @@ class LoginPresenter(val view: LoginContract.View, val userRepo: UserRepository,
 
         val loginDisposible = userRepo.login(user).subscribeOn(Schedulers.io())
                 .observeOn(sheduler).subscribe(
-                Consumer { userData ->
+                { userData ->
                     view.goToMainPage(user)
                     //  pubError.onNext(Error(9, userData.userName))
 
                 },
-                Consumer { err ->
+                { err ->
+                    err.printStackTrace()
                     view.showError(Error(0, "Something went wrong"))
                 })
         disposible.add(loginDisposible)

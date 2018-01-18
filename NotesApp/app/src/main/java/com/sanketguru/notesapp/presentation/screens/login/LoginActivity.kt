@@ -49,6 +49,12 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun showError(error: Error) {
+        Timber.e("We have errror ${error.message}")
+        when(error.type){
+            Error.TOAST -> Toast.makeText(this, error.message, Toast.LENGTH_LONG).show()
+        }
+
+
     }
     //endregion
 

@@ -24,6 +24,8 @@ interface OnFragmentInteractionListener {
      */
     fun addFragmentToMain(fragment: Fragment, addToBackstack: Boolean)
 
+    fun replaceFragmentToMain(fragment: Fragment)
+
     /**
      * Set title of page
      * @param title title of page
