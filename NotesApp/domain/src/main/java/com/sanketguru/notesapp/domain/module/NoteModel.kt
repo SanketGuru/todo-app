@@ -16,7 +16,7 @@ open class NoteModel() {
 
     var id = ""
 
-    var onerid = ""
+    var ownerId = ""
 
     var title = ""
 
@@ -24,7 +24,7 @@ open class NoteModel() {
 
     var status = 0
 
-    var sharedWith: List<String> = ArrayList()
+    var sharedWith = ArrayList<String>()
 
     var creationDate = Date()
 
@@ -44,7 +44,7 @@ open class NoteModel() {
 data class TextNote(var text: String = "") : NoteModel(), Parcelable {
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
-        parcel.writeString(onerid)
+        parcel.writeString(ownerId)
         parcel.writeString(title)
         parcel.writeInt(type)
         parcel.writeInt(status)
@@ -82,7 +82,7 @@ data class TextNote(var text: String = "") : NoteModel(), Parcelable {
     //TODO parcelise date
     constructor(parcel: Parcel) : this() {
         id = parcel.readString()
-        onerid = parcel.readString()
+        ownerId = parcel.readString()
         title = parcel.readString()
         type = parcel.readInt()
         status = parcel.readInt()

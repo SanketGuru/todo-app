@@ -14,7 +14,7 @@ open class Note {
     var id = ""
     @SerializedName("ownerId")
     @Expose
-    var onerid = ""
+    var ownerId = ""
     @SerializedName("title")
     @Expose
     var title = ""

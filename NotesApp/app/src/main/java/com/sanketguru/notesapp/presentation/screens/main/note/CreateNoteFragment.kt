@@ -26,19 +26,12 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
             var frag = CreateFragment()
             var args = Bundle()
             with(args) {
-                args.putString(ARG_STRING, arg1)
-                  args.putString(ARG_STRING,arg1)
+                putString(ARG_STRING, arg1)
+                putParcelable(ARG_NOTE, note)
             }
             frag.arguments = args
             return frag
         }
-//          fun newInstance(caught: MainActivity):CreateFragment{
-//              val args: Bundle = Bundle()
-//              args.putSerializable(ARG_CAUGHT, caught)
-//              val fragment = CreateFragment()
-//              fragment.arguments = args
-//              return fragment
-//          }
 
     }
 
@@ -46,6 +39,8 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
     //3
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
+      val note =  arguments.getParcelable<TextNote>(ARG_NOTE)
 
         return inflater?.inflate(R.layout.fragment_create, container, false)
     }

@@ -14,7 +14,7 @@ class NoteMapper {
         var noteModel = com.sanketguru.notesapp.domain.module.TextNote(note.text)
         with(noteModel) {
             id = note.id
-            onerid = note.onerid
+            ownerId = note.ownerId
             title = note.title
         }
         return noteModel
@@ -27,7 +27,7 @@ class NoteMapper {
         var textNote = TextNote(textNoteModel.text)
         with(textNote) {
             id = textNoteModel.id
-            onerid = textNoteModel.onerid
+            ownerId = textNoteModel.ownerId
             title = textNoteModel.title
         }
         return textNote
