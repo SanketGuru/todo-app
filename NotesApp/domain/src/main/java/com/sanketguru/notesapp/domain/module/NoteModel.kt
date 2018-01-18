@@ -38,7 +38,11 @@ open class NoteModel() {
      * */
     override fun toString() = this.id
 
-
+companion object {
+    val TODO=0
+    val IN_PROGRESS=1
+    val DONE=2
+}
 }
 
 data class TextNote(var text: String = "") : NoteModel(), Parcelable {

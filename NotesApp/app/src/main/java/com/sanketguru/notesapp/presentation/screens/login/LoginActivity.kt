@@ -46,6 +46,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         Timber.v("we got data : %s", user.userName)
         Toast.makeText(this, "Hi ${user.userName}", Toast.LENGTH_LONG).show()
         this.start<MainActivity>()
+        this.finish()
     }
 
     override fun showError(error: Error) {

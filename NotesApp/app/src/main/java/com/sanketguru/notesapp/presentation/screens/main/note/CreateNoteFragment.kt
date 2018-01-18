@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import com.sanketguru.notesapp.R
+import com.sanketguru.notesapp.domain.module.NoteModel
 import com.sanketguru.notesapp.domain.module.TextNote
 import kotlinx.android.synthetic.main.fragment_create.*
 
@@ -16,8 +17,7 @@ import kotlinx.android.synthetic.main.fragment_create.*
  */
 
 class CreateFragment : Fragment(), CreateAndEditContract.View {
-    var statu = 0
-
+    var status = 0
 
     companion object {
         val ARG_STRING = "arg1"
@@ -37,12 +37,10 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
 
 
     //3
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-
-      val note =  arguments.getParcelable<TextNote>(ARG_NOTE)
-
-        return inflater?.inflate(R.layout.fragment_create, container, false)
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val note = arguments.getParcelable<TextNote>(ARG_NOTE)
+        val view = inflater?.inflate(R.layout.fragment_create, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -52,16 +50,16 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
         radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { radioGroup, id ->
             when (id) {
                 rbPending.id -> {
-                    statu = 0
+                    status = NoteModel.TODO
                     //  Log.v("Say", "0")
 
                 }
                 rbInProgress.id -> {
-                    statu = 1
+                    status = NoteModel.IN_PROGRESS
                     // Log.v("Say","1")
                 }
                 rbDone.id -> {
-                    statu = 2
+                    status = NoteModel.DONE
                     //   Log.v("Say","2")
                 }
             }
@@ -96,5 +94,21 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
 
 
         })
+    }
+
+    fun setUpView(note: TextNote) {
+        editTextTitle.setText(note.title)
+        editTextTitle.setText(note.text)
+        setNoteStatus(note.status)
+    }
+/**
+ * updated radio button ui
+ * */
+    fun setNoteStatus(status: Int) {
+        when (status) {
+            NoteModel.TODO -> rbPending.isChecked = true
+            NoteModel.IN_PROGRESS -> rbInProgress.isChecked = true
+            NoteModel.DONE -> rbDone.isChecked = true
+        }
     }
 }

@@ -12,7 +12,6 @@ import io.reactivex.Observable
 
 class UserDataStoreImpl ( var loginService : LoginService ): UserDataStore {
 
-
     override fun login(user : User) :  Observable<ApiResponse<User>>{ return loginService.login(user)}
 
 }

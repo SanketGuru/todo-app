@@ -39,4 +39,8 @@ open class Note {
 
 
 }
-data class TextNote (   @SerializedName("text") @Expose val text: String) : Note()
+data class TextNote (   @SerializedName("text") @Expose val text: String) : Note(){
+    constructor( id:String, text : String): this(text){
+        this.id=id
+    }
+}
