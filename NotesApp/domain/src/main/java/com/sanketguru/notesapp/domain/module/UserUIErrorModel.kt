@@ -1,4 +1,4 @@
-package com.sanketguru.notesapp.module
+package com.sanketguru.notesapp.domain.module
 
 /**
  * Created by Bhavesh on 09-01-2018.

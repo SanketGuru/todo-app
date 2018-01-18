@@ -1,6 +1,6 @@
-package com.sanketguru.notesapp.todos
+package com.sanketguru.notesapp.domain.todos
 
-import com.sanketguru.notesapp.module.UserUIModel
+import com.sanketguru.notesapp.domain.module.UserUIModel
 import io.reactivex.Observable
 
 /**

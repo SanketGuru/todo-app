@@ -1,6 +1,7 @@
-package com.sanketguru.notesapp.module
+package com.sanketguru.notesapp.domain.module
 
-import java.util.*
+import java.util.Date
+import kotlin.collections.ArrayList
 
 /**
  * Created by Sanket Gurav on 1/8/2018.

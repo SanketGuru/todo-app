@@ -45,9 +45,9 @@ dependencies {
 
     //region ButterKnife
     implementation "com.facebook.fresco:fresco:$project.frescoVersion"
-    implementation "com.jakewharton:butterknife:$project.butterKnifeVersion"
+ //   implementation "com.jakewharton:butterknife:$project.butterKnifeVersion"
 
-    annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterKnifeVersion"
+   // annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterKnifeVersion"
 
     //endregion
     implementation 'javax.inject:javax.inject:1'
