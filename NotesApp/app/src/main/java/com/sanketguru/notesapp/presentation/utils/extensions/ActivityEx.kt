@@ -9,7 +9,8 @@ import android.support.v4.content.ContextCompat
  * Created by Sanket on 19.09.2017.
  */
 inline fun <reified T> Activity.start() {
-    this.startActivity(Intent(this, T::class.java))
+    var intent=Intent(this, T::class.java);
+    this.startActivity(intent)
 }
 
 fun Activity.isPortrait() = this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT

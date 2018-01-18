@@ -7,7 +7,9 @@ import com.sanketguru.notesapp.R
 import com.sanketguru.notesapp.data.repo.UserRepositoryImpl
 import com.sanketguru.notesapp.domain.module.Error
 import com.sanketguru.notesapp.domain.module.UserUIModel
+import com.sanketguru.notesapp.presentation.screens.main.MainActivity
 import com.sanketguru.notesapp.presentation.utils.extensions.onClick
+import com.sanketguru.notesapp.presentation.utils.extensions.start
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.login.*
 import timber.log.Timber
@@ -43,7 +45,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     override fun goToMainPage(user: UserUIModel) {
         Timber.v("Vgot data : %s", user.userName)
         Toast.makeText(this, "Hi ${user.userName}", Toast.LENGTH_LONG).show()
-        //   this.start<MainA>()
+           this.start<MainActivity>()
     }
 
     override fun showError(error: Error) {

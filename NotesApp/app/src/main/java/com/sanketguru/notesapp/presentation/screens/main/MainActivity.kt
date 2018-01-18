@@ -1,17 +1,20 @@
-/*
-package com.sanketguru.notesapp
+
+package com.sanketguru.notesapp.presentation.screens.main
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.sanketguru.notesapp.OnFragmentInteractionListener
+import com.sanketguru.notesapp.R
+import com.sanketguru.notesapp.domain.presentation.BasePresenter
 
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), MainContract.View, OnFragmentInteractionListener {
 
-    private var listaFragment: CreateFragment? = null
+   // private var listaFragment: CreateFragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,18 +23,18 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
         fab.setOnClickListener { view ->
             val fragmentTransaction = fragmentManager
                     .beginTransaction()
-            val postLoginFragment = CreateFragment()
-            fragmentTransaction.replace(R.id.fragment, postLoginFragment)
+          //  val postLoginFragment = CreateFragment()
+        //    fragmentTransaction.replace(R.id.fragment, postLoginFragment)
             fragmentManager.popBackStack()
             fragmentTransaction.commit()
         }
 
         val fragmentTransaction = fragmentManager
                 .beginTransaction()
-        val postLoginFragment = ListFragment()
-        fragmentTransaction.replace(R.id.fragment, postLoginFragment)
-        fragmentManager.popBackStack()
-        fragmentTransaction.commit()
+//        val postLoginFragment = ListFragment()
+//        fragmentTransaction.replace(R.id.fragment, postLoginFragment)
+//        fragmentManager.popBackStack()
+//        fragmentTransaction.commit()
 
 
     }
@@ -75,4 +78,7 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
     }
     //endregion
 }
-*/
+interface MainContract{
+    interface View{}
+    interface Presenter : BasePresenter{}
+}
