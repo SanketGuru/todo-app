@@ -20,7 +20,8 @@ class UserRepositoryImpl : UserRepository {
         userStore = UserDataStoreImpl(retHelper.userWebService)
     }
 
-    override fun login(userUIModel: UserUIModel) = userStore.login(userMapper.transform(userUIModel)).map { userMapper.transform(it.payload!!)
+    override fun login(userUIModel: UserUIModel) = userStore.login(userMapper.transform(userUIModel))
+            .map { userMapper.transform(it.payload!!)
     }
 
 }

@@ -6,6 +6,7 @@ import com.sanketguru.notesapp.R
 import com.sanketguru.notesapp.data.repo.RegisterRepositoryImpl
 import com.sanketguru.notesapp.domain.module.Error
 import com.sanketguru.notesapp.domain.module.RegisterUIModel
+import com.sanketguru.notesapp.presentation.utils.extensions.get
 import com.sanketguru.notesapp.presentation.utils.extensions.onClick
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.login.*
@@ -21,6 +22,7 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View {
    private val presenter = RegistrationPresenter(this, RegisterRepositoryImpl(), AndroidSchedulers.mainThread())
 
     override fun showError(error: Error) {
+      val dd=  this[R.string.abc_font_family_button_material]
          }
 
 

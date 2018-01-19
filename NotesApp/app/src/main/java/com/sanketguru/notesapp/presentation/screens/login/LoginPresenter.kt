@@ -32,14 +32,19 @@ class LoginPresenter(
 
 
     override fun doLogin(user: UserUIModel) {
-        val loginDisposible = userRepo.login(user).subscribeOn(Schedulers.io())
-                .observeOn(sheduler).subscribe(
+        val loginDisposible =
+                userRepo.login(user)
+                        .filter { user->user.userName!=null && user.userName!=""}
+                        .subscribeOn(Schedulers.io())
+                .observeOn(sheduler)
+                        .subscribe(
                 { userData ->
                     view goToMainPage user
                 },
                 { err ->
                     err.printStackTrace()
                     view showError Error(0, "Something went wrong")
+
                 })
         disposible.add(loginDisposible)
     }
@@ -66,3 +71,4 @@ interface LoginContract {
 
     }
 }
+data  class LoginError(val unameError: String)
