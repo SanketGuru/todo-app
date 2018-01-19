@@ -32,17 +32,18 @@ open class NoteModel() {
 
     var lastEdited = Date()
 
-
+    val new
+    get() = id.isEmpty()
     /**
      * @return id of note it uniquely identifies each Note
      * */
     override fun toString() = this.id
 
-companion object {
-    val TODO=0
-    val IN_PROGRESS=1
-    val DONE=2
-}
+    companion object {
+        val TODO = 0
+        val IN_PROGRESS = 1
+        val DONE = 2
+    }
 }
 
 data class TextNote(var text: String = "") : NoteModel(), Parcelable {
@@ -62,7 +63,7 @@ data class TextNote(var text: String = "") : NoteModel(), Parcelable {
             parcel.writeString(lastEdited stringRepresentation DATE_FORMAT)
             //            doByDate
             parcel.writeString(doByDate stringRepresentation DATE_FORMAT)
-        }catch (pe :ParseException){
+        } catch (pe: ParseException) {
             pe.printStackTrace()
         }
     }

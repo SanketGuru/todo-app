@@ -10,7 +10,7 @@ import com.sanketguru.notesapp.R
 import com.sanketguru.notesapp.domain.module.NoteModel
 import com.sanketguru.notesapp.domain.module.TextNote
 import kotlinx.android.synthetic.main.fragment_create.*
-
+import timber.log.Timber
 
 /**
  * Created by Raju on 03-01-2018.
@@ -19,7 +19,10 @@ import kotlinx.android.synthetic.main.fragment_create.*
 class CreateFragment : Fragment(), CreateAndEditContract.View {
     var status = 0
 
+    val presenter = CreateAndEditPresenter()
+
     companion object {
+
         val ARG_STRING = "arg1"
         val ARG_NOTE = "argNote"
         fun newInstance(arg1: String = "", note: TextNote = TextNote("")): Fragment {
@@ -32,16 +35,17 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
             frag.arguments = args
             return frag
         }
-
     }
-
 
     //3
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val note = arguments.getParcelable<TextNote>(ARG_NOTE)
+        presenter.note = note
+
         val view = inflater?.inflate(R.layout.fragment_create, container, false)
         return view
     }
+
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -96,19 +100,23 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
         })
     }
 
-    fun setUpView(note: TextNote) {
+
+    override fun setUpNote(note: TextNote) {
+        Timber.v("This is %s Note", if (note.new) "new" else "old")
         editTextTitle.setText(note.title)
-        editTextTitle.setText(note.text)
+        editTextText.setText(note.text)
         setNoteStatus(note.status)
     }
-/**
- * updated radio button ui
- * */
-    fun setNoteStatus(status: Int) {
-        when (status) {
-            NoteModel.TODO -> rbPending.isChecked = true
-            NoteModel.IN_PROGRESS -> rbInProgress.isChecked = true
-            NoteModel.DONE -> rbDone.isChecked = true
-        }
-    }
+
+    /**
+     * updated radio button ui
+     * */
+    private fun setNoteStatus(status: Int) =
+            when (status) {
+                NoteModel.TODO -> rbPending.isChecked = true
+                NoteModel.IN_PROGRESS -> rbInProgress.isChecked = true
+                NoteModel.DONE -> rbDone.isChecked = true
+                else -> Unit
+            }
+
 }
