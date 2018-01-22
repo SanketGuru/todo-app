@@ -1,10 +1,12 @@
 package com.sanketguru.notesapp.presentation.screens.main.note
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.sanketguru.notesapp.OnFragmentInteractionListener
 import com.sanketguru.notesapp.R
 import com.sanketguru.notesapp.apiservice.RetrofitHelper
 import com.sanketguru.notesapp.data.mapper.NoteMapper
@@ -13,6 +15,7 @@ import com.sanketguru.notesapp.data.store.impl.NoteDataStoreImpl
 import com.sanketguru.notesapp.domain.module.NoteModel
 import com.sanketguru.notesapp.domain.module.TextNote
 import com.sanketguru.notesapp.presentation.AccountDetails
+import com.sanketguru.notesapp.presentation.screens.main.notelist.ListFragment
 import com.sanketguru.notesapp.presentation.utils.extensions.onClick
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_create.*
@@ -26,6 +29,7 @@ import kotlin.collections.ArrayList
 
 class CreateFragment : Fragment(), CreateAndEditContract.View {
     private var status = 0
+    private lateinit var interacter: OnFragmentInteractionListener
 
     val presenter = CreateAndEditPresenter(this, NoteRepoImpl(NoteDataStoreImpl(RetrofitHelper().noteWebService), NoteMapper()), AndroidSchedulers.mainThread())
 
@@ -48,7 +52,6 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
 
-
         val view = inflater?.inflate(R.layout.fragment_create, container, false)
 
         return view
@@ -60,35 +63,6 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
         val note = arguments.getParcelable<TextNote>(ARG_NOTE)
         presenter.note = note
         setUpView()
-
-        /*       button.setOnClickListener({ view ->
-                   var notes = TextNote()
-                   with(notes) {
-                       title = editText.text.toString()
-                       text = editText2.text.toString()
-                       status = statu
-                   }
-                   var createNote = CreateNote()
-                   createNote.note = notes
-                   var retHelper = RetrofitHelper()
-                   var loginData = retHelper.webServiceHeader.createNote(createNote)
-                   loginData.subscribeOn(Schedulers.io())
-                           .observeOn(AndroidSchedulers.mainThread())
-                           .subscribe(Consumer { response ->
-                               Log.v("Say", response.isSuccess.toString())
-                               if (response.isSuccess) {
-                                   val fragmentTransaction = fragmentManager
-                                           .beginTransaction()
-                                   val postLoginFragment = ListFragment()
-                                   fragmentTransaction.replace(R.id.fragment, postLoginFragment)
-                                   fragmentManager.popBackStack()
-                                   fragmentTransaction.commit()
-
-                               }
-                           }, Consumer { err -> err.printStackTrace() })
-
-
-               })*/
 
 
     }
@@ -114,7 +88,7 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
         button.onClick { presenter.saveNote(getNote()) }
 
     }
-
+/**this function return data from ui to a model*/
     private fun getNote() = TextNote(
             presenter.note.id,
             AccountDetails.id,
@@ -122,7 +96,7 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
             editTextText.text,
             0,
             status,
-            ArrayList<String>(),
+            ArrayList(),
             Date(),
             Date(),
             Date()
@@ -146,4 +120,23 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
                 else -> Unit
             }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        when (context) {
+            is OnFragmentInteractionListener -> interacter = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+       // interacter //Here we vcan un bind it
+    }
+
+    override fun goToListPage() {
+        if (interacter != null) {
+            val listFragment = ListFragment()
+            interacter.replaceFragmentToMain(listFragment, true)
+        }
+
+    }
 }
