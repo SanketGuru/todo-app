@@ -88,7 +88,8 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
         button.onClick { presenter.saveNote(getNote()) }
 
     }
-/**this function return data from ui to a model*/
+
+    /**this function return data from ui to a model*/
     private fun getNote() = TextNote(
             presenter.note.id,
             AccountDetails.id,
@@ -129,7 +130,7 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
 
     override fun onDetach() {
         super.onDetach()
-       // interacter //Here we vcan un bind it
+        // interacter //Here we vcan un bind it
     }
 
     override fun goToListPage() {
@@ -139,4 +140,6 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
         }
 
     }
+
+
 }

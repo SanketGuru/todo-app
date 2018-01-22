@@ -1,6 +1,6 @@
 package com.sanketguru.notesapp.presentation.screens.register
 
-import com.sanketguru.notesapp.domain.module.Error
+import com.sanketguru.notesapp.domain.module.RegisterError
 import com.sanketguru.notesapp.domain.module.RegisterUIModel
 import com.sanketguru.notesapp.domain.repo.RegisterRepository
 import com.sanketguru.notesapp.presentation.screens.BasePresenter
@@ -26,18 +26,25 @@ class RegistrationPresenter(val view: RegisterContract.View, val userRepo: Regis
     }
 
     override fun doRegister(user: RegisterUIModel) {
-        val loginDisposible = userRepo.register(user).subscribeOn(Schedulers.io())
-                .observeOn(sheduler).subscribe(
-                { userData ->
-                    view.finishPage()
-                    //  pubError.onNext(Error(9, userData.userName))
+        if (user.userName.equals("")) {
+            view.showError(RegisterError(0, "UserName can,t empty"))
+        }else if (user.password.equals("")) {
+            view.showError(RegisterError(1, "Password can,t empty"))
+        } else {
+            val loginDisposible = userRepo.register(user).subscribeOn(Schedulers.io())
+                    .observeOn(sheduler).subscribe(
+                    { userData ->
+                        view.showError(RegisterError(2, "Register Successfully"))
+                        view.finishPage()
+                        //  pubError.onNext(Error(9, userData.userName))
 
-                },
-                { err ->
-                    err.printStackTrace()
-                    view.showError(Error(0, "Something went wrong"))
-                })
-        disposible.add(loginDisposible)
+                    },
+                    { err ->
+                        err.printStackTrace()
+                        view.showError(RegisterError(3, "Something went wrong"))
+                    })
+            disposible.add(loginDisposible)
+        }
     }
 }
 
@@ -45,7 +52,7 @@ interface RegisterContract {
     interface View {
 
         fun finishPage()
-        fun showError(error: Error)
+        fun showError(error: RegisterError)
 
     }
 
