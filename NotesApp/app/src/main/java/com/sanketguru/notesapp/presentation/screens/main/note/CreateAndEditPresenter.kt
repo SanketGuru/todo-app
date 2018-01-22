@@ -46,6 +46,7 @@ class CreateAndEditPresenter(
 interface CreateAndEditContract {
     interface View {
         fun setUpNote(note: TextNote)
+
     }
 
     interface Presenter : BasePresenter {

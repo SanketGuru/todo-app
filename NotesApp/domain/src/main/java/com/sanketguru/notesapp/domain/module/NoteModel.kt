@@ -33,16 +33,17 @@ open class NoteModel() {
     var lastEdited = Date()
 
     val new
-    get() = id.isEmpty()
+        get() = id.isEmpty()
+
     /**
      * @return id of note it uniquely identifies each Note
      * */
     override fun toString() = this.id
 
     companion object {
-        val TODO = 0
-        val IN_PROGRESS = 1
-        val DONE = 2
+        const val TODO = 0
+        const val IN_PROGRESS = 1
+        const val DONE = 2
     }
 }
 
@@ -68,12 +69,11 @@ data class TextNote(var text: String = "") : NoteModel(), Parcelable {
         }
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    override fun describeContents() = 0
+
 
     companion object {
-        val DATE_FORMAT = "yyyy-MM-dd"
+        const val DATE_FORMAT = "yyyy-MM-dd"
         val CREATOR = object : Parcelable.Creator<TextNote> {
             override fun createFromParcel(parcel: Parcel) = TextNote(parcel)
 
@@ -82,6 +82,30 @@ data class TextNote(var text: String = "") : NoteModel(), Parcelable {
                 return arrayOfNulls(size)
             }
         }
+    }
+
+    constructor(
+            id: CharSequence,
+            ownerId: CharSequence,
+            title: CharSequence,
+            text: CharSequence,
+            type: Int,
+            status: Int,
+            sharedWith: ArrayList<String>,
+            creationDate: Date,
+            doByDate: Date,
+            lastEdited: Date
+    ) : this(text = text.toString()) {
+        this.id = id.toString()
+        this.ownerId = ownerId.toString()
+        this.title = title.toString()
+        this.type = type
+        this.status = status
+        this.sharedWith = sharedWith
+        this.creationDate = creationDate
+        this.doByDate = doByDate
+        this.lastEdited = lastEdited
+        this.sharedWith = sharedWith
     }
 
     //TODO parcelise date

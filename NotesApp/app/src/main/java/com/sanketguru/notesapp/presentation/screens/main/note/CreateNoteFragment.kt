@@ -5,26 +5,30 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioGroup
 import com.sanketguru.notesapp.R
+import com.sanketguru.notesapp.data.repo.NoteRepoImpl
 import com.sanketguru.notesapp.domain.module.NoteModel
 import com.sanketguru.notesapp.domain.module.TextNote
+import com.sanketguru.notesapp.presentation.AccountDetails
+import com.sanketguru.notesapp.presentation.utils.extensions.onClick
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_create.*
 import timber.log.Timber
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by Raju on 03-01-2018.
  */
 
 class CreateFragment : Fragment(), CreateAndEditContract.View {
-    var status = 0
+    private var status = 0
 
-    val presenter = CreateAndEditPresenter()
+    val presenter = CreateAndEditPresenter(this, NoteRepoImpl(), AndroidSchedulers.mainThread())
 
     companion object {
-
-        val ARG_STRING = "arg1"
-        val ARG_NOTE = "argNote"
+        const val ARG_STRING = "arg1"
+        const val ARG_NOTE = "argNote"
         fun newInstance(arg1: String = "", note: TextNote = TextNote("")): Fragment {
             var frag = CreateFragment()
             var args = Bundle()
@@ -50,8 +54,42 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpView()
 
-        radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { radioGroup, id ->
+        /*       button.setOnClickListener({ view ->
+                   var notes = TextNote()
+                   with(notes) {
+                       title = editText.text.toString()
+                       text = editText2.text.toString()
+                       status = statu
+                   }
+                   var createNote = CreateNote()
+                   createNote.note = notes
+                   var retHelper = RetrofitHelper()
+                   var loginData = retHelper.webServiceHeader.createNote(createNote)
+                   loginData.subscribeOn(Schedulers.io())
+                           .observeOn(AndroidSchedulers.mainThread())
+                           .subscribe(Consumer { response ->
+                               Log.v("Say", response.isSuccess.toString())
+                               if (response.isSuccess) {
+                                   val fragmentTransaction = fragmentManager
+                                           .beginTransaction()
+                                   val postLoginFragment = ListFragment()
+                                   fragmentTransaction.replace(R.id.fragment, postLoginFragment)
+                                   fragmentManager.popBackStack()
+                                   fragmentTransaction.commit()
+
+                               }
+                           }, Consumer { err -> err.printStackTrace() })
+
+
+               })*/
+
+
+    }
+
+    private fun setUpView() {
+        radioGroup.setOnCheckedChangeListener({ radioGroup, id ->
             when (id) {
                 rbPending.id -> {
                     status = NoteModel.TODO
@@ -67,39 +105,23 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
                     //   Log.v("Say","2")
                 }
             }
-            /*       button.setOnClickListener({ view ->
-                       var notes = TextNote()
-                       with(notes) {
-                           title = editText.text.toString()
-                           text = editText2.text.toString()
-                           status = statu
-                       }
-                       var createNote = CreateNote()
-                       createNote.note = notes
-                       var retHelper = RetrofitHelper()
-                       var loginData = retHelper.webServiceHeader.createNote(createNote)
-                       loginData.subscribeOn(Schedulers.io())
-                               .observeOn(AndroidSchedulers.mainThread())
-                               .subscribe(Consumer { response ->
-                                   Log.v("Say", response.isSuccess.toString())
-                                   if (response.isSuccess) {
-                                       val fragmentTransaction = fragmentManager
-                                               .beginTransaction()
-                                       val postLoginFragment = ListFragment()
-                                       fragmentTransaction.replace(R.id.fragment, postLoginFragment)
-                                       fragmentManager.popBackStack()
-                                       fragmentTransaction.commit()
-
-                                   }
-                               }, Consumer { err -> err.printStackTrace() })
-
-
-                   })*/
-
-
         })
+        button.onClick { presenter.saveNote(getNote()) }
+
     }
 
+    private fun getNote() = TextNote(
+            presenter.note.id,
+            AccountDetails.id,
+            editTextTitle.text,
+            editTextText.text,
+            0,
+            status,
+            ArrayList<String>(),
+            Date(),
+            Date(),
+            Date()
+    )
 
     override fun setUpNote(note: TextNote) {
         Timber.v("This is %s Note", if (note.new) "new" else "old")
