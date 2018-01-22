@@ -6,9 +6,4 @@ import com.google.gson.annotations.SerializedName
 /**
  * Created by Bhavesh on 03-01-2018.
  */
-class CreateNote {
-    @SerializedName("note")
-    @Expose
-    var note = TextNote("")
-
-}
+data class CreateNote( @SerializedName("note") @Expose var note : TextNote)

@@ -4,7 +4,9 @@ import com.sanketguru.notesapp.domain.module.TextNote
 import com.sanketguru.notesapp.domain.repo.NoteRepository
 import com.sanketguru.notesapp.presentation.screens.BasePresenter
 import io.reactivex.Scheduler
+import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 
 /**
  * Created by Sanket Gurav on 1/18/2018.
@@ -33,14 +35,14 @@ class CreateAndEditPresenter(
 
     override fun saveNote(note: TextNote) {
         callApi(note).subscribeOn(Schedulers.io())
-                .observeOn(sheduler)
+                .observeOn(sheduler).subscribe({ t ->  Timber.v("New id Created %s",t)})
     }
 
     //endregion
     /**
      * Call proper api Accordance with [TextNote.new] flag
      * */
-    private fun callApi(note: TextNote) = if (note.new) noteRepo.putNewNote(note) else noteRepo.patchNote(note)
+    private fun callApi(note: TextNote) = if (note.new) noteRepo.putNewNote(note) else noteRepo.putNewNote(note)
 }
 
 interface CreateAndEditContract {

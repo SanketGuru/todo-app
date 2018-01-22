@@ -8,7 +8,7 @@ import com.sanketguru.notesapp.presentation.screens.BasePresenter
  */
 interface MainContract {
     interface View {
-        infix fun openNote(notesApp: TextNote)
+        infix fun openNote(note: TextNote)
     }
 
     interface Presenter : BasePresenter {

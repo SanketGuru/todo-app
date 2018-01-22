@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sanketguru.notesapp.R
+import com.sanketguru.notesapp.apiservice.RetrofitHelper
+import com.sanketguru.notesapp.data.mapper.NoteMapper
 import com.sanketguru.notesapp.data.repo.NoteRepoImpl
+import com.sanketguru.notesapp.data.store.impl.NoteDataStoreImpl
 import com.sanketguru.notesapp.domain.module.NoteModel
 import com.sanketguru.notesapp.domain.module.TextNote
 import com.sanketguru.notesapp.presentation.AccountDetails
@@ -24,7 +27,7 @@ import kotlin.collections.ArrayList
 class CreateFragment : Fragment(), CreateAndEditContract.View {
     private var status = 0
 
-    val presenter = CreateAndEditPresenter(this, NoteRepoImpl(), AndroidSchedulers.mainThread())
+    val presenter = CreateAndEditPresenter(this, NoteRepoImpl(NoteDataStoreImpl(RetrofitHelper().noteWebService), NoteMapper()), AndroidSchedulers.mainThread())
 
     companion object {
         const val ARG_STRING = "arg1"
@@ -43,17 +46,19 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
 
     //3
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val note = arguments.getParcelable<TextNote>(ARG_NOTE)
-        presenter.note = note
+
+
 
         val view = inflater?.inflate(R.layout.fragment_create, container, false)
+
         return view
     }
 
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val note = arguments.getParcelable<TextNote>(ARG_NOTE)
+        presenter.note = note
         setUpView()
 
         /*       button.setOnClickListener({ view ->

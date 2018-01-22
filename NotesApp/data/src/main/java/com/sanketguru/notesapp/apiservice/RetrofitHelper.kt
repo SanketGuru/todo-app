@@ -26,7 +26,7 @@ class RetrofitHelper {
             val retrofit = createRetrofit()
             return retrofit.create(LoginService::class.java)
         }
-    val webServiceHeader: NoteServices
+    val noteWebService: NoteServices
         get() {
             val retrofit = createRetrofitHeader()
             return retrofit.create(NoteServices::class.java)
