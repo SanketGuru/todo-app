@@ -1,4 +1,3 @@
-
 package com.sanketguru.notesapp.presentation.screens.main.notelist
 
 
@@ -6,32 +5,32 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sanketguru.notesapp.R
 import com.sanketguru.notesapp.apiservice.RetrofitHelper
-import com.sanketguru.notesapp.domain.module.TextNote
+import com.sanketguru.notesapp.data.mapper.NoteMapper
+import com.sanketguru.notesapp.data.repo.NoteRepoImpl
+import com.sanketguru.notesapp.data.store.impl.NoteDataStoreImpl
 import com.sanketguru.notesapp.presentation.adapter.NewNotesAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.list_main.*
-
 
 
 /**
  * A placeholder fragment containing a simple view.
  */
 
-class ListFragment : Fragment() {
-    private var isLoading = false
-    private var isLastPage = false
-    var pageSize = 0
-    var pagenumber = 0
-    var totalcount = 0
-    var notesAdapter = NewNotesAdapter(mutableListOf<TextNote>())
+class ListFragment : Fragment(), ListContract.View {
+
+    val presenter = ListPresenterImpl(this, NoteRepoImpl(NoteDataStoreImpl(RetrofitHelper().noteWebService), NoteMapper()), AndroidSchedulers.mainThread())
+    override var isLoading = false
+    override var isLastPage = false
+    override var pageSize = 0
+    override var pageNumber = 0
+    override var totalCount = 0
+    var notesAdapter = NewNotesAdapter(mutableListOf())
     val mLayoutManager = LinearLayoutManager(activity)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +57,7 @@ class ListFragment : Fragment() {
                     if (response.isSuccess) {
 
                         Log.v("Say", response.payload!!.pageNumber.toString())
-                        pagenumber = response.payload!!.pageNumber
+                        pageNumber = response.payload!!.pageNumber
                         var notesList = mutableListOf<TextNote>()
                         notesList = response.payload!!.listTextNote
                         //isLoading
@@ -91,7 +90,7 @@ class ListFragment : Fragment() {
 
             // later on  something
 
-            if(isLoading) return
+            if (isLoading) return
             val visibleItemCount = mLayoutManager.getChildCount()
             val totalItemCount = mLayoutManager.getItemCount()
             val firstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition()
@@ -104,12 +103,12 @@ class ListFragment : Fragment() {
                         && totalItemCount >= pageSize) {
                     //    loadMoreItems();
 
-                    werService(pagenumber, lastVisibleItemPosition)
+                    werService(pageNumber, lastVisibleItemPosition)
                 }
             }
 
             //endregion
-            //  werService( pagenumber, lastVisibleItemPosition)
+            //  werService( pageNumber, lastVisibleItemPosition)
         }
     }
 }

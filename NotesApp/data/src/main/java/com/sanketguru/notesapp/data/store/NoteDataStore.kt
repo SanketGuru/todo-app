@@ -1,7 +1,9 @@
 package com.sanketguru.notesapp.data.store
 
 import com.sanketguru.notesapp.apiservice.ApiResponse
+import com.sanketguru.notesapp.models.ListNotesResponse
 import com.sanketguru.notesapp.models.TextNote
+import io.reactivex.Flowable
 import io.reactivex.Observable
 
 /**
@@ -9,4 +11,5 @@ import io.reactivex.Observable
  */
 interface NoteDataStore {
     fun putNote(note : TextNote) : Observable<ApiResponse<String>>
+    fun getNotePage(pageNo : Int) : Flowable<ApiResponse<ListNotesResponse>>
 }
