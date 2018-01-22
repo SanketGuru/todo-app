@@ -1,29 +1,29 @@
-/*
-package com.sanketguru.notesapp
+
+package com.sanketguru.notesapp.presentation.screens.main.notelist
 
 
-import android.app.Fragment
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.sanketguru.notesapp.presentation.adapter.NewNotesAdapter
-//import com.sanketguru.notesapp.presentation.adapter.NotesAdapter
+import com.sanketguru.notesapp.R
 import com.sanketguru.notesapp.apiservice.RetrofitHelper
-import com.sanketguru.notesapp.models.TextNote
+import com.sanketguru.notesapp.domain.module.TextNote
+import com.sanketguru.notesapp.presentation.adapter.NewNotesAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.list_main.*
 
 
-*/
+
 /**
  * A placeholder fragment containing a simple view.
- *//*
+ */
 
 class ListFragment : Fragment() {
     private var isLoading = false
@@ -47,10 +47,10 @@ class ListFragment : Fragment() {
 
     }
 
-    fun werService(pageNo: Int, lastPosition: Int) {
+    fun werService(pageNo: Int, lastPosition: Int) {/*
         isLoading=true
         var retHelper = RetrofitHelper()
-        var loginData = retHelper.webServiceHeader.listRepos(pageNo)
+        var loginData = retHelper.noteWebService.listRepos(pageNo)
         loginData.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(Consumer { response ->
@@ -77,7 +77,7 @@ class ListFragment : Fragment() {
 
                     }
                 }, Consumer { err -> {err.printStackTrace()
-                    isLoading=false} })
+                    isLoading=false} })*/
     }
 
     //region Pagenation
@@ -116,4 +116,4 @@ class ListFragment : Fragment() {
 
 
 
-*/
+

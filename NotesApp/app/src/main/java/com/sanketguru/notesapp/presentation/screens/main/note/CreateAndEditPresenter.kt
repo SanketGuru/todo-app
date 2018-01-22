@@ -4,9 +4,8 @@ import com.sanketguru.notesapp.domain.module.TextNote
 import com.sanketguru.notesapp.domain.repo.NoteRepository
 import com.sanketguru.notesapp.presentation.screens.BasePresenter
 import io.reactivex.Scheduler
-import io.reactivex.functions.Consumer
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 
 /**
  * Created by Sanket Gurav on 1/18/2018.
@@ -18,6 +17,7 @@ class CreateAndEditPresenter(
 ) : CreateAndEditContract.Presenter {
     //region eateAndEditContract.Presenter
     private var textNote = TextNote()
+    private val compDisposible = CompositeDisposable()
 
     override var note: TextNote
         get() = textNote
@@ -30,12 +30,13 @@ class CreateAndEditPresenter(
     }
 
     override fun stop() {
+        compDisposible.clear()
     }
 
 
     override fun saveNote(note: TextNote) {
-        callApi(note).subscribeOn(Schedulers.io())
-                .observeOn(sheduler).subscribe({ t ->  Timber.v("New id Created %s",t)})
+        var addNoteDisposable = callApi(note).subscribeOn(Schedulers.io()).observeOn(sheduler).subscribe({ view.goToListPage() }, { throwable -> throwable.printStackTrace() })
+        compDisposible.add(addNoteDisposable)
     }
 
     //endregion
@@ -48,7 +49,8 @@ class CreateAndEditPresenter(
 interface CreateAndEditContract {
     interface View {
         fun setUpNote(note: TextNote)
-
+        //Take User To List Page
+        fun goToListPage()
     }
 
     interface Presenter : BasePresenter {

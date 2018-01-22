@@ -53,14 +53,20 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnFragmentInteracti
         //   TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun addFragmentToMain(fragment: Fragment, addToBackstack: Boolean) {
-        //   TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun addFragmentToMain(fragment: Fragment, addToBackStack: Boolean) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.fragment, fragment)
+        if (addToBackStack) {
+            supportFragmentManager.popBackStack()
+        }
+        fragmentTransaction.commit()  }
 
-    override fun replaceFragmentToMain(fragment: Fragment) {
+    override fun replaceFragmentToMain(fragment: Fragment, popBackStack: Boolean) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment, fragment)
-        supportFragmentManager.popBackStack()
+        if (popBackStack) {
+            supportFragmentManager.popBackStack()
+        }
         fragmentTransaction.commit()
     }
 
