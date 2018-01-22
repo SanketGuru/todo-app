@@ -28,7 +28,6 @@ class ListNotesResponse {
      var totalCount = 0
     @SerializedName("list")
     @Expose
-   //  var listTextNote: List<TextNote> = ArrayList()
      var listTextNote= mutableListOf<TextNote>()
 
 }

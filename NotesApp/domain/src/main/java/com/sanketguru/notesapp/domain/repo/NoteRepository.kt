@@ -1,6 +1,8 @@
 package com.sanketguru.notesapp.domain.repo
 
+import com.sanketguru.notesapp.domain.module.NotePageModel
 import com.sanketguru.notesapp.domain.module.TextNote
+import io.reactivex.Flowable
 import io.reactivex.Observable
 
 /**
@@ -18,4 +20,8 @@ interface NoteRepository {
      * @return [TextNote.id]
      * */
     fun patchNote(note : TextNote) : Observable<String>
+    /**
+     * Get Note page
+     * */
+    fun getNotesPage(pageNo : Int) : Flowable<NotePageModel>
 }

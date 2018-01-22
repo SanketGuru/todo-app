@@ -1,6 +1,5 @@
 package com.sanketguru.notesapp.apiservice
 
-import com.sanketguru.notesapp.apiservice.ApiResponse
 import com.sanketguru.notesapp.models.Register
 import com.sanketguru.notesapp.models.User
 import io.reactivex.Observable
@@ -19,4 +18,4 @@ interface LoginService {
     fun register(@Body register: Register): Observable<ApiResponse<Register>>
 
 
-   }
+}

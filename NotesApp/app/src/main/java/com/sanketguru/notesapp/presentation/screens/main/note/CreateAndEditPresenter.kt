@@ -16,9 +16,9 @@ class CreateAndEditPresenter(
         private val sheduler: Scheduler
 ) : CreateAndEditContract.Presenter {
     //region eateAndEditContract.Presenter
-    private var textNote = TextNote()
-    private val compDisposible = CompositeDisposable()
 
+    private val compDisposable = CompositeDisposable()
+    private var textNote = TextNote()
     override var note: TextNote
         get() = textNote
         set(value) {
@@ -30,13 +30,14 @@ class CreateAndEditPresenter(
     }
 
     override fun stop() {
-        compDisposible.clear()
+        compDisposable.clear()
     }
 
 
     override fun saveNote(note: TextNote) {
         var addNoteDisposable = callApi(note).subscribeOn(Schedulers.io()).observeOn(sheduler).subscribe({ view.goToListPage() }, { throwable -> throwable.printStackTrace() })
-        compDisposible.add(addNoteDisposable)
+        compDisposable.add(addNoteDisposable)
+
     }
 
     //endregion
