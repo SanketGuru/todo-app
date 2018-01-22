@@ -9,6 +9,8 @@ import com.sanketguru.notesapp.presentation.screens.BasePresenter
 class MainPresenter(val view: MainContract.View) : MainContract.Presenter {
     override fun createNote() {
         view openNote TextNote()
+        // same as below
+      //  view.openNote(TextNote())
 
     }
 
