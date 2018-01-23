@@ -7,8 +7,14 @@ import android.view.Menu
 import android.view.MenuItem
 import com.sanketguru.notesapp.OnFragmentInteractionListener
 import com.sanketguru.notesapp.R
+import com.sanketguru.notesapp.domain.module.AccountDetails
 import com.sanketguru.notesapp.domain.module.TextNote
+import com.sanketguru.notesapp.presentation.common.Constants
+import com.sanketguru.notesapp.presentation.screens.login.LoginActivity
 import com.sanketguru.notesapp.presentation.screens.main.note.CreateFragment
+import com.sanketguru.notesapp.presentation.utils.extensions.PreferenceHelper
+import com.sanketguru.notesapp.presentation.utils.extensions.PreferenceHelper.set
+import com.sanketguru.notesapp.presentation.utils.extensions.start
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainContract.View, OnFragmentInteractionListener {
@@ -36,11 +42,20 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnFragmentInteracti
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> logout()
             else -> super.onOptionsItemSelected(item)
         }
     }
+    fun logout():Boolean{
+        val prefs = PreferenceHelper.defaultPrefs(this)
 
+        prefs[Constants.USER_NAME] = ""
+        prefs[Constants.PASSWORD] = ""
+
+        this.start<LoginActivity>()
+        this.finish()
+        return true
+    }
     //region View contract impl
     override fun openNote(note: TextNote) {
         replaceFragmentToMain(CreateFragment.newInstance(note = note))
