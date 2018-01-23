@@ -143,11 +143,6 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
         }
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        // interacter //Here we vcan un bind it
-    }
-
     override fun goToListPage() {
         if (interacter != null) {
             val listFragment = ListFragment()

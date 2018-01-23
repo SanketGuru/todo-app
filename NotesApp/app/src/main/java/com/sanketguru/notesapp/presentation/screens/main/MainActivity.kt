@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnFragmentInteracti
         setSupportActionBar(toolbar)
 //region setup
         fab.setOnClickListener { presenter.createNote() }
+        addFragmentToMain(ListFragment())
         //endregion
     }
 

@@ -14,7 +14,7 @@ import java.util.*
 class CreateAndEditPresenter(
         private val view: CreateAndEditContract.View,
         val noteRepo: NoteRepository,
-        private val sheduler: Scheduler
+        private val scheduler: Scheduler
 ) : CreateAndEditContract.Presenter {
     //region eateAndEditContract.Presenter
 
@@ -36,7 +36,7 @@ class CreateAndEditPresenter(
 
 
     override fun saveNote(note: TextNote) {
-        var addNoteDisposable = callApi(note).subscribeOn(Schedulers.io()).observeOn(sheduler).subscribe({ view.goToListPage() }, { throwable -> throwable.printStackTrace() })
+        var addNoteDisposable = callApi(note).subscribeOn(Schedulers.io()).observeOn(scheduler).subscribe({ view.goToListPage() }, { throwable -> throwable.printStackTrace() })
         compDisposable.add(addNoteDisposable)
 
     }
