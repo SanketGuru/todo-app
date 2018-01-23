@@ -16,7 +16,7 @@ import android.widget.Toast
  * Created by sanket on 01.08.2017.
  */
 
-infix fun Context.takeColor(colorId: Int) = ContextCompat.getColor(this, colorId)
+infix  fun Context.takeColor(colorId: Int) = ContextCompat.getColor(this, colorId)
 
 operator fun Context.get(resId: Int): String = getString(resId)
 

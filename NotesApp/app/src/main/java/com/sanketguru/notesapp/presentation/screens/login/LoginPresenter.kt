@@ -1,5 +1,6 @@
 package com.sanketguru.notesapp.presentation.screens.login
 
+import com.sanketguru.notesapp.domain.module.AccountDetails
 import com.sanketguru.notesapp.domain.module.Error
 import com.sanketguru.notesapp.domain.module.UserUIModel
 import com.sanketguru.notesapp.domain.repo.UserRepository
@@ -34,18 +35,23 @@ class LoginPresenter(
     override fun doLogin(user: UserUIModel) {
         val loginDisposible =
                 userRepo.login(user)
-                        .filter { user->user.userName!=null && user.userName!=""}
+                        .filter { user -> user.userName != null && user.userName != "" }
                         .subscribeOn(Schedulers.io())
-                .observeOn(sheduler)
+                        .observeOn(sheduler)
                         .subscribe(
-                { userData ->
-                    view goToMainPage user
-                },
-                { err ->
-                    err.printStackTrace()
-                    view showError Error(0, "Something went wrong")
+                                { userData ->
 
-                })
+                                    AccountDetails.id = userData.id
+                                    AccountDetails.userName = userData.userName
+                                    AccountDetails.password = userData.password
+                                    AccountDetails.accesstoken = userData.accesstoken
+                                    view goToMainPage user
+                                },
+                                { err ->
+                                    err.printStackTrace()
+                                    view showError Error(0, "Something went wrong")
+
+                                })
         disposible.add(loginDisposible)
     }
     //endregion
@@ -71,4 +77,5 @@ interface LoginContract {
 
     }
 }
-data  class LoginError(val unameError: String)
+
+data class LoginError(val unameError: String)

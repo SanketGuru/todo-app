@@ -1,47 +1,49 @@
-package com.sanketguru.notesapp.presentation.screens.login
+package com.sanketguru.notesapp.presentation.screens
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.widget.Toast
 import com.sanketguru.notesapp.R
 import com.sanketguru.notesapp.data.repo.UserRepositoryImpl
 import com.sanketguru.notesapp.domain.module.AccountDetails
 import com.sanketguru.notesapp.domain.module.Error
 import com.sanketguru.notesapp.domain.module.UserUIModel
-import com.sanketguru.notesapp.presentation.common.Constants.Companion.PASSWORD
-import com.sanketguru.notesapp.presentation.common.Constants.Companion.USER_NAME
+import com.sanketguru.notesapp.presentation.common.Constants
+import com.sanketguru.notesapp.presentation.screens.login.LoginActivity
+import com.sanketguru.notesapp.presentation.screens.login.LoginContract
+import com.sanketguru.notesapp.presentation.screens.login.LoginPresenter
 import com.sanketguru.notesapp.presentation.screens.main.MainActivity
 import com.sanketguru.notesapp.presentation.screens.register.RegisterActivity
 import com.sanketguru.notesapp.presentation.utils.extensions.PreferenceHelper
 import com.sanketguru.notesapp.presentation.utils.extensions.PreferenceHelper.get
 import com.sanketguru.notesapp.presentation.utils.extensions.PreferenceHelper.set
-import com.sanketguru.notesapp.presentation.utils.extensions.onClick
 import com.sanketguru.notesapp.presentation.utils.extensions.start
 import io.reactivex.android.schedulers.AndroidSchedulers
-import kotlinx.android.synthetic.main.login.*
 import timber.log.Timber
 
-
 /**
- * Created by Bhavesh on 02-01-2018.
+ * Created by Bhavesh on 23-01-2018.
  */
-class LoginActivity : AppCompatActivity(), LoginContract.View {
-
-
+class SplashActivity : AppCompatActivity(), LoginContract.View {
     val presenter = LoginPresenter(this, UserRepositoryImpl(), AndroidSchedulers.mainThread())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login)
+        setContentView(R.layout.splash)
+        //get any value from prefs
+        val prefs = PreferenceHelper.defaultPrefs(this)
 
-        buttonLogin.onClick {
-            buttonLogin.isEnabled = false
-            presenter.doLogin(UserUIModel(userName = etUserName.text.toString(), password = etPassword.text.toString()))
+        val userName: String? = prefs[Constants.USER_NAME]
+
+        //get value from prefs (with default value)
+        val password: String? = prefs[Constants.PASSWORD, "12345"]
+        if ((userName != null && userName != "") && (password != null && password != "")) {
+            presenter.doLogin(UserUIModel(userName = userName, password = password))
+        } else {
+            this.start<LoginActivity>()
+            this.finish()
         }
-        buttonRegister.onClick {
-            goToRegistration()
-        }
+
 
     }
 
@@ -55,29 +57,16 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
 
     override fun goToMainPage(user: UserUIModel) {
-        //get default prefs
         val prefs = PreferenceHelper.defaultPrefs(this)
 
         //set any type of value in prefs
-        prefs[USER_NAME] = AccountDetails.userName
-        prefs[PASSWORD] = AccountDetails.password
-
-        //get any value from prefs
-        val userName: String? = prefs[USER_NAME]
-
-        //get value from prefs (with default value)
-        val password: String? = prefs[PASSWORD, "12345"]
-
-        Log.d("UserNme", "name : $userName")
-        Log.d("Password", " $password")
-        Timber.v("we got data : %s", user.userName)
-        Toast.makeText(this, "Hi ${user.userName}", Toast.LENGTH_LONG).show()
+        prefs[Constants.USER_NAME] = AccountDetails.userName
+        prefs[Constants.PASSWORD] = AccountDetails.password
         this.start<MainActivity>()
         this.finish()
     }
 
     override fun showError(error: Error) {
-        buttonLogin.isEnabled = true
         Timber.e("We have errror %s", error.message)
         when (error.type) {
             Error.TOAST -> Toast.makeText(this, error.message, Toast.LENGTH_LONG).show()
@@ -92,9 +81,4 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     //endregion
 
 }
-
-
-
-
-
 

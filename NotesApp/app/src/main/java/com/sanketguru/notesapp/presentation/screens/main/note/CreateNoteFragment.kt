@@ -12,9 +12,9 @@ import com.sanketguru.notesapp.apiservice.RetrofitHelper
 import com.sanketguru.notesapp.data.mapper.NoteMapper
 import com.sanketguru.notesapp.data.repo.NoteRepoImpl
 import com.sanketguru.notesapp.data.store.impl.NoteDataStoreImpl
+import com.sanketguru.notesapp.domain.module.AccountDetails
 import com.sanketguru.notesapp.domain.module.NoteModel
 import com.sanketguru.notesapp.domain.module.TextNote
-import com.sanketguru.notesapp.presentation.AccountDetails
 import com.sanketguru.notesapp.presentation.screens.main.notelist.ListFragment
 import com.sanketguru.notesapp.presentation.utils.extensions.onClick
 import io.reactivex.android.schedulers.AndroidSchedulers
