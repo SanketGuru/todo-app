@@ -51,21 +51,21 @@
         android:layout_marginTop="24dp"
         android:orientation="horizontal">
 
-        <RadioButton
+        <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/rbPending"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/to_do" />
 
-        <RadioButton
+        <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/rbInProgress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/in_progress" />
 
-        <RadioButton
+         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/rbDone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
