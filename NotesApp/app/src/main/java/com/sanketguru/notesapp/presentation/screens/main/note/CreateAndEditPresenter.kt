@@ -6,6 +6,7 @@ import com.sanketguru.notesapp.presentation.screens.BasePresenter
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 /**
  * Created by Sanket Gurav on 1/18/2018.
@@ -52,6 +53,14 @@ interface CreateAndEditContract {
         fun setUpNote(note: TextNote)
         //Take User To List Page
         fun goToListPage()
+
+        //region UI fields
+        var title: String
+        var text: String
+        var status: Int
+        var doByDate: Date
+
+        //endregion
     }
 
     interface Presenter : BasePresenter {

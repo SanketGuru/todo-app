@@ -28,7 +28,22 @@ import kotlin.collections.ArrayList
  */
 
 class CreateFragment : Fragment(), CreateAndEditContract.View {
-    private var status = 0
+    //region Ui getter setter
+    override var title: String
+        get() = editTextTitle.text.toString().trim()
+        set(value) {
+            editTextTitle.setText(value)
+        }
+    override var text: String
+        get() = editTextText.text.toString().trim()
+        set(value) {
+            editTextText.setText(value)
+        }
+    override var doByDate = Date()
+    override var status = 0
+        set(value) = setNoteStatus(value)
+    //endregion
+
     private lateinit var interacter: OnFragmentInteractionListener
 
     val presenter = CreateAndEditPresenter(this, NoteRepoImpl(NoteDataStoreImpl(RetrofitHelper().noteWebService), NoteMapper()), AndroidSchedulers.mainThread())
