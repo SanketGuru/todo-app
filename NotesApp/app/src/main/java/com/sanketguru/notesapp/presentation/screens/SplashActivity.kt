@@ -25,6 +25,14 @@ import timber.log.Timber
  * Created by Bhavesh on 23-01-2018.
  */
 class SplashActivity : AppCompatActivity(), LoginContract.View {
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun hideLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     val presenter = LoginPresenter(this, UserRepositoryImpl(), AndroidSchedulers.mainThread())
 
     override fun onCreate(savedInstanceState: Bundle?) {

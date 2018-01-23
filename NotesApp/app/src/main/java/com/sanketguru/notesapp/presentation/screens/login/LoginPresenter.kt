@@ -33,6 +33,7 @@ class LoginPresenter(
 
 
     override fun doLogin(user: UserUIModel) {
+        view.showLoading()
         val loginDisposible =
                 userRepo.login(user)
                         .filter { user -> user.userName != null && user.userName != "" }
@@ -46,10 +47,13 @@ class LoginPresenter(
                                     AccountDetails.password = userData.password
                                     AccountDetails.accesstoken = userData.accesstoken
                                     view goToMainPage user
+                                    view.hideLoading()
                                 },
                                 { err ->
                                     err.printStackTrace()
                                     view showError Error(0, "Something went wrong")
+                                    view.hideLoading()
+
 
                                 })
         disposible.add(loginDisposible)
@@ -65,6 +69,10 @@ interface LoginContract {
         infix fun goToMainPage(user: UserUIModel)
 
         infix fun showError(error: Error)
+
+        fun showLoading()
+
+        fun hideLoading()
 
     }
 

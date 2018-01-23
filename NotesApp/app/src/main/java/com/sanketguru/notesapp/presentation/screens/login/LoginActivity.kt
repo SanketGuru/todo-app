@@ -1,5 +1,6 @@
 package com.sanketguru.notesapp.presentation.screens.login
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -9,6 +10,7 @@ import com.sanketguru.notesapp.data.repo.UserRepositoryImpl
 import com.sanketguru.notesapp.domain.module.AccountDetails
 import com.sanketguru.notesapp.domain.module.Error
 import com.sanketguru.notesapp.domain.module.UserUIModel
+import com.sanketguru.notesapp.presentation.common.CommonUtils
 import com.sanketguru.notesapp.presentation.common.Constants.Companion.PASSWORD
 import com.sanketguru.notesapp.presentation.common.Constants.Companion.USER_NAME
 import com.sanketguru.notesapp.presentation.screens.main.MainActivity
@@ -27,6 +29,18 @@ import timber.log.Timber
  * Created by Bhavesh on 02-01-2018.
  */
 class LoginActivity : AppCompatActivity(), LoginContract.View {
+    var mProgressDialog: ProgressDialog? = null
+    override fun showLoading() {
+        hideLoading()
+        mProgressDialog = CommonUtils.showLoadingDialog(this)
+
+    }
+
+    override fun hideLoading() {
+        if (mProgressDialog != null && mProgressDialog!!.isShowing()) {
+            mProgressDialog!!.cancel()
+        }
+    }
 
 
     val presenter = LoginPresenter(this, UserRepositoryImpl(), AndroidSchedulers.mainThread())
