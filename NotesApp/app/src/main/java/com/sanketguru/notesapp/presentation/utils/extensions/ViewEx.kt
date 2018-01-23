@@ -63,7 +63,7 @@ infix fun ViewGroup.inflate(layoutResId: Int): View =
         LayoutInflater.from(context).inflate(layoutResId, this, false)
 
 fun ImageView.tint(colorId: Int) {
-    setColorFilter(context .takeColor( colorId), PorterDuff.Mode.SRC_IN)
+    setColorFilter(context.takeColor(colorId), PorterDuff.Mode.SRC_IN)
 }
 
 operator fun ViewGroup.get(index: Int): View = getChildAt(index)
