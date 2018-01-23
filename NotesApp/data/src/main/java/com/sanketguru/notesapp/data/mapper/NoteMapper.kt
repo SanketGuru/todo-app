@@ -3,6 +3,8 @@ package com.sanketguru.notesapp.data.mapper
 /**
  * Created by Sanket Gurav on 1/8/2018.
  */
+import com.sanketguru.notesapp.domain.module.NotePageModel
+import com.sanketguru.notesapp.models.ListNotesResponse
 import com.sanketguru.notesapp.models.TextNote
 import com.sanketguru.notesapp.domain.module.TextNote as TextNoteModel
 
@@ -23,7 +25,7 @@ class NoteMapper {
     /**
      * Converts TextNote module to  Text note
      * */
-    fun transform(textNoteModel: com.sanketguru.notesapp.domain.module.TextNote): TextNote {
+    fun transform(textNoteModel: TextNoteModel): TextNote {
         var textNote = TextNote(textNoteModel.text)
         with(textNote) {
             id = textNoteModel.id
@@ -34,10 +36,17 @@ class NoteMapper {
     }
 
     /**
+     * Converts ListNotesResponse module to  NotePageModel
+     * */
+    fun transform(pageResponse: ListNotesResponse): NotePageModel {
+        return NotePageModel(pageResponse.pageSize, pageResponse.pageNumber, pageResponse.totalCount, transformTextNote(pageResponse.listTextNote).toMutableList())
+    }
+
+    /**
      * Converts  list of TextNote module to  list of  Text note
      * */
 
-    fun transformTextNote(todos: List<TextNote>): List<com.sanketguru.notesapp.domain.module.TextNote> {
+    fun transformTextNote(todos: List<TextNote>): List<TextNoteModel> {
         return todos.map { transform(it) }
     }
 
@@ -45,7 +54,7 @@ class NoteMapper {
      * Converts  list of TextNote module to  list of  Text note
      * */
 
-    fun transformTextNoteModle(todos: List<com.sanketguru.notesapp.domain.module.TextNote>): List<TextNote> {
+    fun transformTextNoteModle(todos: List<TextNoteModel>): List<TextNote> {
         return todos.map { transform(it) }
     }
 }

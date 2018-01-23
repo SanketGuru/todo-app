@@ -13,6 +13,7 @@ import com.sanketguru.notesapp.apiservice.RetrofitHelper
 import com.sanketguru.notesapp.data.mapper.NoteMapper
 import com.sanketguru.notesapp.data.repo.NoteRepoImpl
 import com.sanketguru.notesapp.data.store.impl.NoteDataStoreImpl
+import com.sanketguru.notesapp.domain.module.NotePageModel
 import com.sanketguru.notesapp.presentation.adapter.NewNotesAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.list_main.*
@@ -24,12 +25,14 @@ import kotlinx.android.synthetic.main.list_main.*
 
 class ListFragment : Fragment(), ListContract.View {
 
-    val presenter = ListPresenterImpl(this, NoteRepoImpl(NoteDataStoreImpl(RetrofitHelper().noteWebService), NoteMapper()), AndroidSchedulers.mainThread())
+
+    val presenter = ListPresenterImpl(view = this, noteRepo = NoteRepoImpl(NoteDataStoreImpl(RetrofitHelper().noteWebService), NoteMapper()), scheduler = AndroidSchedulers.mainThread())
     override var isLoading = false
     override var isLastPage = false
     override var pageSize = 0
     override var pageNumber = 0
     override var totalCount = 0
+    var lastPosition = 0
     var notesAdapter = NewNotesAdapter(mutableListOf())
     val mLayoutManager = LinearLayoutManager(activity)
 
@@ -40,13 +43,15 @@ class ListFragment : Fragment(), ListContract.View {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView.setLayoutManager(mLayoutManager)
-        werService(1, 1)
+        recyclerView.layoutManager = mLayoutManager
+        werService(1)
         recyclerView.addOnScrollListener(recyclerViewOnScrollListener)
 
     }
 
-    fun werService(pageNo: Int, lastPosition: Int) {/*
+    fun werService(pageNo: Int) {
+        presenter.getPage(pageNo)
+        /*
         isLoading=true
         var retHelper = RetrofitHelper()
         var loginData = retHelper.noteWebService.listRepos(pageNo)
@@ -79,11 +84,26 @@ class ListFragment : Fragment(), ListContract.View {
                     isLoading=false} })*/
     }
 
+    override fun addNewPage(notePageModel: NotePageModel) {
+        pageNumber = notePageModel.pageNumber
+        //  var notesList= MutableList<TextNote>()
+
+        //isLoading
+        isLoading = false
+        if (pageNumber == 1) {
+            notesAdapter = NewNotesAdapter(notePageModel.listTextNote.toMutableList())
+            recyclerView.adapter = notesAdapter
+        } else {
+            isLastPage = notePageModel.totalCount == notesAdapter.itemCount//isLastPage
+            //add
+            // notesAdapter.updateScrollList(notesList, if (pageNo === 0) false else true)
+            notesAdapter.update(notePageModel.listTextNote, notePageModel.pageNumber === 0)
+            mLayoutManager.scrollToPosition(lastPosition)
+        }
+    }
+
     //region Pagenation
     private val recyclerViewOnScrollListener = object : RecyclerView.OnScrollListener() {
-        override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
-            super.onScrollStateChanged(recyclerView, newState)
-        }
 
         override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
@@ -91,10 +111,10 @@ class ListFragment : Fragment(), ListContract.View {
             // later on  something
 
             if (isLoading) return
-            val visibleItemCount = mLayoutManager.getChildCount()
-            val totalItemCount = mLayoutManager.getItemCount()
+            val visibleItemCount = mLayoutManager.childCount
+            val totalItemCount = mLayoutManager.itemCount
             val firstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition()
-            val lastVisibleItemPosition = mLayoutManager.findLastVisibleItemPosition()
+          //  val lastVisibleItemPosition = mLayoutManager.findLastVisibleItemPosition()
 
 //region condition
             if (!isLastPage) {
@@ -103,7 +123,7 @@ class ListFragment : Fragment(), ListContract.View {
                         && totalItemCount >= pageSize) {
                     //    loadMoreItems();
 
-                    werService(pageNumber, lastVisibleItemPosition)
+                    werService(pageNumber)
                 }
             }
 
