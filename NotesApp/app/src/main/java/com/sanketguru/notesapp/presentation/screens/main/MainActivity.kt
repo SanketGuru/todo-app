@@ -9,6 +9,7 @@ import com.sanketguru.notesapp.OnFragmentInteractionListener
 import com.sanketguru.notesapp.R
 import com.sanketguru.notesapp.domain.module.TextNote
 import com.sanketguru.notesapp.presentation.screens.main.note.CreateFragment
+import com.sanketguru.notesapp.presentation.screens.main.notelist.ListFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainContract.View, OnFragmentInteractionListener {
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, OnFragmentInteracti
         setSupportActionBar(toolbar)
 //region setup
         fab.setOnClickListener { presenter.createNote() }
+        addFragmentToMain(ListFragment())
         //endregion
     }
 
