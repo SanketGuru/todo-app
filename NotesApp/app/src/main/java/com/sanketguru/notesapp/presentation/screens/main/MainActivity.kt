@@ -7,11 +7,11 @@ import android.view.Menu
 import android.view.MenuItem
 import com.sanketguru.notesapp.OnFragmentInteractionListener
 import com.sanketguru.notesapp.R
-import com.sanketguru.notesapp.domain.module.AccountDetails
 import com.sanketguru.notesapp.domain.module.TextNote
 import com.sanketguru.notesapp.presentation.common.Constants
 import com.sanketguru.notesapp.presentation.screens.login.LoginActivity
 import com.sanketguru.notesapp.presentation.screens.main.note.CreateFragment
+import com.sanketguru.notesapp.presentation.screens.main.notelist.ListFragment
 import com.sanketguru.notesapp.presentation.utils.extensions.PreferenceHelper
 import com.sanketguru.notesapp.presentation.utils.extensions.PreferenceHelper.set
 import com.sanketguru.notesapp.presentation.utils.extensions.start

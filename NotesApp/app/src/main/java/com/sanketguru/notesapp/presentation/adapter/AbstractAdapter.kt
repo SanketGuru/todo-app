@@ -32,7 +32,7 @@ abstract class AbstractAdapter<ITEM> constructor(protected var itemList: Mutable
 
     override fun onBindViewHolder(holder: AbstractAdapter.Holder, position: Int) {
         val item = itemList[position]
-        holder.itemView.bind(item)
+        holder.itemView.bind(position,item)
     }
 
     fun update(items: List<ITEM> , isUpdate : Boolean) {
@@ -72,7 +72,7 @@ abstract class AbstractAdapter<ITEM> constructor(protected var itemList: Mutable
     protected open fun onItemClick(itemView: View, position: Int) {
     }
 
-    protected open fun View.bind(item: ITEM) {
+    protected open fun View.bind(position : Int,item: ITEM) {
     }
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView)

@@ -15,8 +15,8 @@ project.ext {
 }
 
 buildscript {
-    ext.kotlin_version = '1.2.+'
-    ext.kotlin_version = '1.2.+'
+//    ext.kotlin_version = '1.2.21'
+    ext.kotlin_version = '1.2.21'
     repositories {
         google()
         jcenter()

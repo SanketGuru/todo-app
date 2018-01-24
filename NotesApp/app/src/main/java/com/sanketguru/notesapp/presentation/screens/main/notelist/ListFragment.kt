@@ -29,7 +29,7 @@ class ListFragment : Fragment(), ListContract.View {
     val presenter = ListPresenterImpl(view = this, noteRepo = NoteRepoImpl(NoteDataStoreImpl(RetrofitHelper().noteWebService), NoteMapper()), scheduler = AndroidSchedulers.mainThread())
     override var isLoading = false
     override var isLastPage = false
-    override var pageSize = 0
+    override var pageSize = 15
     override var pageNumber = 0
     override var totalCount = 0
     var lastPosition = 0
@@ -50,6 +50,7 @@ class ListFragment : Fragment(), ListContract.View {
     }
 
     fun werService(pageNo: Int) {
+        isLoading=true
         presenter.getPage(pageNo)
         /*
         isLoading=true
@@ -90,14 +91,14 @@ class ListFragment : Fragment(), ListContract.View {
 
         //isLoading
         isLoading = false
-        if (pageNumber == 1) {
+        if (pageNumber == 2) {
             notesAdapter = NewNotesAdapter(notePageModel.listTextNote.toMutableList())
             recyclerView.adapter = notesAdapter
         } else {
             isLastPage = notePageModel.totalCount == notesAdapter.itemCount//isLastPage
             //add
             // notesAdapter.updateScrollList(notesList, if (pageNo === 0) false else true)
-            notesAdapter.update(notePageModel.listTextNote, notePageModel.pageNumber === 0)
+            notesAdapter.update(notePageModel.listTextNote, notePageModel.pageNumber === 1)
             mLayoutManager.scrollToPosition(lastPosition)
         }
     }
