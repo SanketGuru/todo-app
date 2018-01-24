@@ -8,9 +8,12 @@ var response = {
 var notesController = {//start notesController
   getNotesByPagieng: function (req, res, next) {
     var userId = req.headers.id;
-    console.log(req.params.pageNumber);
+    console.log('Page No :'+req.params.pageNumber);
     var pagenumber = parseInt(req.params.pageNumber);
-    var pagesize = 15;
+    console.log('Page size :'+req.params.pageSize);
+    var pagesize = parseInt(req.params.pageSize);
+    //pageSize
+   // var pagesize = 15;
     //TODO : handel error
     //  var pagenumber = req.body.pagenumber;
     // console.log("Hijsnslnasnk");
@@ -27,6 +30,7 @@ var notesController = {//start notesController
         response.status = true;
         response.payload = data;
         response.message = " Got page";
+        console.log(JSON.stringify(response));
         res.json(response)
       })
 
