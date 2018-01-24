@@ -19,5 +19,5 @@ interface NoteServices {
     fun createNote(@Body createNote: CreateNote): Observable<ApiResponse<String>>
 
     @GET("users/notes/page/{pageNumber}/{pageSize}")
-    fun listRepos(@Path("pageNumber") pageNumber: Int, @Path("pageSize") pageSize: Int = 5): Flowable<ApiResponse<ListNotesResponse>>
+    fun listRepos(@Path("pageNumber") pageNumber: Int, @Path("pageSize") pageSize: Int = 15): Flowable<ApiResponse<ListNotesResponse>>
 }
