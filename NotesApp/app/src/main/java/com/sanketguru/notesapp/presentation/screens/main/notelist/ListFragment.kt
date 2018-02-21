@@ -41,7 +41,7 @@ class ListFragment : Fragment(), ListContract.View {
         return inflater.inflate(R.layout.list_main, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.layoutManager = mLayoutManager
         werService(1)
@@ -99,7 +99,7 @@ class ListFragment : Fragment(), ListContract.View {
             //add
             // notesAdapter.updateScrollList(notesList, if (pageNo === 0) false else true)
             notesAdapter.update(notePageModel.listTextNote,
-                    if (notePageModel.pageNumber == 0) false else true)
+                    notePageModel.pageNumber != 0)
             mLayoutManager.scrollToPosition(lastPosition)
         }
     }
