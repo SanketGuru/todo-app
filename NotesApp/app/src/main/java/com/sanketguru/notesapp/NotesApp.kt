@@ -4,7 +4,6 @@ import android.app.Application
 import com.sanketguru.notesapp.di.component.AppComponent
 import com.sanketguru.notesapp.di.component.DaggerAppComponent
 import com.sanketguru.notesapp.di.module.AppModule
-
 import timber.log.Timber
 
 /**
@@ -19,7 +18,6 @@ class NotesApp : Application() {
             Timber.plant(Timber.DebugTree())
         }
         component.inject(this)
-
     }
 
     val component: AppComponent by lazy {

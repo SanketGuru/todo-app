@@ -19,6 +19,7 @@ object Versions {
     val lifecycleVersion = "1.0.0-alpha3"
     val retrofitVersion = "2.3.0"
     val gsonVersion = "2.8.1"
+    val koin = "0.8.2"
 }
 
 object Dependencie {
@@ -42,4 +43,7 @@ object Dependencie {
 
     val timber = "com.jakewharton.timber:timber:${Versions.timberVersion}"
     val fresco = "com.facebook.fresco:fresco:${Versions.frescoVersion}"
+
+    val koin = "org.koin:koin-android:${Versions.koin}"
+    val koin_android_architecture = "org.koin:koin-android-architecture:${Versions.koin}"
 }
