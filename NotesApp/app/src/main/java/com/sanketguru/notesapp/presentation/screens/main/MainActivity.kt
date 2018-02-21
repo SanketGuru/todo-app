@@ -2,11 +2,11 @@ package com.sanketguru.notesapp.presentation.screens.main
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.sanketguru.notesapp.OnFragmentInteractionListener
 import com.sanketguru.notesapp.R
+import com.sanketguru.notesapp.core.CommonActivity
 import com.sanketguru.notesapp.domain.module.TextNote
 import com.sanketguru.notesapp.presentation.common.Constants
 import com.sanketguru.notesapp.presentation.screens.login.LoginActivity
@@ -17,7 +17,7 @@ import com.sanketguru.notesapp.presentation.utils.extensions.PreferenceHelper.se
 import com.sanketguru.notesapp.presentation.utils.extensions.start
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), MainContract.View, OnFragmentInteractionListener {
+class MainActivity : CommonActivity(), MainContract.View, OnFragmentInteractionListener {
 
 
     val presenter: MainContract.Presenter = MainPresenter(this)

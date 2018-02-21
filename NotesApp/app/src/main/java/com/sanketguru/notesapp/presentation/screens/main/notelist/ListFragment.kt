@@ -2,14 +2,12 @@ package com.sanketguru.notesapp.presentation.screens.main.notelist
 
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.sanketguru.notesapp.R
 import com.sanketguru.notesapp.apiservice.RetrofitHelper
+import com.sanketguru.notesapp.core.CommonFragment
 import com.sanketguru.notesapp.data.mapper.NoteMapper
 import com.sanketguru.notesapp.data.repo.NoteRepoImpl
 import com.sanketguru.notesapp.data.store.impl.NoteDataStoreImpl
@@ -23,8 +21,9 @@ import kotlinx.android.synthetic.main.list_main.*
  * A placeholder fragment containing a simple view.
  */
 
-class ListFragment : Fragment(), ListContract.View {
+class ListFragment : CommonFragment(), ListContract.View {
 
+    override val layout: Int = R.layout.list_main
 
     val presenter = ListPresenterImpl(view = this, noteRepo = NoteRepoImpl(NoteDataStoreImpl(RetrofitHelper().noteWebService), NoteMapper()), scheduler = AndroidSchedulers.mainThread())
     override var isLoading = false
@@ -36,10 +35,6 @@ class ListFragment : Fragment(), ListContract.View {
     var notesAdapter = NewNotesAdapter(mutableListOf())
     val mLayoutManager = LinearLayoutManager(activity)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.list_main, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
