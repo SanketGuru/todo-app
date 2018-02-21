@@ -50,7 +50,7 @@ class ListFragment : Fragment(), ListContract.View {
     }
 
     fun werService(pageNo: Int) {
-        isLoading=true
+        isLoading = true
         presenter.getPage(pageNo)
         /*
         isLoading=true
@@ -98,7 +98,8 @@ class ListFragment : Fragment(), ListContract.View {
             isLastPage = notePageModel.totalCount == notesAdapter.itemCount//isLastPage
             //add
             // notesAdapter.updateScrollList(notesList, if (pageNo === 0) false else true)
-            notesAdapter.update(notePageModel.listTextNote, notePageModel.pageNumber === 1)
+            notesAdapter.update(notePageModel.listTextNote,
+                    if (notePageModel.pageNumber == 0) false else true)
             mLayoutManager.scrollToPosition(lastPosition)
         }
     }
@@ -115,7 +116,7 @@ class ListFragment : Fragment(), ListContract.View {
             val visibleItemCount = mLayoutManager.childCount
             val totalItemCount = mLayoutManager.itemCount
             val firstVisibleItemPosition = mLayoutManager.findFirstVisibleItemPosition()
-          //  val lastVisibleItemPosition = mLayoutManager.findLastVisibleItemPosition()
+            val lastVisibleItemPosition = mLayoutManager.findLastVisibleItemPosition()
 
 //region condition
             if (!isLastPage) {
@@ -123,7 +124,7 @@ class ListFragment : Fragment(), ListContract.View {
                         && firstVisibleItemPosition >= 0
                         && totalItemCount >= pageSize) {
                     //    loadMoreItems();
-
+                    lastPosition = lastVisibleItemPosition
                     werService(pageNumber)
                 }
             }
