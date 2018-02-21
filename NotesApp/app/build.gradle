@@ -10,8 +10,8 @@ android {
         applicationId "com.sanketguru.notesapp"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode Versions.appVersionCode
+        versionName Versions.appVersion
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -29,36 +29,27 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     //region Suppotr Lib
-   // implementation "com.android.support:support-v4:$project.supportLibVersion"
-    implementation "com.android.support:appcompat-v7:$project.supportLibVersion"
-    implementation "com.android.support:design:$project.supportLibVersion"
-    implementation "com.android.support:support-vector-drawable:$project.supportLibVersion"
-    implementation "com.android.support:support-v4:$project.supportLibVersion"
-    implementation "com.android.support:palette-v7:$project.supportLibVersion"
-    implementation "com.android.support:cardview-v7:$project.supportLibVersion"
-    implementation "com.android.support:gridlayout-v7:$project.supportLibVersion"
-    implementation "com.android.support:support-vector-drawable:$project.supportLibVersion"
-
+    implementation Dependencie.support_appcompat_v7
+    implementation Dependencie.support_design
+    implementation Dependencie.support_vector_drawable
+    implementation Dependencie.support_v4
+    implementation Dependencie.support_palette_v7
+    implementation Dependencie.support_cardview_v7
+    implementation Dependencie.support_gridlayout_v7
     //endregion
 
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation Dependencie.constraint_layout
 
-    //region ButterKnife
-    implementation "com.facebook.fresco:fresco:$project.frescoVersion"
- //   implementation "com.jakewharton:butterknife:$project.butterKnifeVersion"
 
-   // annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterKnifeVersion"
+    implementation Dependencie.fresco
 
-    //endregion
     implementation 'javax.inject:javax.inject:1'
-    implementation "com.jakewharton.timber:timber:$project.timberVersion"
+    implementation Dependencie.timber
 
     //region Retro Fit
-    implementation "com.squareup.retrofit2:retrofit:$project.retrofitVersion"
-
-
+    implementation Dependencie.retrofit
     //adapter
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$project.retrofitVersion"
+    implementation Dependencie.retrofit_rxjava_adapter
 
     // JSON Parsing
     implementation "com.google.code.gson:gson:$gsonVersion"

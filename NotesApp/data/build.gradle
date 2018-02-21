@@ -35,8 +35,6 @@ dependencies {
 
     //region Retro Fit
     implementation "com.squareup.retrofit2:retrofit:$project.retrofitVersion"
-
-
     //adapter
     implementation "com.squareup.retrofit2:adapter-rxjava2:$project.retrofitVersion"
 
@@ -47,7 +45,7 @@ dependencies {
     //endregion
 
     //region ReactiveX
-    api "io.reactivex.rxjava2:rxjava:$project.rxJavaVersion"
+    api Dependencie.retrofit
     api "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
 
     implementation project(":domain")
