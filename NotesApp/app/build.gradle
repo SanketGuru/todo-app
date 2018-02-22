@@ -43,7 +43,7 @@ dependencies {
 
     implementation Dependencie.fresco
 
-    implementation 'javax.inject:javax.inject:1'
+    implementation Dependencie.inject
     implementation Dependencie.timber
 
     //region Retro Fit
@@ -52,17 +52,19 @@ dependencies {
     implementation Dependencie.retrofit_rxjava_adapter
 
     // JSON Parsing
-    implementation "com.google.code.gson:gson:$gsonVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation Dependencie.gson
+    implementation Dependencie.retrofit_converter
 
     //endregion
 
     //region ReactiveX
-    api "io.reactivex.rxjava2:rxjava:$project.rxJavaVersion"
-    api "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
+    implementation Dependencie.rxjava
+    implementation Dependencie.rxAndroid
 
-    compile 'io.reactivex.rxjava2:rxkotlin:2+'
-    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    implementation Dependencie.rxKotlin
+    implementation Dependencie.rxBinding
+
+
     //region Dagger Android
     kapt "com.google.dagger:dagger-compiler:$project.daggerVersion"
     compile "com.google.dagger:dagger:$project.daggerVersion"
@@ -79,14 +81,14 @@ dependencies {
     }
 
     //Lifecycle
-    implementation 'android.arch.lifecycle:runtime:1.0.3'
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
-    implementation 'android.arch.lifecycle:common-java8:1.0.0'
-    implementation 'android.arch.paging:runtime:1.0.0-alpha3'
+    implementation Dependencie.lifecycle_runtime
+    annotationProcessor Dependencie.lifecycle_compiler
+    implementation Dependencie.java
+    implementation Dependencie.paging_runtime
 
     //LiveData and view model
-    implementation 'android.arch.lifecycle:extensions:1.0.0'
-    implementation 'android.arch.lifecycle:reactivestreams:1.0.0'
+    implementation Dependencie.extensions
+    implementation Dependencie.reactivestreams
 
     compile project(":data")
     implementation project(":domain")

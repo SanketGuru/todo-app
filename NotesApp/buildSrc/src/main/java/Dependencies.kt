@@ -10,8 +10,8 @@ object Versions {
     val constraint_layout = "1.0.2"
     val retrofit = "2.3.0"
     val rxjava = "2.1.9"
-
-
+    val rxBinding= "2.0.0"
+    val rxKotlin= "2+"
     val frescoVersion = "1.5.0"
     val timberVersion = "4.5.+"
     val daggerVersion = "2.13"
@@ -20,6 +20,13 @@ object Versions {
     val retrofitVersion = "2.3.0"
     val gsonVersion = "2.8.1"
     val koin = "0.8.2"
+    val lifecycleRuntimeVersion = "1.0.3"
+    val lifecycleCompilerVersion = "1.0.0"
+    val javaVersion = "1.0.0"
+    val extensionsVersion = "1.0.0"
+    val reactivestreamsVersion = "1.0.0"
+    val pagingRuntimeVersion = "1.0.0-alpha3"
+
 }
 
 object Dependencie {
@@ -40,10 +47,30 @@ object Dependencie {
     val constraint_layout = "com.android.support.constraint:constraint-layout:${Versions.constraint_layout}"
 
     //endregion
-
+    val inject="javax.inject:javax.inject:1"
     val timber = "com.jakewharton.timber:timber:${Versions.timberVersion}"
     val fresco = "com.facebook.fresco:fresco:${Versions.frescoVersion}"
 
     val koin = "org.koin:koin-android:${Versions.koin}"
     val koin_android_architecture = "org.koin:koin-android-architecture:${Versions.koin}"
+
+    // JSON Parsing
+    val gson= "com.google.code.gson:gson:${Versions.gsonVersion}"
+    val retrofit_converter= "com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}"
+
+    //region ReactiveX
+    val rxJava="io.reactivex.rxjava2:rxjava:${Versions.rxjava}"
+    val rxAndroid="io.reactivex.rxjava2:rxandroid:${Versions.rxAndroidVersion}"
+    val rxKotlin= "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
+    val rxBinding= "com.jakewharton.rxbinding2:rxbinding:${Versions.rxBinding}"
+
+    //Lifecycle
+    val lifecycle_runtime= "android.arch.lifecycle:runtime:${Versions.lifecycleRuntimeVersion}"
+    val lifecycle_compiler= "android.arch.lifecycle:compiler:${Versions.lifecycleCompilerVersion}"
+    val java= "android.arch.lifecycle:common-java8:${Versions.javaVersion}"
+    val paging_runtime="android.arch.paging:runtime:${Versions.pagingRuntimeVersion}"
+
+    //LiveData and view model
+    val extensions= "android.arch.lifecycle:extensions:${Versions.extensionsVersion}"
+    val reactivestreams= "android.arch.lifecycle:reactivestreams:${Versions.reactivestreamsVersion}"
 }
