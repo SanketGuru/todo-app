@@ -24,6 +24,9 @@ android {
 //kapt {
 //    generateStubs = true
 //}
+androidExtensions {
+    experimental = true
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -99,6 +102,9 @@ dependencies {
 
     compile project(":data")
     implementation project(":domain")
+
+    compile "com.xwray:groupie:$project.groupieVersion"
+    compile "com.xwray:groupie-kotlin-android-extensions:$project.groupieVersion"
 
     //paging
 
