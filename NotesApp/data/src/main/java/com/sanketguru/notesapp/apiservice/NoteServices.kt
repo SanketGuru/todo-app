@@ -15,7 +15,7 @@ interface NoteServices {
 
     @PUT("users/createnote")
     fun createNote(@Body createNote: CreateNote): Observable<ApiResponse<String>>
- @DELETE("note")
+ @DELETE("users/note")
     fun deletNote(@Body createNote: DeleteModel): Observable<ApiResponse<String>>
 
     @GET("users/notes/page/{pageNumber}/{pageSize}")

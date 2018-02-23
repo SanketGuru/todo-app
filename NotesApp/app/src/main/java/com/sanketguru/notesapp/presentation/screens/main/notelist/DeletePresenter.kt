@@ -1,16 +1,12 @@
 package com.sanketguru.notesapp.presentation.screens.main.notelist
 
-import com.sanketguru.notesapp.domain.module.AccountDetails
 import com.sanketguru.notesapp.domain.module.DeleteModel
 import com.sanketguru.notesapp.domain.module.Error
-import com.sanketguru.notesapp.domain.module.UserUIModel
-import com.sanketguru.notesapp.domain.repo.DeleteRepository
-import com.sanketguru.notesapp.domain.repo.UserRepository
+import com.sanketguru.notesapp.domain.repo.NoteRepository
 import com.sanketguru.notesapp.presentation.screens.BasePresenter
-import com.sanketguru.notesapp.presentation.screens.login.LoginContract
-import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
+import timber.log.Timber
 
 /**
  * Created by Raju on 23-02-2018.
@@ -19,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 class DeletePresenter(
         private val view: DeleteContract.View,
-        private val userRepo: DeleteRepository,
+        private val userRepo: NoteRepository,
         private val scheduler: Scheduler
 ) : DeleteContract.Presenter {
 
@@ -40,22 +36,22 @@ class DeletePresenter(
     }
 
 
-    override fun doLogin(user: DeleteModel) {
-        view.showLoading()
+    override fun delete(user: DeleteModel) {
+
         val loginDisposible =
-                userRepo.login(user)
+                userRepo.deleteNote(user)
                       //  .filter { user -> user.userName != null && user.userName != "" }
                         .observeOn(scheduler)
                         .subscribe(
                                 { userData ->
 
 
-                                    view.hideLoading()
+                                Timber.v("success %s",userData.toString())
                                 },
                                 { err ->
                                     err.printStackTrace()
                                     view showError Error(0, "Something went wrong")
-                                    view.hideLoading()
+
 
 
                                 })
@@ -67,14 +63,7 @@ class DeletePresenter(
 interface DeleteContract {
     interface View {
 
-
-
         infix fun showError(error: Error)
-
-        fun showLoading()
-
-        fun hideLoading()
-
 
     }
 
@@ -83,7 +72,7 @@ interface DeleteContract {
         /**
          * Login button Clicked Command
          * */
-        infix fun doLogin(user: DeleteModel)
+        infix fun delete(user: DeleteModel)
 
 
     }

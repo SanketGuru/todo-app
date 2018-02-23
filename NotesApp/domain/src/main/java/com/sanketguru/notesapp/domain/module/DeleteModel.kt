@@ -5,5 +5,5 @@ package com.sanketguru.notesapp.domain.module
  */
 data  class DeleteModel(
 
-        var id: ArrayList<String>
+        var id: List<String>
 )

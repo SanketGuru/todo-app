@@ -10,9 +10,14 @@ import com.sanketguru.notesapp.apiservice.RetrofitHelper
 import com.sanketguru.notesapp.core.CommonFragment
 import com.sanketguru.notesapp.data.mapper.NoteMapper
 import com.sanketguru.notesapp.data.repo.NoteRepoImpl
+import com.sanketguru.notesapp.data.repo.UserRepositoryImpl
 import com.sanketguru.notesapp.data.store.impl.NoteDataStoreImpl
+import com.sanketguru.notesapp.domain.module.DeleteModel
+import com.sanketguru.notesapp.domain.module.Error
 import com.sanketguru.notesapp.domain.module.NotePageModel
+import com.sanketguru.notesapp.domain.repo.NoteRepository
 import com.sanketguru.notesapp.presentation.adapter.NewNotesAdapter
+import com.sanketguru.notesapp.presentation.screens.login.LoginPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.list_main.*
@@ -23,7 +28,10 @@ import timber.log.Timber
  * A placeholder fragment containing a simple view.
  */
 
-class ListFragment : CommonFragment(), ListContract.View {
+class ListFragment : CommonFragment(), ListContract.View ,DeleteContract.View{
+    override fun showError(error: Error) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override val layout: Int = R.layout.list_main
 
@@ -36,6 +44,8 @@ class ListFragment : CommonFragment(), ListContract.View {
     var lastPosition = 0
     var notesAdapter = NewNotesAdapter(mutableListOf())
     val mLayoutManager = LinearLayoutManager(activity)
+
+    val deletePresenter = DeletePresenter(this,   NoteRepoImpl(NoteDataStoreImpl(RetrofitHelper().noteWebService), NoteMapper()), AndroidSchedulers.mainThread())
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -100,7 +110,11 @@ class ListFragment : CommonFragment(), ListContract.View {
                     notePageModel.pageNumber != 0)
             mLayoutManager.scrollToPosition(lastPosition)
         }
-        notesAdapter.itemClick.subscribe(Consumer { Timber.v("id  %s ",it.id) }, Consumer { t -> t.printStackTrace() })
+        notesAdapter.itemClick.subscribe(Consumer { Timber.v("id  %s ",it.id)
+            deletePresenter.delete(DeleteModel(listOf<String>(it.id)))
+        }, Consumer { t -> t.printStackTrace()
+
+        })
 
     }
 
