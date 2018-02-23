@@ -1,5 +1,6 @@
 package com.sanketguru.notesapp.domain.repo
 
+import com.sanketguru.notesapp.domain.module.DeleteModel
 import com.sanketguru.notesapp.domain.module.NotePageModel
 import com.sanketguru.notesapp.domain.module.TextNote
 import io.reactivex.Flowable
@@ -24,4 +25,6 @@ interface NoteRepository {
      * Get Note page
      * */
     fun getNotesPage(pageNo : Int) : Flowable<NotePageModel>
+
+    fun deleteNote(deleteNote : DeleteModel) : Observable<Boolean>
 }

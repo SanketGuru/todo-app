@@ -14,7 +14,9 @@ import com.sanketguru.notesapp.data.store.impl.NoteDataStoreImpl
 import com.sanketguru.notesapp.domain.module.NotePageModel
 import com.sanketguru.notesapp.presentation.adapter.NewNotesAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.list_main.*
+import timber.log.Timber
 
 
 /**
@@ -42,7 +44,7 @@ class ListFragment : CommonFragment(), ListContract.View {
         werService(1)
         recyclerView.addOnScrollListener(recyclerViewOnScrollListener)
 
-    }
+        }
 
     fun werService(pageNo: Int) {
         isLoading = true
@@ -89,6 +91,7 @@ class ListFragment : CommonFragment(), ListContract.View {
         if (pageNumber == 2) {
             notesAdapter = NewNotesAdapter(notePageModel.listTextNote.toMutableList())
             recyclerView.adapter = notesAdapter
+
         } else {
             isLastPage = notePageModel.totalCount == notesAdapter.itemCount//isLastPage
             //add
@@ -97,6 +100,8 @@ class ListFragment : CommonFragment(), ListContract.View {
                     notePageModel.pageNumber != 0)
             mLayoutManager.scrollToPosition(lastPosition)
         }
+        notesAdapter.itemClick.subscribe(Consumer { Timber.v("id  %s ",it.id) }, Consumer { t -> t.printStackTrace() })
+
     }
 
     //region Pagenation

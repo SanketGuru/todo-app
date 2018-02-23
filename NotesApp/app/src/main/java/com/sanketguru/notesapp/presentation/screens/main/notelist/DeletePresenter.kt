@@ -1,34 +1,37 @@
-package com.sanketguru.notesapp.presentation.screens.login
+package com.sanketguru.notesapp.presentation.screens.main.notelist
 
 import com.sanketguru.notesapp.domain.module.AccountDetails
+import com.sanketguru.notesapp.domain.module.DeleteModel
 import com.sanketguru.notesapp.domain.module.Error
 import com.sanketguru.notesapp.domain.module.UserUIModel
+import com.sanketguru.notesapp.domain.repo.DeleteRepository
 import com.sanketguru.notesapp.domain.repo.UserRepository
 import com.sanketguru.notesapp.presentation.screens.BasePresenter
+import com.sanketguru.notesapp.presentation.screens.login.LoginContract
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 
 /**
- * Created by Sanket Gurav on 1/17/2018.
+ * Created by Raju on 23-02-2018.
  */
-class LoginPresenter(
-        private val view: LoginContract.View,
-        private val userRepo: UserRepository,
+
+
+class DeletePresenter(
+        private val view: DeleteContract.View,
+        private val userRepo: DeleteRepository,
         private val scheduler: Scheduler
-) : LoginContract.Presenter {
+) : DeleteContract.Presenter {
+
     //region  LoginContract.Presenter methods
 
 
-private  var disposible = CompositeDisposable()
+    private  var disposible = CompositeDisposable()
 
 
     override fun start() {
         disposible = CompositeDisposable()
-        disposible.add( view.login.subscribe({
-             doLogin(it)
-        }))
+
 
     }
 
@@ -37,20 +40,16 @@ private  var disposible = CompositeDisposable()
     }
 
 
-    override fun doLogin(user: UserUIModel) {
+    override fun doLogin(user: DeleteModel) {
         view.showLoading()
         val loginDisposible =
                 userRepo.login(user)
-                        .filter { user -> user.userName != null && user.userName != "" }
+                      //  .filter { user -> user.userName != null && user.userName != "" }
                         .observeOn(scheduler)
                         .subscribe(
                                 { userData ->
 
-                                    AccountDetails.id = userData.id
-                                    AccountDetails.userName = userData.userName
-                                    AccountDetails.password = userData.password
-                                    AccountDetails.accesstoken = userData.accesstoken
-                                    view goToMainPage user
+
                                     view.hideLoading()
                                 },
                                 { err ->
@@ -65,19 +64,17 @@ private  var disposible = CompositeDisposable()
     //endregion
 }
 
-interface LoginContract {
+interface DeleteContract {
     interface View {
 
-        fun goToRegistration()
-        /**on Login go to main page*/
-        infix fun goToMainPage(user: UserUIModel)
+
 
         infix fun showError(error: Error)
 
         fun showLoading()
 
         fun hideLoading()
-        val login : Observable<UserUIModel>
+
 
     }
 
@@ -86,10 +83,8 @@ interface LoginContract {
         /**
          * Login button Clicked Command
          * */
-        infix fun doLogin(user: UserUIModel)
+        infix fun doLogin(user: DeleteModel)
 
 
     }
 }
-
-data class LoginError(val unameError: String)

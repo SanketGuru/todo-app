@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
+import com.jakewharton.rxbinding2.view.RxView
 import com.sanketguru.notesapp.R
 import com.sanketguru.notesapp.data.repo.UserRepositoryImpl
 import com.sanketguru.notesapp.domain.module.AccountDetails
@@ -20,6 +21,7 @@ import com.sanketguru.notesapp.presentation.utils.extensions.PreferenceHelper.ge
 import com.sanketguru.notesapp.presentation.utils.extensions.PreferenceHelper.set
 import com.sanketguru.notesapp.presentation.utils.extensions.onClick
 import com.sanketguru.notesapp.presentation.utils.extensions.start
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.login.*
 import timber.log.Timber
@@ -28,12 +30,15 @@ import timber.log.Timber
 /**
  * Created by Bhavesh on 02-01-2018.
  */
-class LoginActivity : AppCompatActivity(), LoginContract.View {
+class LoginActivity() : AppCompatActivity(), LoginContract.View {
     var mProgressDialog: ProgressDialog? = null
     override fun showLoading() {
         hideLoading()
         mProgressDialog = CommonUtils.showLoadingDialog(this)
 
+    }
+    override val login: Observable<UserUIModel> by lazy{
+        RxView.clicks(buttonLogin).map { UserUIModel(userName = etUserName.text.toString(), password = etPassword.text.toString()) }
     }
 
     override fun hideLoading() {
@@ -49,10 +54,11 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
 
-        buttonLogin.onClick {
+       /* buttonLogin.onClick {
             buttonLogin.isEnabled = false
             presenter.doLogin(UserUIModel(userName = etUserName.text.toString(), password = etPassword.text.toString()))
-        }
+        }*/
+        presenter.start()
         buttonRegister.onClick {
             goToRegistration()
         }
@@ -61,7 +67,10 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
     //region  LoginContract.View implementation
 
-
+    override fun onDestroy() {
+        presenter.stop()
+        super.onDestroy()
+    }
     override fun goToRegistration() {
         start<RegisterActivity>()
 

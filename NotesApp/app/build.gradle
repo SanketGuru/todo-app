@@ -96,8 +96,8 @@ dependencies {
     compile project(":data")
     implementation project(":domain")
 
-    compile "com.xwray:groupie:$project.groupieVersion"
-    compile "com.xwray:groupie-kotlin-android-extensions:$project.groupieVersion"
+    /*compile "com.xwray:groupie:$project.groupieVersion"
+    compile "com.xwray:groupie-kotlin-android-extensions:$project.groupieVersion"*/
 
     //paging
 

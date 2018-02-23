@@ -24,7 +24,7 @@ import timber.log.Timber
 /**
  * Created by Bhavesh on 23-01-2018.
  */
-class SplashActivity : AppCompatActivity(), LoginContract.View {
+class SplashActivity : AppCompatActivity(), SplashContract.View {
     override fun showLoading() {
 
     }
@@ -33,8 +33,11 @@ class SplashActivity : AppCompatActivity(), LoginContract.View {
 
     }
 
-    val presenter = LoginPresenter(this, UserRepositoryImpl(), AndroidSchedulers.mainThread())
-
+    val presenter = SplashPresenter(this, UserRepositoryImpl(), AndroidSchedulers.mainThread())
+    override fun onDestroy() {
+        presenter.stop()
+        super.onDestroy()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash)

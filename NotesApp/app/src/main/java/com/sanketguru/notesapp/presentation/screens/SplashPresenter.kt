@@ -1,34 +1,31 @@
-package com.sanketguru.notesapp.presentation.screens.login
+package com.sanketguru.notesapp.presentation.screens
 
 import com.sanketguru.notesapp.domain.module.AccountDetails
 import com.sanketguru.notesapp.domain.module.Error
 import com.sanketguru.notesapp.domain.module.UserUIModel
 import com.sanketguru.notesapp.domain.repo.UserRepository
-import com.sanketguru.notesapp.presentation.screens.BasePresenter
+import com.sanketguru.notesapp.presentation.screens.login.LoginActivity
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 /**
- * Created by Sanket Gurav on 1/17/2018.
+ * Created by Bhavesh on 23-02-2018.
  */
-class LoginPresenter(
-        private val view: LoginContract.View,
+class SplashPresenter(
+        private val view: SplashActivity,
         private val userRepo: UserRepository,
-        private val scheduler: Scheduler
-) : LoginContract.Presenter {
+        private val sheduler: Scheduler
+) : SplashContract.Presenter {
     //region  LoginContract.Presenter methods
 
 
-private  var disposible = CompositeDisposable()
+    var disposible = CompositeDisposable()
 
 
     override fun start() {
         disposible = CompositeDisposable()
-        disposible.add( view.login.subscribe({
-             doLogin(it)
-        }))
 
     }
 
@@ -42,7 +39,8 @@ private  var disposible = CompositeDisposable()
         val loginDisposible =
                 userRepo.login(user)
                         .filter { user -> user.userName != null && user.userName != "" }
-                        .observeOn(scheduler)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(sheduler)
                         .subscribe(
                                 { userData ->
 
@@ -65,7 +63,7 @@ private  var disposible = CompositeDisposable()
     //endregion
 }
 
-interface LoginContract {
+interface SplashContract {
     interface View {
 
         fun goToRegistration()
@@ -77,7 +75,7 @@ interface LoginContract {
         fun showLoading()
 
         fun hideLoading()
-        val login : Observable<UserUIModel>
+
 
     }
 
