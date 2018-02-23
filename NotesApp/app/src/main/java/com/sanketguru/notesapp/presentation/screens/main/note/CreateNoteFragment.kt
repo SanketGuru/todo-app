@@ -3,12 +3,11 @@ package com.sanketguru.notesapp.presentation.screens.main.note
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.sanketguru.notesapp.OnFragmentInteractionListener
 import com.sanketguru.notesapp.R
 import com.sanketguru.notesapp.apiservice.RetrofitHelper
+import com.sanketguru.notesapp.core.CommonFragment
 import com.sanketguru.notesapp.data.mapper.NoteMapper
 import com.sanketguru.notesapp.data.repo.NoteRepoImpl
 import com.sanketguru.notesapp.data.store.impl.NoteDataStoreImpl
@@ -27,7 +26,9 @@ import kotlin.collections.ArrayList
  * Created by Raju on 03-01-2018.
  */
 
-class CreateFragment : Fragment(), CreateAndEditContract.View {
+class CreateFragment : CommonFragment(), CreateAndEditContract.View {
+    override val layout: Int = R.layout.fragment_create
+
     //region Ui getter setter
     override var title: String
         get() = editTextTitle.text.toString().trim()
@@ -63,23 +64,14 @@ class CreateFragment : Fragment(), CreateAndEditContract.View {
         }
     }
 
-    //3
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
 
-        val view = inflater?.inflate(R.layout.fragment_create, container, false)
-
-        return view
-    }
-
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val note = arguments.getParcelable<TextNote>(ARG_NOTE)
+        //  val note = arguments!!getParcelable<TextNote>(ARG_NOTE)
+        val note = arguments!![ARG_NOTE] as TextNote
         presenter.note = note
         setUpView()
-
-
     }
 
     private fun setUpView() {

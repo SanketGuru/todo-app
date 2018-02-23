@@ -1,1 +1,2 @@
-include ':app', ':data', ':domain', ':data-model'
+include ':app', ':data', ':domain', ':data-model', ':buildSrc'
+

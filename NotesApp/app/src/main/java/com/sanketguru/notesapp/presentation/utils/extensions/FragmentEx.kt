@@ -1,11 +1,7 @@
 package com.sanketguru.notesapp.presentation.utils.extensions
 
 import android.content.res.Configuration
-import android.os.Bundle
-import android.os.Parcelable
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
-import java.io.Serializable
 
 /**
  * Created by sanket on 19.09.2017.
@@ -26,10 +22,10 @@ import java.io.Serializable
 //}
 
 inline infix fun <reified T> Fragment.extraWithKey(key: String): T {
-    val value: Any = arguments[key]
+    val value: Any = arguments!![key]
     return value as T
 }
 
 fun Fragment.isPortrait() = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 
-infix fun Fragment.takeColor(colorId: Int) = ContextCompat.getColor(context, colorId)
+//infix fun Fragment.takeColor(colorId: Int) = ContextCompat.getColor(this.context, colorId)
