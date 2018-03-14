@@ -4,11 +4,12 @@ import com.sanketguru.notesapp.domain.module.AccountDetails
 import com.sanketguru.notesapp.domain.module.Error
 import com.sanketguru.notesapp.domain.module.UserUIModel
 import com.sanketguru.notesapp.domain.repo.UserRepository
+import com.sanketguru.notesapp.domain.util.UiModelHelper
+import com.sanketguru.notesapp.domain.util.ViewState
 import com.sanketguru.notesapp.presentation.screens.BasePresenter
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by Sanket Gurav on 1/17/2018.
@@ -21,15 +22,20 @@ class LoginPresenter(
     //region  LoginContract.Presenter methods
 
 
-private  var disposible = CompositeDisposable()
+    private var disposible = CompositeDisposable()
 
 
     override fun start() {
         disposible = CompositeDisposable()
-        disposible.add( view.login.subscribe({
-             doLogin(it)
-        }))
+//        disposible.add( view.login.subscribe({
+//             doLogin(it)
+//        }))
+        disposible.add(view.login.switchMap {
+            userRepo.login(it).compose(UiModelHelper.applyUiModel())
 
+        }.observeOn(scheduler).
+                subscribe { view.renderLogin(it) }
+        )
     }
 
     override fun stop() {
@@ -77,7 +83,8 @@ interface LoginContract {
         fun showLoading()
 
         fun hideLoading()
-        val login : Observable<UserUIModel>
+        val login: Observable<UserUIModel>
+        fun renderLogin(data: ViewState<UserUIModel>)
 
     }
 

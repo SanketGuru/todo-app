@@ -20,6 +20,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 //kapt {
 //    generateStubs = true
@@ -28,8 +32,8 @@ androidExtensions {
     experimental = true
 }
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     //region Suppotr Lib
     implementation Dependencie.support_appcompat_v7
@@ -39,18 +43,16 @@ dependencies {
     implementation Dependencie.support_palette_v7
     implementation Dependencie.support_cardview_v7
     implementation Dependencie.support_gridlayout_v7
+
     //endregion
-
     implementation Dependencie.constraint_layout
-
-
     implementation Dependencie.fresco
-
     implementation Dependencie.inject
     implementation Dependencie.timber
 
     //region Retro Fit
     implementation Dependencie.retrofit
+
     //adapter
     implementation Dependencie.retrofit_rxjava_adapter
 
@@ -63,22 +65,23 @@ dependencies {
     //region ReactiveX
     implementation Dependencie.rxjava
     implementation Dependencie.rxAndroid
-
     implementation Dependencie.rxKotlin
     implementation Dependencie.rxBinding
-
 
     //region Dagger Android
     kapt "com.google.dagger:dagger-compiler:$project.daggerVersion"
     compile "com.google.dagger:dagger:$project.daggerVersion"
-   annotationProcessor "com.google.dagger:dagger-android-processor:$project.daggerVersion"
-//    compile "com.google.dagger:dagger-android-support:$project.daggerVersion"
-//
-//    // if you are not using support library, include this instead
-//    compile "com.google.dagger:dagger-android:$project.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$project.daggerVersion"
+
+    //    compile "com.google.dagger:dagger-android-support:$project.daggerVersion"
+
+    //
+
+    //    // if you are not using support library, include this instead
+
+    //    compile "com.google.dagger:dagger-android:$project.daggerVersion"
 
     //endregion
-
     compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
         transitive = true
     }
@@ -92,12 +95,11 @@ dependencies {
     //LiveData and view model
     implementation Dependencie.extensions
     implementation Dependencie.reactivestreams
-
-    compile project(":data")
-    implementation project(":domain")
+    compile project(':data')
+    implementation project(':domain')
 
     /*compile "com.xwray:groupie:$project.groupieVersion"
-    compile "com.xwray:groupie-kotlin-android-extensions:$project.groupieVersion"*/
+        compile "com.xwray:groupie-kotlin-android-extensions:$project.groupieVersion"*/
 
     //paging
 
@@ -117,6 +119,7 @@ dependencies {
 
     // Koin for Android
     compile Dependencie.koin
+
     // or Koin for Android Architecture (if needed)
     compile Dependencie.koin_android_architecture
     testImplementation 'junit:junit:4.12'

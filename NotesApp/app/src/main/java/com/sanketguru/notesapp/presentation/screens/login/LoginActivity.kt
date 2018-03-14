@@ -11,6 +11,7 @@ import com.sanketguru.notesapp.data.repo.UserRepositoryImpl
 import com.sanketguru.notesapp.domain.module.AccountDetails
 import com.sanketguru.notesapp.domain.module.Error
 import com.sanketguru.notesapp.domain.module.UserUIModel
+import com.sanketguru.notesapp.domain.util.ViewState
 import com.sanketguru.notesapp.presentation.common.CommonUtils
 import com.sanketguru.notesapp.presentation.common.Constants.Companion.PASSWORD
 import com.sanketguru.notesapp.presentation.common.Constants.Companion.USER_NAME
@@ -30,7 +31,16 @@ import timber.log.Timber
 /**
  * Created by Bhavesh on 02-01-2018.
  */
-class LoginActivity() : AppCompatActivity(), LoginContract.View {
+class LoginActivity : AppCompatActivity(), LoginContract.View {
+    override fun renderLogin(data: ViewState<UserUIModel>) {
+        Timber.d("data : %s", data.status.toString())
+    }
+
+    fun showProgress(): Unit {
+
+    }
+
+
     var mProgressDialog: ProgressDialog? = null
     override fun showLoading() {
         hideLoading()
@@ -42,7 +52,7 @@ class LoginActivity() : AppCompatActivity(), LoginContract.View {
     }
 
     override fun hideLoading() {
-        if (mProgressDialog != null && mProgressDialog!!.isShowing()) {
+        if (mProgressDialog != null && mProgressDialog!!.isShowing) {
             mProgressDialog!!.cancel()
         }
     }
